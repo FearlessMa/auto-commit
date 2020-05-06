@@ -17,11 +17,15 @@
   },
   "homepage": "https://github.com/FearlessMa/gitMessage#readme",
   "devDependencies": {
-    "cz-conventional-changelog": "^3.2.0"
+    "cz-conventional-changelog": "^3.2.0",
+    "validate-commit-msg": "^2.14.0"
   },
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
+    },
+    "ghooks": {
+      "commit-msg": "./validate-commit-msg.js"
     }
   }
 }
