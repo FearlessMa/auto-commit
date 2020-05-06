@@ -15,5 +15,13 @@
   "bugs": {
     "url": "https://github.com/FearlessMa/gitMessage/issues"
   },
-  "homepage": "https://github.com/FearlessMa/gitMessage#readme"
+  "homepage": "https://github.com/FearlessMa/gitMessage#readme",
+  "devDependencies": {
+    "cz-conventional-changelog": "^3.2.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
 }
