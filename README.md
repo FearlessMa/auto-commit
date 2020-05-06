@@ -20,7 +20,7 @@ npm run changelog
 * 自动增加版本号
   
 ``` bash
-standard-versio
+npm run release
 ```
 
 
