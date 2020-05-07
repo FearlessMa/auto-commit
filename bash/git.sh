@@ -96,9 +96,9 @@ esac
 if [ $input = "y" ] || [ $input = "Y" ]
 then
   echo "**************git pull**************"
-  git pull 
+  git pull origin $branch
   echo "**************git push**************"
-  git push $branch
+  git push origin $branch
   echo "**************git push --tags**************"
   git push --tags
 fi
