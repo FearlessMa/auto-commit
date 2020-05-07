@@ -79,3 +79,6 @@ case $changelog in
         #         ;;
 esac
 
+git pull 
+git push 
+git push --tags
