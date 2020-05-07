@@ -1,5 +1,17 @@
 #!/bin/bash
 
+# while [[ "$#" > 0 ]]; do case $1 in
+#   -r|--release) release="$2"; shift;;
+#   -b|--branch) branch="$2"; shift;;
+#   *) echo "Unknown parameter passed: $1"; exit 1;;
+# esac; shift; done
+if branch=$(git symbolic-ref --short -q HEAD)
+then
+  echo on branch $branch
+else
+  echo not on any branch
+fi
+
 echo 'git bash 脚本';
 # Default as minor, the argument major, minor or patch: 
 if [ -z "$release" ]; then
@@ -11,8 +23,8 @@ if [ -z "$branch" ] ; then
     branch="master"; 
 fi;
 
-echo "Branch is $branch"
-echo "Release as $release"
+# echo "Branch is $branch"
+# echo "Release as $release"
 # 输出内容
 # while read line
 # do
@@ -86,7 +98,7 @@ then
   echo "**************git pull**************"
   git pull 
   echo "**************git push**************"
-  git push 
+  git push $branch
   echo "**************git push --tags**************"
   git push --tags
 fi
