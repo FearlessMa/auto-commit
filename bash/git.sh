@@ -26,15 +26,15 @@ case $versionNumber in
     read -p "是否是预发版本? [y/n] " versionAlpha
     if [ $versionAlpha = "y" ] || [ $versionAlpha = "Y" ]
     then
-    echo "版本号升级"
-    npm run releasealpha
-    echo "打印所有tags"
-    git tag
+      echo "版本号升级"
+      npm run releasealpha
+      echo "打印所有tags"
+      git tag
     else
-    echo "版本号升级"
-    npm run release
-    echo "打印所有tags"
-    git tag
+      echo "版本号升级"
+      npm run release
+      echo "打印所有tags"
+      git tag
     fi
     ;;
   [nN]*)
@@ -79,14 +79,14 @@ case $changelog in
         #         ;;
 esac
 
-if [$input == "y" || [$input == "Y"]
+if [$input = "y" || [$input = "Y"] 
 then
-echo "-----git pull-----"
-git pull 
-echo "-----git push-----"
-git push 
-echo "-----git push --tags-----"
-git push --tags
+  echo "-----git pull-----"
+  git pull 
+  echo "-----git push-----"
+  git push 
+  echo "-----git push --tags-----"
+  git push --tags
 fi
 
 echo "----- end -----"
