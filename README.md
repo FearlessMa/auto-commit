@@ -53,5 +53,5 @@ npm run release
 * 参考
   
 [阮一峰commit message](http://www.ruanyifeng.com/blog/2016/01/commit_message_change_log.html)
-
 [知乎](https://zhuanlan.zhihu.com/p/51894196)
+[使用 ESlint、lint-staged 半自动提升项目代码质量](https://www.jianshu.com/p/cdd749c624d9)
