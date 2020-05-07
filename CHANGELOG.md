@@ -1,6 +1,11 @@
 ## [1.4.1](https://github.com/FearlessMa/gitMessage/compare/v1.4.0...v1.4.1) (2020-05-07)
 
 
+### Bug Fixes
+
+* 修复引用 ([54980bb](https://github.com/FearlessMa/gitMessage/commit/54980bb46784f333c359d916eff34942f2f71a24))
+
+
 
 # [1.4.0](https://github.com/FearlessMa/gitMessage/compare/v1.3.0...v1.4.0) (2020-05-07)
 
