@@ -68,6 +68,8 @@ case $changelog in
         [yY]*)
                 echo "changelog 操作"
                 npm run changelog
+                git add .
+                git cz 
                 ;;
         [nN]*)
                 echo "跳过changelog"
