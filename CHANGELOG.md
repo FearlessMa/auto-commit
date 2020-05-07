@@ -1,10 +1,15 @@
-# Changelog
+## [1.6.3](https://github.com/FearlessMa/gitMessage/compare/v1.6.2...v1.6.3) (2020-05-07)
 
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-### [1.6.3](https://github.com/FearlessMa/gitMessage/compare/v1.6.2...v1.6.3) (2020-05-07)
 
-### [1.6.2](https://github.com/FearlessMa/gitMessage/compare/v1.6.2-alpha.0...v1.6.2) (2020-05-07)
+## [1.6.2](https://github.com/FearlessMa/gitMessage/compare/v1.6.2-alpha.0...v1.6.2) (2020-05-07)
+
+
+### Performance Improvements
+
+* 增加bash 分支选择 ([3211ebd](https://github.com/FearlessMa/gitMessage/commit/3211ebd40320d92f60e5120ffeb4ff1d32066fc0))
+
+
 
 ## [1.6.2-alpha.0](https://github.com/FearlessMa/gitMessage/compare/v1.6.1...v1.6.2-alpha.0) (2020-05-07)
 
@@ -137,3 +142,6 @@ All notable changes to this project will be documented in this file. See [standa
 ### Features
 
 * **test:** 增加test.js ([b018a41](https://github.com/FearlessMa/gitMessage/commit/b018a41dd231e478843105a57f2f23331f7d96a6))
+
+
+
