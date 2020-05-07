@@ -53,6 +53,10 @@ npm run release
 修订号：当你做了向下兼容的问题修正。
 
 
+* husky
+  
+  .huskyrc 配置commit 钩子执行 eslint 或 格式化代码
+
 
 
 

@@ -1,6 +1,6 @@
 {
   "name": "gitmessage",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "[http://www.ruanyifeng.com/blog/2016/01/commit_message_change_log.html](阮一峰commit message)",
   "main": "index.js",
   "scripts": {
@@ -9,10 +9,9 @@
     "releasealpha": "standard-version --prerelease alpha",
     "test": "echo \"Error: no test specified\" && exit 1",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
-    "changelog1": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0 && git add CHANGELOG.md && npm run changeissueurl",
     "pushtag": "git push --tags",
-    "gitpush": "standard-version &&  git add . && git cz && git pull && npm run changelog  && git push --tags",
-    "bash": "sh ./bash/git.sh"
+    "bash": "sh ./bash/git.sh",
+    "lint": "eslint src"
   },
   "repository": {
     "type": "git",
@@ -27,6 +26,7 @@
   "devDependencies": {
     "conventional-changelog-cli": "^2.0.31",
     "cz-conventional-changelog": "^3.2.0",
+    "eslint": "^6.8.0",
     "husky": "^4.2.5",
     "standard-version": "^7.1.0",
     "validate-commit-msg": "^2.14.0"
