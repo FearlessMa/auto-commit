@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.6.0](https://github.com/FearlessMa/gitMessage/compare/v1.5.0...v1.6.0) (2020-05-07)
+
+
+### Features
+
+* 增加 commit 钩子事件 ([bceacf8](https://github.com/FearlessMa/gitMessage/commit/bceacf800924acccd862af8b8f6477dcf89a5624))
+* 测试 ([712c828](https://github.com/FearlessMa/gitMessage/commit/712c8281bea7257ccbd36037f5927ed572564ccd))
+
 ## [1.5.0](https://github.com/FearlessMa/gitMessage/compare/v1.4.2...v1.5.0) (2020-05-07)
 
 
