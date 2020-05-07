@@ -1,6 +1,6 @@
 {
   "name": "gitmessage",
-  "version": "1.0.5",
+  "version": "1.1.0",
   "description": "[http://www.ruanyifeng.com/blog/2016/01/commit_message_change_log.html](阮一峰commit message)",
   "main": "index.js",
   "scripts": {
@@ -11,7 +11,7 @@
     "changelog1": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0 && git add CHANGELOG.md && npm run changeissueurl",
     "pushtag": "git push --tags",
     "gitpush": "standard-version &&  git add . && git cz && git pull && npm run changelog  && git push --tags",
-    "bash":"sh ./bash/gitShell.sh"
+    "bash": "sh ./bash/gitShell.sh"
   },
   "repository": {
     "type": "git",
