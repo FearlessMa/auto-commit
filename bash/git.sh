@@ -62,7 +62,7 @@ case $input in
         #         ;;
 esac
 
-read -p "是否跟新changelog? [y/n] " changelog
+read -p "是否更新changelog? [y/n] " changelog
 
 case $changelog in
         [yY]*)
@@ -83,11 +83,11 @@ esac
 
 if [ $input = "y" ] || [ $input = "Y" ]
 then
-  echo "-----git pull-----"
+  echo "**************git pull**************"
   git pull 
-  echo "-----git push-----"
+  echo "**************git push**************"
   git push 
-  echo "-----git push --tags-----"
+  echo "**************git push --tags**************"
   git push --tags
 fi
-echo "----- end -----"
+echo "************** end **************"
