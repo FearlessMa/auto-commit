@@ -1,8 +1,4 @@
-# Changelog
-
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
-
-## [1.6.0](https://github.com/FearlessMa/gitMessage/compare/v1.5.0...v1.6.0) (2020-05-07)
+# [1.6.0](https://github.com/FearlessMa/gitMessage/compare/v1.5.0...v1.6.0) (2020-05-07)
 
 
 ### Features
@@ -10,12 +6,16 @@ All notable changes to this project will be documented in this file. See [standa
 * 增加 commit 钩子事件 ([bceacf8](https://github.com/FearlessMa/gitMessage/commit/bceacf800924acccd862af8b8f6477dcf89a5624))
 * 测试 ([712c828](https://github.com/FearlessMa/gitMessage/commit/712c8281bea7257ccbd36037f5927ed572564ccd))
 
-## [1.5.0](https://github.com/FearlessMa/gitMessage/compare/v1.4.2...v1.5.0) (2020-05-07)
+
+
+# [1.5.0](https://github.com/FearlessMa/gitMessage/compare/v1.4.2...v1.5.0) (2020-05-07)
 
 
 ### Features
 
 * 修改npm run bash 为 npm run commit 命令 ([b2209d3](https://github.com/FearlessMa/gitMessage/commit/b2209d3aa2d1f27482cd6c7f48d55ff268f28979))
+
+
 
 ## [1.4.2](https://github.com/FearlessMa/gitMessage/compare/v1.4.0...v1.4.2) (2020-05-07)
 
@@ -121,3 +121,6 @@ All notable changes to this project will be documented in this file. See [standa
 ### Features
 
 * **test:** 增加test.js ([b018a41](https://github.com/FearlessMa/gitMessage/commit/b018a41dd231e478843105a57f2f23331f7d96a6))
+
+
+
