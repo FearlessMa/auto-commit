@@ -79,6 +79,9 @@ case $changelog in
         #         ;;
 esac
 
+echo "-----git pull-----"
 git pull 
+echo "-----git push-----"
 git push 
+echo "-----git push --tags-----"
 git push --tags
