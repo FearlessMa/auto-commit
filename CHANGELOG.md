@@ -2,7 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-## [1.3.0](https://github.com/FearlessMa/gitMessage/compare/v1.2.1...v1.3.0) (2020-05-07)
+## [1.4.0](https://github.com/FearlessMa/gitMessage/compare/v1.3.0...v1.4.0) (2020-05-07)
+
+
+### Features
+
+* 删除无用文件 ([c20cf82](https://github.com/FearlessMa/gitMessage/commit/c20cf829a6f6c9f5b7732b148f753cc705692138))
+
+# [1.3.0](https://github.com/FearlessMa/gitMessage/compare/v1.2.1...v1.3.0) (2020-05-07)
+
+
+### Bug Fixes
+
+* 修复bash报错 ([d750362](https://github.com/FearlessMa/gitMessage/commit/d7503623d7a18095b53e1fcce651b5c69786550b))
 
 
 ### Features
@@ -10,9 +22,6 @@ All notable changes to this project will be documented in this file. See [standa
 * 删除文件 ([0e15f54](https://github.com/FearlessMa/gitMessage/commit/0e15f54f9420fe1a9fcfc6197dd6fb2c04a1236b))
 
 
-### Bug Fixes
-
-* 修复bash报错 ([d750362](https://github.com/FearlessMa/gitMessage/commit/d7503623d7a18095b53e1fcce651b5c69786550b))
 
 ## [1.2.1](https://github.com/FearlessMa/gitMessage/compare/v1.2.0...v1.2.1) (2020-05-07)
 
