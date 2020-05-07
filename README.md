@@ -48,10 +48,24 @@ npm run release
   .huskyrc 配置commit 钩子执行 eslint 或 格式化代码
 
 
+* lint-staged
+
+```json
+"lint-staged": {
+    "src/**/*.{js,jsx}": [
+      "prettier --tab-width 4 --write", //格式化代码
+      "eslint --fix", // eslint 修复
+      "git add" // 修复后重新增加
+    ]
+  }
+```
+
 
 
 * 参考
   
 [阮一峰commit message](http://www.ruanyifeng.com/blog/2016/01/commit_message_change_log.html)
+
 [知乎](https://zhuanlan.zhihu.com/p/51894196)
+
 [使用 ESlint、lint-staged 半自动提升项目代码质量](https://www.jianshu.com/p/cdd749c624d9)
