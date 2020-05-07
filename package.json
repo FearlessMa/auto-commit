@@ -1,6 +1,6 @@
 {
   "name": "gitmessage",
-  "version": "1.4.2",
+  "version": "1.5.0",
   "description": "[http://www.ruanyifeng.com/blog/2016/01/commit_message_change_log.html](阮一峰commit message)",
   "main": "index.js",
   "scripts": {
@@ -11,7 +11,7 @@
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
     "pushtag": "git push --tags",
     "commit": "sh ./bash/git.sh",
-    "lint": "eslint src"
+    "lint": "eslint src && lint-staged"
   },
   "repository": {
     "type": "git",
@@ -28,6 +28,8 @@
     "cz-conventional-changelog": "^3.2.0",
     "eslint": "^6.8.0",
     "husky": "^4.2.5",
+    "lint-staged": "^10.2.2",
+    "prettier": "2.0.5",
     "standard-version": "^7.1.0",
     "validate-commit-msg": "^2.14.0"
   },
@@ -38,5 +40,12 @@
     "ghooks": {
       "commit-msg": "./validate-commit-msg.js"
     }
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx}": [
+      "prettier --tab-width 4 --write",
+      "eslint --fix",
+      "git add"
+    ]
   }
 }
