@@ -79,9 +79,14 @@ case $changelog in
         #         ;;
 esac
 
+if [$input == "y" || [$input == "Y"]
+then
 echo "-----git pull-----"
 git pull 
 echo "-----git push-----"
 git push 
 echo "-----git push --tags-----"
 git push --tags
+fi
+
+echo "----- end -----"
