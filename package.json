@@ -1,6 +1,6 @@
 {
   "name": "gitmessage",
-  "version": "1.6.2",
+  "version": "1.7.0",
   "description": "[http://www.ruanyifeng.com/blog/2016/01/commit_message_change_log.html](阮一峰commit message)",
   "main": "index.js",
   "bin": {
