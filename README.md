@@ -59,6 +59,9 @@ npm run release
   }
 ```
 
+* npm 发布
+
+  * npm publish --access=public
 
 
 * 参考
