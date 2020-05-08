@@ -1,10 +1,9 @@
 {
-  "name": "gitmessage",
-  "version": "1.7.1",
+  "name": "@fearless-ma/gitcommit",
+  "version": "1.7.2",
   "description": "[http://www.ruanyifeng.com/blog/2016/01/commit_message_change_log.html](阮一峰commit message)",
   "main": "index.js",
   "bin": {
-    "commit": "./bin/git.sh",
     "logs": "./bin/logs.js"
   },
   "scripts": {
