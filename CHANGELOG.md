@@ -1,13 +1,11 @@
-# Changelog
-
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
-
-## [1.8.0](https://github.com/FearlessMa/gitMessage/compare/v1.7.3...v1.8.0) (2020-05-08)
+# [1.8.0](https://github.com/FearlessMa/gitMessage/compare/v1.7.3...v1.8.0) (2020-05-08)
 
 
 ### Features
 
 * delete bin ([f583a5c](https://github.com/FearlessMa/gitMessage/commit/f583a5cf80ee46e5c6956e3c868b235d52b84353))
+
+
 
 ## [1.7.3](https://github.com/FearlessMa/gitMessage/compare/v1.7.2...v1.7.3) (2020-05-08)
 
@@ -157,3 +155,6 @@ All notable changes to this project will be documented in this file. See [standa
 ### Features
 
 * **test:** 增加test.js ([b018a41](https://github.com/FearlessMa/gitMessage/commit/b018a41dd231e478843105a57f2f23331f7d96a6))
+
+
+
