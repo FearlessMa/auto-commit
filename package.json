@@ -1,6 +1,6 @@
 {
   "name": "@fearless-ma/gitcommit",
-  "version": "1.8.0",
+  "version": "1.9.0",
   "description": "[http://www.ruanyifeng.com/blog/2016/01/commit_message_change_log.html](阮一峰commit message)",
   "main": "index.js",
   "bin": {
@@ -28,7 +28,7 @@
     "url": "https://github.com/FearlessMa/gitMessage/issues"
   },
   "homepage": "https://github.com/FearlessMa/gitMessage#readme",
-  "devDependencies": {
+  "dependencies": {
     "conventional-changelog-cli": "^2.0.31",
     "cz-conventional-changelog": "^3.2.0",
     "eslint": "^6.8.0",
@@ -38,6 +38,7 @@
     "standard-version": "^7.1.0",
     "validate-commit-msg": "^2.14.0"
   },
+  "devDependencies": {},
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
