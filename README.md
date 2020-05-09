@@ -68,3 +68,7 @@ npm run release
 [知乎](https://zhuanlan.zhihu.com/p/51894196)
 
 [使用 ESlint、lint-staged 半自动提升项目代码质量](https://www.jianshu.com/p/cdd749c624d9)
+
+[chalk命令行颜色](https://github.com/chalk/chalk)
+[node.js 命令行接口的完整解决方案，灵感来自 Ruby 的 commander。](https://github.com/tj/commander.js/blob/master/Readme_zh-CN.md)
+[shelljs](https://juejin.im/post/5cdb76166fb9a032196ef1ff)
