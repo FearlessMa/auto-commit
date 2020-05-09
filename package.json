@@ -1,6 +1,6 @@
 {
   "name": "@m/gitcommit",
-  "version": "1.6.3",
+  "version": "1.6.4-alpha.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -23,16 +23,7 @@
     "url": "https://github.com/FearlessMa/gitMessage/issues"
   },
   "homepage": "https://github.com/FearlessMa/gitMessage#readme",
-  "devDependencies": {
-    "conventional-changelog-cli": "^2.0.31",
-    "cz-conventional-changelog": "^3.2.0",
-    "eslint": "^6.8.0",
-    "husky": "^4.2.5",
-    "lint-staged": "^10.2.2",
-    "prettier": "2.0.5",
-    "standard-version": "^7.1.0",
-    "validate-commit-msg": "^2.14.0"
-  },
+  "devDependencies": {},
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
@@ -48,5 +39,17 @@
       "git add"
     ]
   },
-  "dependencies": {}
+  "dependencies": {
+    "chalk": "^4.0.0",
+    "commander": "^5.1.0",
+    "conventional-changelog-cli": "^2.0.31",
+    "cz-conventional-changelog": "^3.2.0",
+    "eslint": "^6.8.0",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.2",
+    "prettier": "2.0.5",
+    "shelljs": "^0.8.4",
+    "standard-version": "^7.1.0",
+    "validate-commit-msg": "^2.14.0"
+  }
 }
