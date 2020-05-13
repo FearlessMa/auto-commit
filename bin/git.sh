@@ -62,6 +62,7 @@ case $input in
         #         ;;
 esac
 
+
 read -p "是否更新changelog? [y/n] " changelog
 
 case $changelog in
