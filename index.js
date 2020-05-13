@@ -1,7 +1,7 @@
 #! /usr/bin/env node
 
 const shell = require('shelljs');
-const { err, infoBold, errBold, orange } = require('./util/chalk')
+const { err, info, infoBold, errBold, orange } = require('./util/chalk')
 const inquirer = require('inquirer');
 
 const promptList = [];
@@ -62,23 +62,54 @@ promptList.push({
 
 
 
-// inquirer.prompt(promptList).then(res => {
-//   console.log('res: ', res);
+inquirer.prompt(promptList).then(res => {
+  console.log('res: ', res);
+  /* 版本号操作 */
+  if (res.versionNumber) {
+    if (res.versionAlpha) {
+      //  发布 alpha
+      shell.exec('npm run releasealpha')
+    } else {
+      //  发布 release
+      shell.exec('npm run release')
+    }
+    //  npm run releasealpha
+    // const pwd = shell.pwd('index.js').stdout;
+    // const nodeModulesPath = 
+    // console.log('pwd: ', pwd);
+    // shell.exec("npm run  release")
+    shell.exec("git tag")
+  } else {
+    shell.echo(info("跳过版本号升级"))
+  }
 
-//   if (res.versionNumber) {
-//     //  npm run releasealpha
-//     const pwd = shell.pwd('index.js').stdout;
-//     // const nodeModulesPath = 
-//     console.log('pwd: ', pwd);
-//     // shell.exec("npm run  release")
-//   }
-// })
-const pwd = shell.pwd().stdout;
-const nodeM = shell.find('node_modules/.bin').stdout;
-const ls = shell.ls('-d','node_modules')
-console.log('ls: ', ls);
-// console.log('nodeM: ', nodeM);
-console.log('pwd: ', pwd);
+  /* changelog */
+
+  if (res.changelog) {
+    shell.exec("npm run changelog")
+  } else {
+    shell.echo(info("跳过changelog"))
+  }
+
+  /*  git commit */
+
+  if (res.gitPush) {
+    shell.exec("git add .");
+    shell.exec("git cz", { async: true });
+    // shell.exec("git pull");
+    // shell.exec("git push");
+    // shell.exec("git push --tags");
+  }
+})
+
+// program.parse(process.argv)
+
+// const pwd = shell.pwd().stdout;
+// const nodeM = shell.find('node_modules/.bin').stdout;
+// const ls = shell.ls('-d','node_modules')
+// console.log('ls: ', ls);
+// // console.log('nodeM: ', nodeM);
+// console.log('pwd: ', pwd);
 
 
 // shell.read()
