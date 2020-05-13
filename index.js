@@ -95,7 +95,7 @@ inquirer.prompt(promptList).then(res => {
 
   if (res.gitPush) {
     shell.exec("git add .");
-    shell.exec("git cz");
+    shell.exec("git cz ");
     shell.exec("git pull");
     shell.exec("git push");
     shell.exec("git push --tags");
