@@ -1,9 +1,11 @@
 {
-  "name": "@m/gitcommit",
-  "version": "2.7.0",
-  "description": "",
+  "name": "@fearless-ma/gitcommit",
+  "version": "1.9.1",
+  "description": "[http://www.ruanyifeng.com/blog/2016/01/commit_message_change_log.html](阮一峰commit message)",
   "main": "index.js",
   "bin": {
+    "commit": "./bin/git.sh",
+    "logs": "./bin/logs.js",
     "shell": "index.js"
   },
   "scripts": {
@@ -15,7 +17,8 @@
     "pushtag": "git push --tags",
     "commit": "sh ./bash/git.sh",
     "lint": "eslint src && lint-staged",
-    "shell": "shell pwd"
+    "shell": "shell pwd",
+    "l": "logs"
   },
   "repository": {
     "type": "git",
