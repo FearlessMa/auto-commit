@@ -2,43 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-## [1.10.0-alpha.0](https://github.com/FearlessMa/gitMessage/compare/v1.6.4-alpha.0...v1.10.0-alpha.0) (2020-05-13)
+## [1.10.0](https://github.com/FearlessMa/gitMessage/compare/v1.10.0-alpha.0...v1.10.0) (2020-05-13)
+
+# [1.10.0-alpha.0](https://github.com/FearlessMa/gitMessage/compare/v1.6.4-alpha.0...v1.10.0-alpha.0) (2020-05-13)
 
 
 ### Features
 
 * 继承shelljs ([1779934](https://github.com/FearlessMa/gitMessage/commit/177993446dbc07cb45d377509f01eb99764f2bd2))
 
-### [1.9.1](https://github.com/FearlessMa/gitMessage/compare/v1.9.0...v1.9.1) (2020-05-08)
-
-## [1.9.0](https://github.com/FearlessMa/gitMessage/compare/v1.8.0...v1.9.0) (2020-05-08)
 
 
-### Features
-
-* test ([ff69a99](https://github.com/FearlessMa/gitMessage/commit/ff69a9925dc0e0bc6d453d5b665e25ebfbfc652a))
-
-## [1.8.0](https://github.com/FearlessMa/gitMessage/compare/v1.7.3...v1.8.0) (2020-05-08)
+## [1.9.1](https://github.com/FearlessMa/gitMessage/compare/v1.9.0...v1.9.1) (2020-05-08)
 
 
-### Features
-
-* delete bin ([f583a5c](https://github.com/FearlessMa/gitMessage/commit/f583a5cf80ee46e5c6956e3c868b235d52b84353))
-
-### [1.7.3](https://github.com/FearlessMa/gitMessage/compare/v1.7.2...v1.7.3) (2020-05-08)
-
-### [1.7.2](https://github.com/FearlessMa/gitMessage/compare/v1.7.1...v1.7.2) (2020-05-08)
-
-### [1.7.1](https://github.com/FearlessMa/gitMessage/compare/v1.7.0...v1.7.1) (2020-05-08)
-
-## [1.7.0](https://github.com/FearlessMa/gitMessage/compare/v1.6.3...v1.7.0) (2020-05-08)
-
-
-### Features
-
-* ttt ([ccadccb](https://github.com/FearlessMa/gitMessage/commit/ccadccbdd59b196639b209f463c07aef9c9ab592))
-
-### [1.9.1](https://github.com/FearlessMa/gitMessage/compare/v1.9.0...v1.9.1) (2020-05-08)
 
 # [1.9.0](https://github.com/FearlessMa/gitMessage/compare/v1.8.0...v1.9.0) (2020-05-08)
 
@@ -70,12 +47,93 @@ All notable changes to this project will be documented in this file. See [standa
 
 
 
-# [1.7.0](https://github.com/FearlessMa/gitMessage/compare/v1.6.1...v1.7.0) (2020-05-08)
+# [1.7.0](https://github.com/FearlessMa/gitMessage/compare/v1.6.3...v1.7.0) (2020-05-08)
 
 
 ### Features
 
 * ttt ([ccadccb](https://github.com/FearlessMa/gitMessage/commit/ccadccbdd59b196639b209f463c07aef9c9ab592))
+
+
+
+## [1.6.4-alpha.0](https://github.com/FearlessMa/gitMessage/compare/v1.9.1...v1.6.4-alpha.0) (2020-05-09)
+
+
+
+## [1.6.3](https://github.com/FearlessMa/gitMessage/compare/v1.6.2...v1.6.3) (2020-05-07)
+
+
+
+## [1.6.2](https://github.com/FearlessMa/gitMessage/compare/v1.6.2-alpha.0...v1.6.2) (2020-05-07)
+
+
+### Performance Improvements
+
+* 增加bash 分支选择 ([3211ebd](https://github.com/FearlessMa/gitMessage/commit/3211ebd40320d92f60e5120ffeb4ff1d32066fc0))
+
+
+
+## [1.6.2-alpha.0](https://github.com/FearlessMa/gitMessage/compare/v1.6.1...v1.6.2-alpha.0) (2020-05-07)
+
+
+
+## [1.9.1](https://github.com/FearlessMa/gitMessage/compare/v1.9.0...v1.9.1) (2020-05-08)
+
+
+
+# [1.9.0](https://github.com/FearlessMa/gitMessage/compare/v1.8.0...v1.9.0) (2020-05-08)
+
+
+### Features
+
+* test ([ff69a99](https://github.com/FearlessMa/gitMessage/commit/ff69a9925dc0e0bc6d453d5b665e25ebfbfc652a))
+
+
+
+# [1.8.0](https://github.com/FearlessMa/gitMessage/compare/v1.7.3...v1.8.0) (2020-05-08)
+
+
+### Features
+
+* delete bin ([f583a5c](https://github.com/FearlessMa/gitMessage/commit/f583a5cf80ee46e5c6956e3c868b235d52b84353))
+
+
+
+## [1.7.3](https://github.com/FearlessMa/gitMessage/compare/v1.7.2...v1.7.3) (2020-05-08)
+
+
+
+## [1.7.2](https://github.com/FearlessMa/gitMessage/compare/v1.7.1...v1.7.2) (2020-05-08)
+
+
+
+## [1.7.1](https://github.com/FearlessMa/gitMessage/compare/v1.7.0...v1.7.1) (2020-05-08)
+
+
+
+# [1.7.0](https://github.com/FearlessMa/gitMessage/compare/v1.6.3...v1.7.0) (2020-05-08)
+
+
+### Features
+
+* ttt ([ccadccb](https://github.com/FearlessMa/gitMessage/commit/ccadccbdd59b196639b209f463c07aef9c9ab592))
+
+
+
+## [1.6.3](https://github.com/FearlessMa/gitMessage/compare/v1.6.2...v1.6.3) (2020-05-07)
+
+
+
+## [1.6.2](https://github.com/FearlessMa/gitMessage/compare/v1.6.2-alpha.0...v1.6.2) (2020-05-07)
+
+
+### Performance Improvements
+
+* 增加bash 分支选择 ([3211ebd](https://github.com/FearlessMa/gitMessage/commit/3211ebd40320d92f60e5120ffeb4ff1d32066fc0))
+
+
+
+## [1.6.2-alpha.0](https://github.com/FearlessMa/gitMessage/compare/v1.6.1...v1.6.2-alpha.0) (2020-05-07)
 
 
 
