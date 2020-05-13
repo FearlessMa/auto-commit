@@ -16,7 +16,9 @@
     "pushtag": "git push --tags",
     "commit": "sh ./bash/git.sh",
     "lint": "eslint src && lint-staged",
-    "l": "logs"
+    "l": "logs",
+    "commitizen":"commitizen",
+    "cz":"git cz"
   },
   "repository": {
     "type": "git",
@@ -29,6 +31,7 @@
   },
   "homepage": "https://github.com/FearlessMa/gitMessage#readme",
   "dependencies": {
+    "commitizen": "^4.1.2",
     "conventional-changelog-cli": "^2.0.31",
     "cz-conventional-changelog": "^3.2.0",
     "eslint": "^6.8.0",
