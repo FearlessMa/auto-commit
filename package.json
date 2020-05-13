@@ -33,7 +33,7 @@
   "devDependencies": {},
   "config": {
     "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
+      "path": "cz-conventional-changelog"
     },
     "ghooks": {
       "commit-msg": "./validate-commit-msg.js"
