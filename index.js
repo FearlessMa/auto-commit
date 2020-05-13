@@ -1,6 +1,5 @@
 #! /usr/bin/env node
 
-const { echo, ls, exit, which, pwd, sed, cat } = require('shelljs');
 const shell = require('shelljs');
 const { err, infoBold, errBold, orange } = require('./util/chalk')
 const inquirer = require('inquirer');
@@ -9,9 +8,9 @@ const promptList = [];
 const release = "minor";
 const nodeModules = "node_modules";
 
-if (!which("git")) {
-  echo(err('Sorry, this script requires git'));
-  exit(1);
+if (!shell.which("git")) {
+  shell.echo(err('Sorry, this script requires git'));
+  shell.exit(1);
 }
 
 // 获取当前分支
@@ -63,17 +62,24 @@ promptList.push({
 
 
 
-inquirer.prompt(promptList).then(res => {
-  console.log('res: ', res);
+// inquirer.prompt(promptList).then(res => {
+//   console.log('res: ', res);
 
-  if (res.versionNumber) {
-    //  npm run releasealpha
-    const pwd = shell.pwd('index.js').stdout;
-    // const nodeModulesPath = 
-    console.log('pwd: ', pwd);
-    // shell.exec("npm run  release")
-  }
-})
+//   if (res.versionNumber) {
+//     //  npm run releasealpha
+//     const pwd = shell.pwd('index.js').stdout;
+//     // const nodeModulesPath = 
+//     console.log('pwd: ', pwd);
+//     // shell.exec("npm run  release")
+//   }
+// })
+const pwd = shell.pwd().stdout;
+const nodeM = shell.find('node_modules/.bin').stdout;
+const ls = shell.ls('-d','node_modules')
+console.log('ls: ', ls);
+// console.log('nodeM: ', nodeM);
+console.log('pwd: ', pwd);
+
 
 // shell.read()
 
