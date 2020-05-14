@@ -28,7 +28,7 @@ console.log('binPath: ', binPath);
 
 const standardVersion = 'node ' + binPath + '/standard-version';
 const standardVersionAlpha = 'node ' + binPath + '/standard-version  --prerelease alpha';
-const changelog = 'node ' + binPath + "conventional-changelog -p angular -i CHANGELOG.md -s -r 0"
+const changelog = 'node ' + binPath + "/conventional-changelog -p angular -i CHANGELOG.md -s -r 0"
 
 // 获取当前分支
 const { stdout } = shell.exec("git symbolic-ref --short -q HEAD", { silent: true })
