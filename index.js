@@ -12,6 +12,23 @@ if (!shell.which("git")) {
   shell.echo(err('Sorry, this script requires git'));
   shell.exit(1);
 }
+/* bin path */
+const binPathPro = "../.bin";
+const binPathMod = "./node_modules/.bin";
+const binDir = shell.find(binPathPro).stdout;
+const binMod = shell.find(binPathMod).stdout;
+if (!binDir && !binMod) {
+  shell.echo(errBold("无法找到cz命令"));
+  shell.exit(1);
+}
+// console.log('binMod: ', binMod);
+// shell.echo(shell.which('git cz'))
+const binPath = binDir ? binPathPro : binPathMod;
+console.log('binPath: ', binPath);
+
+const standardVersion = 'node ' + binPath + '/standard-version';
+const standardVersionAlpha = 'node ' + binPath + '/standard-version  --prerelease alpha';
+const changelog = 'node ' + binPath + "conventional-changelog -p angular -i CHANGELOG.md -s -r 0"
 
 // 获取当前分支
 const { stdout } = shell.exec("git symbolic-ref --short -q HEAD", { silent: true })
@@ -68,10 +85,10 @@ inquirer.prompt(promptList).then(res => {
   if (res.versionNumber) {
     if (res.versionAlpha) {
       //  发布 alpha
-      shell.exec('npm run releasealpha')
+      shell.exec(standardVersionAlpha)
     } else {
       //  发布 release
-      shell.exec('npm run release')
+      shell.exec(standardVersion)
     }
     //  npm run releasealpha
     // const pwd = shell.pwd('index.js').stdout;
@@ -86,7 +103,7 @@ inquirer.prompt(promptList).then(res => {
   /* changelog */
 
   if (res.changelog) {
-    shell.exec("npm run changelog")
+    shell.exec(changelog)
   } else {
     shell.echo(info("跳过changelog"))
   }
@@ -95,7 +112,8 @@ inquirer.prompt(promptList).then(res => {
 
   if (res.gitPush) {
     shell.exec("git add .");
-    shell.exec("git cz ");
+    require(binPath + '/git-cz');
+    // shell.exec("git cz ");
     shell.exec("git pull");
     shell.exec("git push");
     shell.exec("git push --tags");
@@ -106,7 +124,30 @@ inquirer.prompt(promptList).then(res => {
 
 
 // const pwd = shell.pwd().stdout;
-// const nodeM = shell.find('node_modules/.bin').stdout;
+/* bin */
+// if (!shell.which('git cz')) {
+//   const binPathPro = "../.bin";
+//   const binPathMod = "./node_modules/.bin";
+//   const binDir = shell.find(binPathPro).stdout;
+//   const binMod = shell.find(binPathMod).stdout;
+//   if (!binDir && !binMod) {
+//     shell.echo(errBold("无法找到cz命令"));
+//     shell.exit(1);
+//   }
+//   console.log('binMod: ', binMod);
+//   shell.echo(shell.which('git cz'))
+//   const binPath = binDir ? binPathPro : binPathMod;
+//   require(binPath + '/git-cz');
+// }
+
+// shell.ln('git-cz','/usr/local/lib/node_modus/.bin')
+// const child = shell.exec('node git-cz',function(code,stdout,stderr){
+//   console.log('stderr: ', stderr);
+//   console.log('stdout: ', stdout);
+//   console.log('code: ', code);
+
+// })
+// console.log('child: ', child);
 // const ls = shell.ls('-d','node_modules')
 // console.log('ls: ', ls);
 // // console.log('nodeM: ', nodeM);
@@ -114,6 +155,7 @@ inquirer.prompt(promptList).then(res => {
 
 
 // shell.read()
+
 
 
 // 异步
@@ -139,3 +181,5 @@ inquirer.prompt(promptList).then(res => {
 //   // 打印 文件
 //   echo(cat(item).to('./test/copy.js'))
 // })
+// shell.exit(0)
+// 

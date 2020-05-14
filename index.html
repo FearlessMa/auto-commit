@@ -5,9 +5,101 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <style>
+    .parent {}
+
+    .child {
+      height: 100%;
+    }
+
+    .line {
+      height: 100%;
+      background-color: #000;
+    }
+
+    .row {
+      display: block;
+      font-size: 0;
+    }
+
+    .col {
+      display: inline-block;
+      vertical-align: top;
+      font-size: 14px;
+    }
+
+    ul {
+      list-style: none;
+      /* position: absolute; */
+      /* display: inline-block; */
+    }
+
+    ul li {
+      border: 1px solid #dddddd;
+      margin: 5px;
+      /* float: left; */
+      /* position: absolute; */
+      /* display:flex; */
+      /* overflow: hidden; */
+      display: block;
+      /* margin:0;  */
+    }
+
+    ul li>div {
+      margin: 10px;
+    }
+
+    ul>li:nth-child(2) {
+      color: blue;
+      display:flex;
+    }
+
+    ul>li:nth-child(2)::before {
+      content: open-quote;
+    }
+
+    ul>li:nth-child(2)::after {
+      content: close-quote;
+    }
+
+
+    /* ul:after {
+      clear: both;
+      content: "";
+      display: block;
+    } */
+  </style>
 </head>
 
 <body>
+
+  <ul>
+    <li>
+      <div>1</div>
+    </li>
+    <li>
+      <div>2</div>
+    </li>
+    <li>
+      <div>3</div>
+    </li>
+  </ul>
+
+
+
+  <!-- <div class="row">
+    <div class="col">
+        main
+    </div>
+    <div class="col" style="width:0;height:100%;border-right:solid 1px grey;"></div>
+    <div class="col">
+        sidebar
+    </div>
+</div>
+  <div class="parent">
+    <div class="line"></div>
+    <div class="child">child</div>
+  </div> -->
   <script src="./src/test.js"></script>
 </body>
 
