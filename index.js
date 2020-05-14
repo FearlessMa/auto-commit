@@ -8,23 +8,104 @@ const promptList = [];
 const release = "minor";
 const nodeModules = "node_modules";
 
+const depList = [
+  {
+    name: "standard-version",
+    depName: ["standard-version"]
+  },
+  {
+    name: "conventional-changelog",
+    depName: ["conventional-changelog-cli"]
+  },
+  {
+    name: "git-cz",
+    depName: ["commitizen cz-conventional-changelog"]
+  },
+  {
+    name: "eslint",
+    depName: ["eslint"]
+  },
+  {
+    name: "husky-run",
+    depName: ["husky"]
+  },
+  {
+    name: "lint-staged",
+    depName: ["lint-staged"]
+  },
+  {
+    name: "prettier",
+    depName: ["prettier"]
+  },
+  {
+    name: "validate-commit-msg",
+    depName: ["validate-commit-msg"]
+  },
+];
+
 if (!shell.which("git")) {
   shell.echo(err('Sorry, this script requires git'));
   shell.exit(1);
 }
-/* bin path */
-const binPathPro = "../.bin";
-const binPathMod = "./node_modules/.bin";
-const binDir = shell.find(binPathPro).stdout;
-const binMod = shell.find(binPathMod).stdout;
-if (!binDir && !binMod) {
-  shell.echo(errBold("无法找到cz命令"));
-  shell.exit(1);
+/**
+ * 寻找路径
+ *
+ * @param {*} path string
+ */
+const find = path => shell.find(path).stdout;
+
+/**
+ * 安装依赖
+ *
+ * @param {*} depName string
+ */
+const installDep = depName => {
+  const installTool = shell.which("cnpm") ? 'cnpm' : 'npm';
+  console.log('installTool: ', installTool);
+  shell.exec(`${installTool} i ${depName} -D `);
 }
+
+/**
+ * 校验依赖是否安装
+ *
+ * @param {*} [depNameList=[]] stringArray
+ * @param {string} [dirPath=""] string
+ */
+const validateDeps = (depNameList = [], dirPath = "") => {
+  depNameList.forEach(dep => {
+    !find(dirPath + "/" + dep.name) && installDep(dep.depName)
+  })
+}
+
+/**
+ * find bin 
+ *
+ * @returns path 
+ */
+const findBin = () => {
+  const binPathPro = "../.bin";
+  const binPathMod = "./node_modules/.bin";
+  const binDir = find(binPathPro);
+  console.log('binDir: ', binDir);
+  const binMod = find(binPathMod);
+  console.log('binMod: ', binMod);
+  if (!binDir && !binMod) {
+    shell.echo(errBold("缺少依赖无法执行"));
+    shell.exit(1);
+  }
+  return binDir ? binPathPro : binPathMod;
+}
+
+const binPath = findBin();
+
+validateDeps(depList, binPath);
 // console.log('binMod: ', binMod);
 // shell.echo(shell.which('git cz'))
-const binPath = binDir ? binPathPro : binPathMod;
-console.log('binPath: ', binPath);
+// console.log('binPath: ', binPath);
+
+
+const hasStandardVersion = !!find(binPath + "/standard-version");
+console.log('hasStandardVersion: ', hasStandardVersion);
 
 const standardVersion = 'node ' + binPath + '/standard-version';
 const standardVersionAlpha = 'node ' + binPath + '/standard-version  --prerelease alpha';
@@ -91,11 +172,6 @@ inquirer.prompt(promptList).then(res => {
       //  发布 release
       shell.exec(standardVersion)
     }
-    //  npm run releasealpha
-    // const pwd = shell.pwd('index.js').stdout;
-    // const nodeModulesPath = 
-    // console.log('pwd: ', pwd);
-    // shell.exec("npm run  release")
     shell.exec(lastTag)
   } else {
     shell.echo(info("跳过版本号升级"))
