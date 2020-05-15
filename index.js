@@ -3,10 +3,12 @@
 const shell = require('shelljs');
 const { err, info, infoBold, errBold, orange } = require('./util/chalk')
 const inquirer = require('inquirer');
+const path = require('path');
+
 
 const promptList = [];
-const release = "minor";
-const nodeModules = "node_modules";
+// const release = "minor";
+// const nodeModules = "node_modules";
 const binPathPro = "../.bin";
 const binPathMod = "./node_modules/.bin";
 const depList = [
@@ -44,6 +46,11 @@ const depList = [
   },
 ];
 
+const fileNameList = ['.czrc','.huskyrc','.lintstagedrc','.vcmrc']
+const pwd = shell.pwd().stdout;
+const baseName = path.basename(pwd);
+console.log('baseName: ', baseName);
+
 if (!shell.which("git")) {
   shell.echo(err('Sorry, this script requires git'));
   shell.exit(1);
@@ -77,6 +84,20 @@ const validateDeps = (depNameList = [], dirPath = "") => {
     !find(dirPath + "/" + dep.name) && installDep(dep.depName)
   })
 }
+/**
+ * 创建依赖文件
+ *
+ * @param {*} fileName 文件名称
+ */
+const createDepFile = fileName => {
+  shell.touch(fileName);
+}
+
+const validateDepFile = (fileNameList, dirPath) => {
+  fileNameList.forEach(fileName => {
+    !shell.find(`${dirPath}/${fileName}`) && createDepFile(fileName)
+  })
+}
 
 /**
  * find bin 
@@ -98,6 +119,7 @@ const findBin = () => {
 const binPath = findBin();
 
 validateDeps(depList, binPath);
+validateDepFile(fileNameList);
 // console.log('binMod: ', binMod);
 // shell.echo(shell.which('git cz'))
 // console.log('binPath: ', binPath);
