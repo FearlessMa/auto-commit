@@ -188,7 +188,8 @@ inquirer.prompt(promptList).then(res => {
 
   if (res.gitPush) {
     shell.exec("git add .");
-    require(binPath + '/git-cz');
+    const cz = require(binPath + '/git-cz');
+    console.log('cz: ', cz);
     // shell.exec("git cz ");
     const res = shell.exec("git pull");
     console.log('res: ', res);
@@ -196,7 +197,7 @@ inquirer.prompt(promptList).then(res => {
     shell.exec("git push --tags");
   }
 }).finally(() => {
-  console.log(infoBold("end"))
+  console.log(infoBold("----end----"))
 })
 
 // program.parse(process.argv)
