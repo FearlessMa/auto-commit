@@ -195,6 +195,8 @@ inquirer.prompt(promptList).then(res => {
     shell.exec("git push");
     shell.exec("git push --tags");
   }
+}).finally(() => {
+  console.log(infoBold("end"))
 })
 
 // program.parse(process.argv)
