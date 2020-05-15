@@ -1,6 +1,6 @@
 {
   "name": "@fearless-ma/gitcommit",
-  "version": "1.14.0",
+  "version": "1.15.0-alpha.0",
   "description": "[http://www.ruanyifeng.com/blog/2016/01/commit_message_change_log.html](阮一峰commit message)",
   "main": "index.js",
   "bin": {
@@ -39,16 +39,6 @@
     "prettier": "^2.0.5",
     "standard-version": "^8.0.0",
     "validate-commit-msg": "^2.14.0"
-  },
-  "ghooks": {
-    "commit-msg": "./validate-commit-msg.js"
-  },
-  "lint-staged": {
-    "src/**/*.{js,jsx}": [
-      "prettier --tab-width 4 --write",
-      "eslint --fix",
-      "git add"
-    ]
   },
   "dependencies": {
     "chalk": "^4.0.0",
