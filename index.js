@@ -7,7 +7,8 @@ const inquirer = require('inquirer');
 const promptList = [];
 const release = "minor";
 const nodeModules = "node_modules";
-
+const binPathPro = "../.bin";
+const binPathMod = "./node_modules/.bin";
 const depList = [
   {
     name: "standard-version",
@@ -83,8 +84,6 @@ const validateDeps = (depNameList = [], dirPath = "") => {
  * @returns path 
  */
 const findBin = () => {
-  const binPathPro = "../.bin";
-  const binPathMod = "./node_modules/.bin";
   const binDir = find(binPathPro);
   console.log('binDir: ', binDir);
   const binMod = find(binPathMod);
