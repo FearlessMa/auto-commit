@@ -1,0 +1,3 @@
+{
+  "commit-msg": "./validate-commit-msg.js"
+}

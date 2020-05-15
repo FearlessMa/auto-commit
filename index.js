@@ -190,7 +190,8 @@ inquirer.prompt(promptList).then(res => {
     shell.exec("git add .");
     require(binPath + '/git-cz');
     // shell.exec("git cz ");
-    shell.exec("git pull");
+    const res = shell.exec("git pull");
+    console.log('res: ', res);
     shell.exec("git push");
     shell.exec("git push --tags");
   }

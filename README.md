@@ -43,11 +43,16 @@ npm run release
 
 
 * husky
-  
-  .huskyrc 配置commit 钩子执行 eslint 或 格式化代码
+  * .huskyrc 配置，commit 钩子执行 eslint 或 格式化代码
 
+* cz-conventional-changelog
+  * .czrc 配置文件，Commitizen是一个撰写合格 Commit message 的工具。
 
 * lint-staged
+  * .lintstagedrc 配置文件,lint-staged 是一个在git暂存文件上运行linters的工具
+
+*  validate-commit-msg 
+   *  .vcmrc 配置文件，用于检查 Node 项目的 Commit message 是否符合格式。
 
 ```json
 "lint-staged": {
