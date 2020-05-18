@@ -1,6 +1,14 @@
 
 # git commit 
 
+## 配置
+
+```json
+  {
+    "commit":"autoCommit"
+  }
+```
+
 ## 使用命令 npm run commit
 
 * 提交git message
