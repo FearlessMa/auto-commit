@@ -6,12 +6,14 @@ const inquirer = require('inquirer');
 const path = require('path');
 const fs = require("fs");
 
-
+const pwd = shell.pwd().stdout;
+const basePath = path.basename(pwd);
+console.log('basePath: ', basePath);
 const promptList = [];
 // const release = "minor";
 // const nodeModules = "node_modules";
 const binPathPro = "../.bin";
-const binPathMod = "./node_modules/.bin";
+const binPathMod = pwd + "/node_modules/.bin";
 const depList = [
   {
     name: "standard-version",
@@ -69,9 +71,6 @@ const fileNameList = [
   ` },
   { fileName: '.vcmrc', fileContent: `{"commit-msg": "./validate-commit-msg.js"}` }
 ]
-const pwd = shell.pwd().stdout;
-const basePath = path.basename(pwd);
-console.log('basePath: ', basePath);
 
 if (!shell.which("git")) {
   shell.echo(err('Sorry, this script requires git'));
