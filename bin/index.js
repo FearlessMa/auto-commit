@@ -85,7 +85,7 @@ const find = path => exec("find " + path).stdout;
  * @param {*} depName string
  */
 const installDep = (depName) => {
-  const instance = loading({ spinner: "" });
+  const instance = loading({ spinner: "dot" });
   shell.echo("正在安装：" + infoBold(depName))
   const installTool = shell.which("cnpm") ? 'cnpm' : 'npm';
   exec(`${installTool} i ${depName} -D `);
@@ -133,6 +133,19 @@ const findBin = () => {
     shell.exit(1);
   }
   return binDir ? binPathPro : binPathMod;
+}
+
+/**
+ * 输出loading
+ *
+ * @param {*} command string 命令
+ * @param {*} [loadingOptions={}]loading options
+ * @param {*} fn 结果处理
+ */
+const echoLoading = (command, loadingOptions = {}, fn) => {
+  const loadingInstance = loading(loadingOptions);
+  const execMsg = exec(command);
+  fn && fn(loadingInstance, execMsg)
 }
 
 const binPath = findBin();
@@ -231,15 +244,23 @@ inquirer.prompt(promptList).then(res => {
     shell.echo("开始执行git-cz：");
     infoBold(require(path.join(process.cwd(), binPath) + '/git-cz'))
     process.on('exit', function () {
-      const pullLoading = loading({ text: "正在提交" });
-      const pullMsg = exec("git pull");
-      // shell.echo("\n pull：" + infoBold(pullMsg));
-      pullLoading.succeed(" pull：" + infoBold(pullMsg))
-      const pushMsg = exec("git push");
-      shell.echo("\n push：" + infoBold(pushMsg.stderr));
+      echoLoading("git pull",{text: "正在更新" },(instance, msg)=>{
+        instance.succeed("pull：" + infoBold(msg))
+      })
+      echoLoading("git push",{text: "正在提交" },(instance, msg)=>{
+        instance.succeed("\npush：" + infoBold(msg.stderr))
+      })
+      echoLoading("git push --tags",{text: "正在提交tags" },(instance, msg)=>{
+        instance.succeed("\ntags：" + infoBold(msg.stderr))
+      })
+      // const pullLoading = loading({ text: "正在提交" });
+      // const pullMsg = exec("git pull");
+      // pullLoading.succeed("pull：" + infoBold(pullMsg))
+      // const pushMsg = exec("git push");
+      // shell.echo("\n push：" + infoBold(pushMsg.stderr));
 
-      const tagMsg = exec("git push --tags");
-      shell.echo("\n tags：" + infoBold(tagMsg.stderr));
+      // const tagMsg = exec("git push --tags");
+      // shell.echo("\n tags：" + infoBold(tagMsg.stderr));
     });
   }
 })
