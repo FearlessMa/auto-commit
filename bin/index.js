@@ -1,13 +1,12 @@
 #! /usr/bin/env node
 
 const shell = require('shelljs');
-const { err, info, infoBold, errBold, orange } = require('../util')
+const { err, info, infoBold, errBold, orange, magentaBold } = require('../util')
 const inquirer = require('inquirer');
 const path = require('path');
 const fs = require("fs");
+const ora = require('ora');
 
-// const pwd = shell.pwd().stdout;
-// const basePath = path.basename(pwd);
 const promptList = [];
 const binPathPro = "../.bin";
 const binPathMod = "./node_modules/.bin";
@@ -87,9 +86,11 @@ const find = path => exec("find " + path).stdout;
  * @param {*} depName string
  */
 const installDep = (depName) => {
-  shell.echo(infoBold("正在安装：" + depName))
+  const instance = ora('').start();
+  shell.echo("正在安装：" + infoBold(depName))
   const installTool = shell.which("cnpm") ? 'cnpm' : 'npm';
-  process.exitCode = exec(`${installTool} i ${depName} -D `);
+  exec(`${installTool} i ${depName} -D `);
+  instance.succeed('安装完成');
 }
 
 /**
@@ -109,12 +110,9 @@ const validateDeps = (depNameList = [], dirPath = "") => {
  * @param {*} fileDesc 文件名称
  */
 const createDepFile = fileDesc => {
-  // shell.touch(fileDesc.name);
-  // console.log('fileDesc: ', fileDesc);
-  fs.writeFileSync('./' + fileDesc.fileName, fileDesc.fileContent)
-  // console.log(' fileDesc.name: ', './' + fileDesc.name);
-  // exec('touch '+fileDesc.name,function(){
-  // })
+  shell.echo("缺少配置文件" + magentaBold(fileDesc.fileName))
+  fs.writeFileSync('./' + fileDesc.fileName, fileDesc.fileContent);
+
 }
 
 const validateDepFile = (fileNameList) => {
@@ -231,6 +229,7 @@ inquirer.prompt(promptList).then(res => {
   /*  git commit */
   if (res.gitPush) {
     shell.exec("git add .");
+    shell.echo(orange("开始执行git-cz"));
     infoBold(require(path.join(process.cwd(), binPath) + '/git-cz'))
     shell.echo("\n");
     // exec("git pull");
