@@ -1,7 +1,7 @@
 #! /usr/bin/env node
 
 const shell = require('shelljs');
-const { err, info, infoBold, errBold, orange } = require('./util/chalk')
+const { err, info, infoBold, errBold, orange } = require('./util')
 const inquirer = require('inquirer');
 const path = require('path');
 const fs = require("fs");
@@ -235,7 +235,7 @@ inquirer.prompt(promptList).then(res => {
   /*  git commit */
   if (res.gitPush) {
     shell.exec("git add .");
-    require(binPath + '/git-cz');
+    require(path.join(process.cwd(), binPath) + '/git-cz');
     // shell.exec("git pull");
     // shell.exec("git push");
     // shell.exec("git push --tags");
