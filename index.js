@@ -244,14 +244,13 @@ inquirer.prompt(promptList).then(res => {
       // process.exitCode = res
       console.log('res: 1', res);
 
+      // console.log('process.exitCode: ', process.exitCode);
+      // console.log('cz: ', cz);
+      // shell.exec("git cz ");
+      shell.exec("git pull");
+      shell.exec("git push");
+      shell.exec("git push --tags");
     })
-    // console.log('process.exitCode: ', process.exitCode);
-    // console.log('cz: ', cz);
-    // shell.exec("git cz ");
-    const res = shell.exec("git pull");
-    console.log('res: ', res);
-    shell.exec("git push");
-    shell.exec("git push --tags");
   }
 }).finally(() => {
   console.log(infoBold("----end----"))
