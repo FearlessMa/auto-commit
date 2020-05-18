@@ -10,8 +10,6 @@ const pwd = shell.pwd().stdout;
 const basePath = path.basename(pwd);
 console.log('basePath: ', basePath);
 const promptList = [];
-// const release = "minor";
-// const nodeModules = "node_modules";
 const binPathPro = "../.bin";
 const binPathMod = pwd + "/node_modules/.bin";
 const depList = [
@@ -146,13 +144,10 @@ const findBin = () => {
 }
 
 const binPath = findBin();
-console.log('binPath: ', binPath);
 
+// 校验依赖
 validateDeps(depList, binPath);
-validateDepFile(fileNameList, basePath);
-// console.log('binMod: ', binMod);
-// shell.echo(shell.which('git cz'))
-// console.log('binPath: ', binPath);
+validateDepFile(fileNameList);
 
 
 const hasStandardVersion = !!find(binPath + "/standard-version");
