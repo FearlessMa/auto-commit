@@ -248,12 +248,15 @@ inquirer.prompt(promptList).then(res => {
     process.on('exit', function () {
       const pullMsg = exec("git pull");
       shell.echo("\n pull：" + infoBold(pullMsg));
-
+      pullMsg.stdout.on('data', function(){
+        
+        console.log('pullMsg:1223 ', pullMsg);
+      })
       const pushMsg = exec("git push");
       shell.echo("\n push：" + infoBold(pushMsg.stderr));
 
       const tagMsg = exec("git push --tags");
-      shell.echo("\n push tags：" + infoBold(tagMsg.stderr));
+      shell.echo("\n tags：" + infoBold(tagMsg.stderr));
     });
   }
 })
