@@ -1,13 +1,13 @@
 #! /usr/bin/env node
 
 const shell = require('shelljs');
-const { err, info, infoBold, errBold, orange, loadingStart } = require('./util')
+const { err, info, infoBold, errBold, orange } = require('./util')
 const inquirer = require('inquirer');
 const path = require('path');
 const fs = require("fs");
 
-const pwd = shell.pwd().stdout;
-const basePath = path.basename(pwd);
+// const pwd = shell.pwd().stdout;
+// const basePath = path.basename(pwd);
 const promptList = [];
 const binPathPro = "../.bin";
 const binPathMod = "./node_modules/.bin";
@@ -89,7 +89,6 @@ const find = path => exec("find " + path).stdout;
 const installDep = (depName) => {
   console.log('depName: ', depName);
   const installTool = shell.which("cnpm") ? 'cnpm' : 'npm';
-  const loading = loadingStart({ text: depName });
   process.exitCode = exec(`${installTool} i ${depName} -D `);
   if (process.exitCode.code == 0) {
     // loading.stop();
@@ -156,7 +155,7 @@ validateDeps(depList, binPath);
 validateDepFile(fileNameList);
 
 
-const hasStandardVersion = !!find(binPath + "/standard-version");
+// const hasStandardVersion = !!find(binPath + "/standard-version");
 const standardVersion = 'node ' + binPath + '/standard-version';
 const standardVersionAlpha = 'node ' + binPath + '/standard-version  --prerelease alpha';
 const changelog = 'node ' + binPath + "/conventional-changelog -p angular -i CHANGELOG.md -s -r 0"
