@@ -231,7 +231,7 @@ inquirer.prompt(promptList).then(res => {
     shell.echo("开始执行git-cz：");
     infoBold(require(path.join(process.cwd(), binPath) + '/git-cz'))
     process.on('exit', function () {
-      const pullLoading = loading({ spinner: "" });
+      const pullLoading = loading();
       const pullMsg = exec("git pull");
       // shell.echo("\n pull：" + infoBold(pullMsg));
       pullLoading.succeed("\n pull：" + infoBold(pullMsg))
