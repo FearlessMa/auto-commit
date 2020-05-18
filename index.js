@@ -231,12 +231,22 @@ inquirer.prompt(promptList).then(res => {
     shell.echo(info("跳过changelog"))
   }
 
-  /*  git commit */
+  const rq = async () => {
+    return await require(binPath + '/git-cz')
+  }
 
+  /*  git commit */
   if (res.gitPush) {
     shell.exec("git add .");
-    const cz = require(binPath + '/git-cz');
-    console.log('cz: ', cz);
+
+    // const cz = require(binPath + '/git-cz');
+    rq().then(res => {
+      // process.exitCode = res
+      console.log('res: 1', res);
+
+    })
+    // console.log('process.exitCode: ', process.exitCode);
+    // console.log('cz: ', cz);
     // shell.exec("git cz ");
     const res = shell.exec("git pull");
     console.log('res: ', res);
