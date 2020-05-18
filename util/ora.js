@@ -8,7 +8,7 @@ const ora = require('ora');
 const loadingStart = (option = {}) => {
   const defaultOpt = { color: "blue", text: "loading", spinner: "weather" };
   const { color, text, spinner } = Object.assign({}, defaultOpt, option);
-  const instance = ora('').start();
+  const instance = ora(text).start();
   instance.color = color;
   instance.text = text;
   instance.spinner = spinner;

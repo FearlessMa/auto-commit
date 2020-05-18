@@ -8,47 +8,43 @@ const fs = require("fs");
 
 const pwd = shell.pwd().stdout;
 const basePath = path.basename(pwd);
-console.log('basePath: ', basePath);
 const promptList = [];
 const binPathPro = "../.bin";
 const binPathMod = "./node_modules/.bin";
 const depList = [
   {
     name: "standard-version",
-    depName: ["standard-version"]
+    depName: "standard-version"
   },
   {
     name: "conventional-changelog",
-    depName: ["conventional-changelog-cli"]
+    depName: "conventional-changelog-cli"
   },
   {
     name: "git-cz",
-    depName: ["commitizen cz-conventional-changelog"]
+    depName: "commitizen cz-conventional-changelog"
   },
   {
     name: "eslint",
-    depName: ["eslint"]
+    depName: "eslint"
   },
   {
     name: "husky-run",
-    depName: ["husky"]
+    depName: "husky"
   },
   {
     name: "lint-staged",
-    depName: ["lint-staged"]
+    depName: "lint-staged"
   },
   {
     name: "prettier",
-    depName: ["prettier"]
+    depName: "prettier"
   },
   {
     name: "validate-commit-msg",
-    depName: ["validate-commit-msg"]
+    depName: "validate-commit-msg"
   },
 ];
-
-
-
 const fileNameList = [
   { fileName: '.czrc', fileContent: `{ "path": "cz-conventional-changelog" }` },
   {
@@ -75,24 +71,35 @@ if (!shell.which("git")) {
   shell.echo(err('Sorry, this script requires git'));
   shell.exit(1);
 }
+
+const exec = (command, options = { silent: true }) => shell.exec(command, options)
+
 /**
  * 寻找路径
  *
  * @param {*} path string
  */
-const find = path => shell.find(path).stdout;
+const find = path => exec("find " + path).stdout;
 
 /**
  * 安装依赖
  *
  * @param {*} depName string
  */
-const installDep = depName => {
+const installDep = (depName) => {
+  console.log('depName: ', depName);
   const installTool = shell.which("cnpm") ? 'cnpm' : 'npm';
-  console.log('installTool: ', installTool);
-  const loading = loadingStart();
-  shell.exec(`${installTool} i ${depName} -D `);
-  loading.stop();
+  const loading = loadingStart({ text: depName });
+  process.exitCode = exec(`${installTool} i ${depName} -D `);
+  if (process.exitCode.code == 0) {
+    // loading.stop();
+  }
+  // exec(`${installTool} i ${depName} -D `, (code, stdout, stderr) => {
+  //   console.log('stderr: ', stderr);
+  //   console.log('stdout: ', stdout);
+  //   console.log('code: ', code);
+  //   loading.stop();
+  // });
 }
 
 /**
@@ -113,18 +120,16 @@ const validateDeps = (depNameList = [], dirPath = "") => {
  */
 const createDepFile = fileDesc => {
   // shell.touch(fileDesc.name);
-  console.log('create')
   // console.log('fileDesc: ', fileDesc);
   fs.writeFileSync('./' + fileDesc.fileName, fileDesc.fileContent)
   // console.log(' fileDesc.name: ', './' + fileDesc.name);
-  // shell.exec('touch '+fileDesc.name,function(){
+  // exec('touch '+fileDesc.name,function(){
   // })
 }
 
 const validateDepFile = (fileNameList) => {
   fileNameList.forEach(file => {
     !find(`${file.fileName}`) && createDepFile(file);
-    console.log('find(`${file.fileName}`): ', find(`${file.fileName}`));
   })
 }
 
@@ -135,9 +140,7 @@ const validateDepFile = (fileNameList) => {
  */
 const findBin = () => {
   const binDir = find(binPathPro);
-  console.log('binDir: ', binDir);
   const binMod = find(binPathMod);
-  console.log('binMod: ', binMod);
   if (!binDir && !binMod) {
     shell.echo(errBold("缺少依赖无法执行"));
     shell.exit(1);
@@ -149,19 +152,18 @@ const binPath = findBin();
 
 // 校验依赖
 validateDeps(depList, binPath);
+// 校验依赖文件
 validateDepFile(fileNameList);
 
 
 const hasStandardVersion = !!find(binPath + "/standard-version");
-console.log('hasStandardVersion: ', hasStandardVersion);
-
 const standardVersion = 'node ' + binPath + '/standard-version';
 const standardVersionAlpha = 'node ' + binPath + '/standard-version  --prerelease alpha';
 const changelog = 'node ' + binPath + "/conventional-changelog -p angular -i CHANGELOG.md -s -r 0"
 const lastTag = "git describe --tags `git rev-list --tags --max-count=1`";
 
 // 获取当前分支
-const { stdout } = shell.exec("git symbolic-ref --short -q HEAD", { silent: true })
+const { stdout } = exec("git symbolic-ref --short -q HEAD")
 const branch = stdout;
 if (branch) {
   shell.echo(infoBold("当前分支：" + branch))
@@ -210,17 +212,19 @@ promptList.push({
 
 
 inquirer.prompt(promptList).then(res => {
-  console.log('res: ', res);
   /* 版本号操作 */
   if (res.versionNumber) {
     if (res.versionAlpha) {
       //  发布 alpha
-      shell.exec(standardVersionAlpha)
+      const msg = exec(standardVersionAlpha);
+      shell.echo("alpha版本信息:\n" + infoBold(msg));
     } else {
       //  发布 release
-      shell.exec(standardVersion)
+      const msg = exec(standardVersion);
+      shell.echo("版本信息:\n" + infoBold(msg));
     }
-    shell.exec(lastTag)
+    const tag = exec(lastTag);
+    shell.echo("最新版本号：\n" + infoBold(tag));
   } else {
     shell.echo(info("跳过版本号升级"))
   }
@@ -228,7 +232,7 @@ inquirer.prompt(promptList).then(res => {
   /* changelog */
 
   if (res.changelog) {
-    shell.exec(changelog)
+    exec(changelog);
   } else {
     shell.echo(info("跳过changelog"))
   }
@@ -237,19 +241,22 @@ inquirer.prompt(promptList).then(res => {
   /*  git commit */
   if (res.gitPush) {
     shell.exec("git add .");
-    require(path.join(process.cwd(), binPath) + '/git-cz');
-    // shell.exec("git pull");
-    // shell.exec("git push");
-    // shell.exec("git push --tags");
-    process.on('exit', function (code) {
-      shell.exec("git pull");
-      shell.exec("git push");
-      shell.exec("git push --tags");
-      console.log('退出码为:1', code);
+    require(path.join(process.cwd(), binPath) + '/git-cz')
+    shell.echo("\n");
+    // exec("git pull");
+    // exec("git push");
+    // exec("git push --tags");
+    process.on('exit', function () {
+      const pullMsg = exec("git pull");
+      shell.echo("\n pull：" + infoBold(pullMsg));
+
+      const pushMsg = exec("git push");
+      shell.echo("\n push：" + infoBold(pushMsg.stderr));
+
+      const tagMsg = exec("git push --tags");
+      shell.echo("\n push tags：" + infoBold(tagMsg.stderr));
     });
   }
-}).finally(() => {
-  console.log(infoBold("----end----"))
 })
 
 
@@ -274,7 +281,7 @@ inquirer.prompt(promptList).then(res => {
 // }
 
 // shell.ln('git-cz','/usr/local/lib/node_modus/.bin')
-// const child = shell.exec('node git-cz',function(code,stdout,stderr){
+// const child = exec('node git-cz',function(code,stdout,stderr){
 //   console.log('stderr: ', stderr);
 //   console.log('stdout: ', stdout);
 //   console.log('code: ', code);
