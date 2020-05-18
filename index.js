@@ -1,7 +1,7 @@
 #! /usr/bin/env node
 
 const shell = require('shelljs');
-const { err, info, infoBold, errBold, orange } = require('./util')
+const { err, info, infoBold, errBold, orange, loadingStart } = require('./util')
 const inquirer = require('inquirer');
 const path = require('path');
 const fs = require("fs");
@@ -11,7 +11,7 @@ const basePath = path.basename(pwd);
 console.log('basePath: ', basePath);
 const promptList = [];
 const binPathPro = "../.bin";
-const binPathMod =  "./node_modules/.bin";
+const binPathMod = "./node_modules/.bin";
 const depList = [
   {
     name: "standard-version",
@@ -90,7 +90,9 @@ const find = path => shell.find(path).stdout;
 const installDep = depName => {
   const installTool = shell.which("cnpm") ? 'cnpm' : 'npm';
   console.log('installTool: ', installTool);
+  const loading = loadingStart();
   shell.exec(`${installTool} i ${depName} -D `);
+  loading.stop();
 }
 
 /**
