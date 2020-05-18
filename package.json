@@ -1,6 +1,6 @@
 {
   "name": "@fearless-ma/gitcommit",
-  "version": "1.16.0-alpha.9",
+  "version": "1.16.0-alpha.10",
   "description": "https://github.com/FearlessMa/gitMessage#readme",
   "main": "index.js",
   "bin": {
