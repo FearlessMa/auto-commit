@@ -11,7 +11,7 @@ const basePath = path.basename(pwd);
 console.log('basePath: ', basePath);
 const promptList = [];
 const binPathPro = "../.bin";
-const binPathMod = pwd + "/node_modules/.bin";
+const binPathMod =  "./node_modules/.bin";
 const depList = [
   {
     name: "standard-version",
@@ -243,7 +243,7 @@ inquirer.prompt(promptList).then(res => {
       shell.exec("git pull");
       shell.exec("git push");
       shell.exec("git push --tags");
-      console.log('退出码为:', code);
+      console.log('退出码为:1', code);
     });
   }
 }).finally(() => {
