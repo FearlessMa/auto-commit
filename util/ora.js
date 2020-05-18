@@ -5,8 +5,8 @@ const ora = require('ora');
  * @param {*} [option={}] default { color: "blue", text: "loading", spinner: "weather" }
  * @returns oraInstance
  */
-const loadingStart = (option = {}) => {
-  const defaultOpt = { color: "blue", text: "loading", spinner: "weather" };
+const loading = (option = {}) => {
+  const defaultOpt = { color: "blue", text: "", spinner: "weather" };
   const { color, text, spinner } = Object.assign({}, defaultOpt, option);
   const instance = ora(text).start();
   instance.color = color;
@@ -16,9 +16,6 @@ const loadingStart = (option = {}) => {
 }
 // spinner.succeed();
 
-const loadingStop = instance => {
-  instance.stop();
-}
 
 
-module.exports = { loadingStart, loadingStop }
+module.exports = { loading }

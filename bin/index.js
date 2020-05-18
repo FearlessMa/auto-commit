@@ -1,11 +1,10 @@
 #! /usr/bin/env node
 
 const shell = require('shelljs');
-const { err, info, infoBold, errBold, orange, magentaBold } = require('../util')
+const { err, info, infoBold, errBold, orange, magentaBold, loading } = require('../util')
 const inquirer = require('inquirer');
 const path = require('path');
 const fs = require("fs");
-const ora = require('ora');
 
 const promptList = [];
 const binPathPro = "../.bin";
@@ -86,7 +85,7 @@ const find = path => exec("find " + path).stdout;
  * @param {*} depName string
  */
 const installDep = (depName) => {
-  const instance = ora('').start();
+  const instance = loading({ spinner: "" });
   shell.echo("正在安装：" + infoBold(depName))
   const installTool = shell.which("cnpm") ? 'cnpm' : 'npm';
   exec(`${installTool} i ${depName} -D `);
@@ -232,8 +231,7 @@ inquirer.prompt(promptList).then(res => {
     shell.echo("开始执行git-cz：");
     infoBold(require(path.join(process.cwd(), binPath) + '/git-cz'))
     process.on('exit', function () {
-      const pullLoading = ora("").start;
-      console.log('pullLoading: ', pullLoading);
+      const pullLoading = loading({ spinner: "" });
       const pullMsg = exec("git pull");
       // shell.echo("\n pull：" + infoBold(pullMsg));
       pullLoading.succeed("\n pull：" + infoBold(pullMsg))
