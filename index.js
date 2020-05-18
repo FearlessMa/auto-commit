@@ -4,6 +4,7 @@ const shell = require('shelljs');
 const { err, info, infoBold, errBold, orange } = require('./util/chalk')
 const inquirer = require('inquirer');
 const path = require('path');
+const fs = require("fs");
 
 
 const promptList = [];
@@ -46,10 +47,31 @@ const depList = [
   },
 ];
 
-const fileNameList = ['.czrc','.huskyrc','.lintstagedrc','.vcmrc']
+
+
+const fileNameList = [
+  { fileName: '.czrc', fileContent: `{ "path": "cz-conventional-changelog" }` },
+  {
+    fileName: '.huskyrc', fileContent: `{
+    "hooks": {
+      "pre-commit": "npm run lint"
+    }
+  }` },
+  {
+    fileName: '.lintstagedrc', fileContent: `
+  {
+    "src/**/*.{js,jsx}": [
+      "prettier --tab-width 4 --write",
+      "eslint --fix",
+      "git add ."
+    ]
+  }
+  ` },
+  { fileName: '.vcmrc', fileContent: `{"commit-msg": "./validate-commit-msg.js"}` }
+]
 const pwd = shell.pwd().stdout;
-const baseName = path.basename(pwd);
-console.log('baseName: ', baseName);
+const basePath = path.basename(pwd);
+console.log('basePath: ', basePath);
 
 if (!shell.which("git")) {
   shell.echo(err('Sorry, this script requires git'));
@@ -87,15 +109,22 @@ const validateDeps = (depNameList = [], dirPath = "") => {
 /**
  * 创建依赖文件
  *
- * @param {*} fileName 文件名称
+ * @param {*} fileDesc 文件名称
  */
-const createDepFile = fileName => {
-  shell.touch(fileName);
+const createDepFile = fileDesc => {
+  // shell.touch(fileDesc.name);
+  console.log('create')
+  // console.log('fileDesc: ', fileDesc);
+  fs.writeFileSync('./' + fileDesc.fileName, fileDesc.fileContent)
+  // console.log(' fileDesc.name: ', './' + fileDesc.name);
+  // shell.exec('touch '+fileDesc.name,function(){
+  // })
 }
 
 const validateDepFile = (fileNameList, dirPath) => {
-  fileNameList.forEach(fileName => {
-    !shell.find(`${dirPath}/${fileName}`) && createDepFile(fileName)
+  fileNameList.forEach(file => {
+    !find(`${file.fileName}`) && createDepFile(file);
+    console.log('find(`${file.fileName}`): ', find(`${file.fileName}`));
   })
 }
 
@@ -119,7 +148,7 @@ const findBin = () => {
 const binPath = findBin();
 
 validateDeps(depList, binPath);
-validateDepFile(fileNameList);
+validateDepFile(fileNameList, basePath);
 // console.log('binMod: ', binMod);
 // shell.echo(shell.which('git cz'))
 // console.log('binPath: ', binPath);
