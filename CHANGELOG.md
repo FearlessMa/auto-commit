@@ -1,3 +1,31 @@
+# Changelog
+
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+## [1.16.0-alpha.4](https://github.com/FearlessMa/gitMessage/compare/v1.16.0-alpha.2...v1.16.0-alpha.4) (2020-05-18)
+
+
+### Features
+
+* test ([47c19a4](https://github.com/FearlessMa/gitMessage/commit/47c19a4b4b56c0936c34d33e3515cec1bcb9e9b4))
+* ttt ([85e8e6d](https://github.com/FearlessMa/gitMessage/commit/85e8e6d0f0de678e876f805eb259cf40d6deaa83))
+* tttt ([bec8232](https://github.com/FearlessMa/gitMessage/commit/bec82328f3a0cd640f6d9e7b3653ef7465f6a94b))
+* tttt ([9cf5ce0](https://github.com/FearlessMa/gitMessage/commit/9cf5ce06eaf1dd58fa9fc2f5a11725d302c88918))
+* 增加loading效果 ([e820d93](https://github.com/FearlessMa/gitMessage/commit/e820d93d592248658be1e1cad91a7c6329f9e5fb))
+
+# [1.16.0-alpha.3](https://github.com/FearlessMa/gitMessage/compare/v1.16.0-alpha.2...v1.16.0-alpha.3) (2020-05-18)
+
+
+### Features
+
+* test ([47c19a4](https://github.com/FearlessMa/gitMessage/commit/47c19a4b4b56c0936c34d33e3515cec1bcb9e9b4))
+* ttt ([85e8e6d](https://github.com/FearlessMa/gitMessage/commit/85e8e6d0f0de678e876f805eb259cf40d6deaa83))
+* tttt ([bec8232](https://github.com/FearlessMa/gitMessage/commit/bec82328f3a0cd640f6d9e7b3653ef7465f6a94b))
+* tttt ([9cf5ce0](https://github.com/FearlessMa/gitMessage/commit/9cf5ce06eaf1dd58fa9fc2f5a11725d302c88918))
+* 增加loading效果 ([e820d93](https://github.com/FearlessMa/gitMessage/commit/e820d93d592248658be1e1cad91a7c6329f9e5fb))
+
+
+
 # [1.16.0-alpha.2](https://github.com/FearlessMa/gitMessage/compare/v1.16.0-alpha.1...v1.16.0-alpha.2) (2020-05-18)
 
 
@@ -443,6 +471,3 @@
 ### Features
 
 * **test:** 增加test.js ([b018a41](https://github.com/FearlessMa/gitMessage/commit/b018a41dd231e478843105a57f2f23331f7d96a6))
-
-
-
