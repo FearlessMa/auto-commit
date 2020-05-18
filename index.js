@@ -146,6 +146,7 @@ const findBin = () => {
 }
 
 const binPath = findBin();
+console.log('binPath: ', binPath);
 
 validateDeps(depList, binPath);
 validateDepFile(fileNameList, basePath);
