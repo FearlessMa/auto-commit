@@ -1,3 +1,19 @@
+# Changelog
+
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+## [1.15.0](https://github.com/FearlessMa/gitMessage/compare/v1.15.0-alpha.4...v1.15.0) (2020-05-18)
+
+
+### Features
+
+* test ([2fddb4e](https://github.com/FearlessMa/gitMessage/commit/2fddb4e16b8a4061813a3e5610f077612e2331cb))
+* test ([db84657](https://github.com/FearlessMa/gitMessage/commit/db846575de1b8f585713b38a126ddf434689d54e))
+* ttt ([6cc20f7](https://github.com/FearlessMa/gitMessage/commit/6cc20f7c131f18bb61a6fd68223777f583adf6be))
+* ttt ([2758b8b](https://github.com/FearlessMa/gitMessage/commit/2758b8bd5ec4266be98a87a4fbbd1b35411afd1f))
+* ttt ([dfe7485](https://github.com/FearlessMa/gitMessage/commit/dfe7485d709d40aa730718ea72cb63790ae44494))
+* 增加eslint文件校验 ([d957f89](https://github.com/FearlessMa/gitMessage/commit/d957f8923547f3c8dd09814248531bfe21f03067))
+
 # [1.15.0-alpha.4](https://github.com/FearlessMa/gitMessage/compare/v1.15.0-alpha.3...v1.15.0-alpha.4) (2020-05-18)
 
 
@@ -398,6 +414,3 @@
 ### Features
 
 * **test:** 增加test.js ([b018a41](https://github.com/FearlessMa/gitMessage/commit/b018a41dd231e478843105a57f2f23331f7d96a6))
-
-
-
