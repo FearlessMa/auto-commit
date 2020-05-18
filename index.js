@@ -240,7 +240,7 @@ inquirer.prompt(promptList).then(res => {
   /*  git commit */
   if (res.gitPush) {
     shell.exec("git add .");
-    require(path.join(process.cwd(), binPath) + '/git-cz')
+    infoBold(require(path.join(process.cwd(), binPath) + '/git-cz'))
     shell.echo("\n");
     // exec("git pull");
     // exec("git push");
