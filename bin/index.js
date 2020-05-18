@@ -1,7 +1,7 @@
 #! /usr/bin/env node
 
 const shell = require('shelljs');
-const { err, info, infoBold, errBold, orange } = require('./util')
+const { err, info, infoBold, errBold, orange } = require('../util')
 const inquirer = require('inquirer');
 const path = require('path');
 const fs = require("fs");
@@ -87,18 +87,9 @@ const find = path => exec("find " + path).stdout;
  * @param {*} depName string
  */
 const installDep = (depName) => {
-  console.log('depName: ', depName);
+  shell.echo(infoBold("正在安装：" + depName))
   const installTool = shell.which("cnpm") ? 'cnpm' : 'npm';
   process.exitCode = exec(`${installTool} i ${depName} -D `);
-  if (process.exitCode.code == 0) {
-    // loading.stop();
-  }
-  // exec(`${installTool} i ${depName} -D `, (code, stdout, stderr) => {
-  //   console.log('stderr: ', stderr);
-  //   console.log('stdout: ', stdout);
-  //   console.log('code: ', code);
-  //   loading.stop();
-  // });
 }
 
 /**
@@ -248,10 +239,6 @@ inquirer.prompt(promptList).then(res => {
     process.on('exit', function () {
       const pullMsg = exec("git pull");
       shell.echo("\n pull：" + infoBold(pullMsg));
-      pullMsg.stdout.on('data', function(){
-        
-        console.log('pullMsg:1223 ', pullMsg);
-      })
       const pushMsg = exec("git push");
       shell.echo("\n push：" + infoBold(pushMsg.stderr));
 
