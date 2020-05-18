@@ -235,38 +235,21 @@ inquirer.prompt(promptList).then(res => {
   /*  git commit */
   if (res.gitPush) {
     shell.exec("git add .");
-
-    // const cz = require(binPath + '/git-cz');
-    (async function a() {
-      process.exitCode = await require(binPath + '/git-cz');
-      console.log('process.exitCode: ', process.exitCode);
-      // shell.exec("git pull");
-      // shell.exec("git push");
-      // shell.exec("git push --tags");
-    })()
-    // then(res => {
-    //   // process.exitCode = res
-    //   console.log('res: 1', res);
-
-    //   // console.log('process.exitCode: ', process.exitCode);
-    //   // console.log('cz: ', cz);
-    //   // shell.exec("git cz ");
-    //   shell.exec("git pull");
-    //   shell.exec("git push");
-    //   shell.exec("git push --tags");
-    // })
+    require(binPath + '/git-cz');
+    // shell.exec("git pull");
+    // shell.exec("git push");
+    // shell.exec("git push --tags");
+    process.on('exit', function (code) {
+      shell.exec("git pull");
+      shell.exec("git push");
+      shell.exec("git push --tags");
+      console.log('退出码为:', code);
+    });
   }
 }).finally(() => {
   console.log(infoBold("----end----"))
 })
 
-process.on('exit', function (code) {
-  shell.exec("git pull");
-  shell.exec("git push");
-  shell.exec("git push --tags");
-
-  console.log('退出码为:', code);
-});
 
 // program.parse(process.argv)
 
