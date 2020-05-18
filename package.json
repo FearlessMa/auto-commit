@@ -1,7 +1,7 @@
 {
   "name": "@fearless-ma/gitcommit",
-  "version": "1.15.0-alpha.3",
-  "description": "[http://www.ruanyifeng.com/blog/2016/01/commit_message_change_log.html](阮一峰commit message)",
+  "version": "1.15.0-alpha.4",
+  "description": "https://github.com/FearlessMa/gitMessage#readme",
   "main": "index.js",
   "bin": {
     "autoCommit": "index.js"
