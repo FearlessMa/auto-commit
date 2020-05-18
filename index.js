@@ -69,7 +69,8 @@ const fileNameList = [
     ]
   }
   ` },
-  { fileName: '.vcmrc', fileContent: `{"commit-msg": "./validate-commit-msg.js"}` }
+  { fileName: '.vcmrc', fileContent: `{"commit-msg": "./validate-commit-msg.js"}` },
+  { fileName: '.eslintrc.js', fileContent: `module.exports={}` }
 ]
 
 if (!shell.which("git")) {
@@ -120,7 +121,7 @@ const createDepFile = fileDesc => {
   // })
 }
 
-const validateDepFile = (fileNameList, dirPath) => {
+const validateDepFile = (fileNameList) => {
   fileNameList.forEach(file => {
     !find(`${file.fileName}`) && createDepFile(file);
     console.log('find(`${file.fileName}`): ', find(`${file.fileName}`));
