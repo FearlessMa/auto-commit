@@ -1,13 +1,11 @@
-# Changelog
-
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
-
-## [1.16.0-alpha.7](https://github.com/FearlessMa/gitMessage/compare/v1.16.0-alpha.6...v1.16.0-alpha.7) (2020-05-18)
+# [1.16.0-alpha.7](https://github.com/FearlessMa/gitMessage/compare/v1.16.0-alpha.6...v1.16.0-alpha.7) (2020-05-18)
 
 
 ### Features
 
 * test ([733cd21](https://github.com/FearlessMa/gitMessage/commit/733cd216aea4ed3eda00add348a9c385c68dcda5))
+
+
 
 # [1.16.0-alpha.6](https://github.com/FearlessMa/gitMessage/compare/v1.16.0-alpha.5...v1.16.0-alpha.6) (2020-05-18)
 
@@ -480,3 +478,6 @@ All notable changes to this project will be documented in this file. See [standa
 ### Features
 
 * **test:** 增加test.js ([b018a41](https://github.com/FearlessMa/gitMessage/commit/b018a41dd231e478843105a57f2f23331f7d96a6))
+
+
+

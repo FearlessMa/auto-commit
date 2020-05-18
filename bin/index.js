@@ -229,15 +229,13 @@ inquirer.prompt(promptList).then(res => {
   /*  git commit */
   if (res.gitPush) {
     shell.exec("git add .");
-    shell.echo(orange("开始执行git-cz"));
+    shell.echo("开始执行git-cz：");
     infoBold(require(path.join(process.cwd(), binPath) + '/git-cz'))
-    shell.echo("\n");
-    // exec("git pull");
-    // exec("git push");
-    // exec("git push --tags");
     process.on('exit', function () {
+      const pullLoading = ora().start;
       const pullMsg = exec("git pull");
-      shell.echo("\n pull：" + infoBold(pullMsg));
+      // shell.echo("\n pull：" + infoBold(pullMsg));
+      pullLoading.succeed("\n pull：" + infoBold(pullMsg))
       const pushMsg = exec("git push");
       shell.echo("\n push：" + infoBold(pushMsg.stderr));
 
