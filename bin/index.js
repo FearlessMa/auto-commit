@@ -66,8 +66,8 @@ const fileNameList = [
 const autoCommit = '.auto-commit';
 let branch = "";
 
-let pull = "";
-let push = "";
+let pull = "origin";
+let push = "origin";
 
 
 if (!shell.which("git")) {
@@ -185,13 +185,13 @@ inquirer.prompt(promptList).then(res => {
     infoBold(require(path.join(process.cwd(), binPath) + '/git-cz'))
     process.on('exit', function () {
       console.log('`git pull ${branch}`: ', `git pull ${branch}`);
-      echoLoading(`git pull ${branch}`, { text: "正在拉取最新" }, (instance, msg) => {
+      echoLoading(`git pull ${pull} ${branch}`, { text: "正在拉取最新" }, (instance, msg) => {
         instance.succeed("pull：" + infoBold(msg))
       })
-      echoLoading(`git push ${branch}`, { text: "正在提交" }, (instance, msg) => {
+      echoLoading(`git push ${push} ${branch}`, { text: "正在提交" }, (instance, msg) => {
         instance.succeed("push：" + infoBold(msg.stderr))
       })
-      echoLoading(`git push --tags ${branch}`, { text: "正在提交tags" }, (instance, msg) => {
+      echoLoading(`git push --tags ${push} ${branch}`, { text: "正在提交tags" }, (instance, msg) => {
         instance.succeed("tags：" + infoBold(msg.stderr))
       })
     });
