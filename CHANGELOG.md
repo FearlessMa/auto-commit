@@ -1,3 +1,14 @@
+# Changelog
+
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+## [1.16.0-alpha.15](https://github.com/FearlessMa/gitMessage/compare/v1.16.0-alpha.14...v1.16.0-alpha.15) (2020-05-19)
+
+
+### Features
+
+* **t:** test ([f9bec13](https://github.com/FearlessMa/gitMessage/commit/f9bec1391e2795ddaa7c21085026271f56935c9d))
+
 # [1.16.0-alpha.14](https://github.com/FearlessMa/gitMessage/compare/v1.16.0-alpha.13...v1.16.0-alpha.14) (2020-05-19)
 
 
@@ -541,6 +552,3 @@
 ### Features
 
 * **test:** 增加test.js ([b018a41](https://github.com/FearlessMa/gitMessage/commit/b018a41dd231e478843105a57f2f23331f7d96a6))
-
-
-
