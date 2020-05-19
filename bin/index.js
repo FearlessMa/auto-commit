@@ -83,8 +83,8 @@ if (find(autoCommit)) {
   //   shell.echo(errBold(".auto-commit文件未配置参数！"));
   //   shell.exit(1);
   // }
-  pull = gitCommands.pull;
-  push = gitCommands.push;
+  pull = gitCommands.pull ? gitCommands.pull : "origin";
+  push = gitCommands.push ? gitCommands.push : "origin";
 }
 
 
