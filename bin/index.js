@@ -184,7 +184,8 @@ inquirer.prompt(promptList).then(res => {
       echoLoading(`git pull ${pull} ${branch}`, { text: "正在拉取最新" }, (instance, msg) => {
         instance.succeed("pull：" + infoBold(msg))
       })
-      echoLoading(`git push ${push} ${branch}`, { text: "正在提交" }, (instance, msg) => {
+      if (!push.includes('/')) { push = push + " " }
+      echoLoading(`git push ${push}${branch}`, { text: "正在提交" }, (instance, msg) => {
         instance.succeed("push：" + infoBold(msg.stderr))
       })
       echoLoading(`git push --tags ${push}${branch}`, { text: "正在提交tags" }, (instance, msg) => {
