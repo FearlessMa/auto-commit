@@ -12,11 +12,15 @@
 ```json
   {
     "commit":"auto-commit",
-    "lint":"eslint src && lint-staged" // eslint
+    "lint":"eslint src && lint-staged" // eslint 配置检查目录
   }
 ```
 
-## git操作
+## 使用命令
+
+* npm run commit
+
+## git操作配置
 
 * 默认使用git push origin currentBranch
   
@@ -29,4 +33,7 @@
 }
 ```
 
-## 使用命令 npm run commit
+## 其他说明
+
+* eslint 默认配置为空
+* 
