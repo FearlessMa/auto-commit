@@ -64,10 +64,13 @@ const fileNameList = [
   { fileName: '.eslintrc.js', fileContent: `module.exports={}` }
 ]
 const autoCommit = '.auto-commit';
-let branch = "";
+const binPath = findBin();
 
+let branch = "";
+// git  config
 let pull = "origin";
 let push = "origin";
+
 
 
 if (!shell.which("git")) {
@@ -75,20 +78,14 @@ if (!shell.which("git")) {
   shell.exit(1);
 }
 
+// 获取配置文件内容
 if (find(autoCommit)) {
   const d = fs.readFileSync(autoCommit)
-  console.log('d: ', d.toString());
   const gitCommands = JSON.parse(d.toString());
-  // if (!gitCommands.push) {
-  //   shell.echo(errBold(".auto-commit文件未配置参数！"));
-  //   shell.exit(1);
-  // }
   pull = gitCommands.pull ? gitCommands.pull : "origin";
   push = gitCommands.push ? gitCommands.push : "origin";
 }
 
-
-const binPath = findBin();
 
 // 校验依赖
 validateDeps(depList, binPath);
@@ -184,7 +181,6 @@ inquirer.prompt(promptList).then(res => {
     shell.echo("开始执行git-cz：");
     infoBold(require(path.join(process.cwd(), binPath) + '/git-cz'))
     process.on('exit', function () {
-      console.log('`git pull ${branch}`: ', `git pull ${pull} ${branch}`);
       echoLoading(`git pull ${pull} ${branch}`, { text: "正在拉取最新" }, (instance, msg) => {
         instance.succeed("pull：" + infoBold(msg))
       })
