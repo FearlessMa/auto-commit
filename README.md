@@ -1,4 +1,11 @@
-# git commit
+# git auto-commit
+
+* 自动提交git commit
+  * gitHook eslint 校验
+  * prettier 格式化代码
+  * changelog 自动生成
+  * version 自动生成
+  * git message 格式化
 
 ## 配置
 

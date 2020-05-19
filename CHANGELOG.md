@@ -1,13 +1,11 @@
-# Changelog
-
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
-
-## [1.18.0](https://github.com/FearlessMa/gitMessage/compare/v1.17.1...v1.18.0) (2020-05-19)
+# [1.18.0](https://github.com/FearlessMa/gitMessage/compare/v1.17.1...v1.18.0) (2020-05-19)
 
 
 ### Features
 
 * 修复push路径bug ([d14f21a](https://github.com/FearlessMa/gitMessage/commit/d14f21a19502894046020edb100b08f78e0fe691))
+
+
 
 ## [1.17.1](https://github.com/FearlessMa/gitMessage/compare/v1.17.0...v1.17.1) (2020-05-19)
 
@@ -610,3 +608,6 @@ All notable changes to this project will be documented in this file. See [standa
 ### Features
 
 * **test:** 增加test.js ([b018a41](https://github.com/FearlessMa/gitMessage/commit/b018a41dd231e478843105a57f2f23331f7d96a6))
+
+
+
