@@ -70,7 +70,7 @@ let branch = "";
 // git  config
 let pull = "origin";
 let push = "origin";
-
+let versionName = ""; //版本名称
 
 
 if (!shell.which("git")) {
@@ -95,8 +95,8 @@ validateDepFile(fileNameList);
 
 // const hasStandardVersion = !!find(binPath + "/standard-version");
 const standardVersion = 'node ' + binPath + '/standard-version';
-const standardVersionAlpha = 'node ' + binPath + '/standard-version  --prerelease alpha';
-const changelog = 'node ' + binPath + "/conventional-changelog -p angular -i CHANGELOG.md -s -r 0"
+const standardVersionName = `node ${binPath} /standard-version --prerelease ${versionName}`;
+const changelog = 'node ' + binPath + "/conventional-changelog -p angular -i CHANGELOG.md -s -r 0";
 const lastTag = "git describe --tags `git rev-list --tags --max-count=1`";
 
 // 获取当前分支
@@ -120,11 +120,14 @@ promptList.push({
 });
 promptList.push({
   type: "list",
-  name: "versionAlpha",
-  message: orange("是否是预发版本？"),
+  name: "versionTest",
+  message: orange("请选择测试版本"),
   choices: [
-    { name: "是", value: 1 },
-    { name: "否", value: 0 },
+    { name: "Stable(稳定版本)", value: "Stable" },
+    { name: "Alpha(内测版本)", value: "Alpha" },
+    { name: "Beta(公测版本)", value: "Beta" },
+    { name: "Gamma(测试版本)", value: "Gamma" },
+    { name: "RC(Release Candidate候选版本)", value: "RC" },
   ]
 });
 promptList.push({
@@ -151,9 +154,10 @@ promptList.push({
 inquirer.prompt(promptList).then(res => {
   /* 版本号操作 */
   if (res.versionNumber) {
-    if (res.versionAlpha) {
-      //  发布 alpha
-      const msg = exec(standardVersionAlpha);
+    if (res.versionTest) {
+      versionName = res.versionTest;
+      //  发布 release
+      const msg = exec(standardVersionName);
       shell.echo("alpha版本信息:\n" + infoBold(msg));
     } else {
       //  发布 release

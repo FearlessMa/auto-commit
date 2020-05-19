@@ -88,3 +88,5 @@ npm run release
 [chalk命令行颜色](https://github.com/chalk/chalk)
 [node.js 命令行接口的完整解决方案，灵感来自 Ruby 的 commander。](https://github.com/tj/commander.js/blob/master/Readme_zh-CN.md)
 [shelljs](https://juejin.im/post/5cdb76166fb9a032196ef1ff)
+
+[版本号语义化](https://www.jianshu.com/p/d306ed03de62)
