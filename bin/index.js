@@ -64,7 +64,10 @@ const fileNameList = [
   { fileName: '.eslintrc.js', fileContent: `module.exports={}` }
 ]
 const autoCommit = '.auto-commit';
+let branch = "";
 
+let pull = "";
+let push = "";
 
 
 if (!shell.which("git")) {
@@ -74,7 +77,14 @@ if (!shell.which("git")) {
 
 if (find(autoCommit)) {
   const d = fs.readFileSync(autoCommit)
-  console.log('d: ', JSON.parse(d.toString()).push);
+  console.log('d: ', d.toString());
+  const gitCommands = JSON.parse(d.toString());
+  // if (!gitCommands.push) {
+  //   shell.echo(errBold(".auto-commit文件未配置参数！"));
+  //   shell.exit(1);
+  // }
+  pull = gitCommands.pull;
+  push = gitCommands.push;
 }
 
 
@@ -93,8 +103,8 @@ const changelog = 'node ' + binPath + "/conventional-changelog -p angular -i CHA
 const lastTag = "git describe --tags `git rev-list --tags --max-count=1`";
 
 // 获取当前分支
-const { stdout } = exec("git symbolic-ref --short -q HEAD")
-const branch = stdout;
+const branchObj = exec("git symbolic-ref --short -q HEAD")
+branch = branchObj.stdout;
 if (branch) {
   shell.echo(infoBold("当前分支：" + branch))
 } else {
@@ -174,13 +184,14 @@ inquirer.prompt(promptList).then(res => {
     shell.echo("开始执行git-cz：");
     infoBold(require(path.join(process.cwd(), binPath) + '/git-cz'))
     process.on('exit', function () {
-      echoLoading("git pull", { text: "正在拉取最新" }, (instance, msg) => {
+      console.log('`git pull ${branch}`: ', `git pull ${branch}`);
+      echoLoading(`git pull ${branch}`, { text: "正在拉取最新" }, (instance, msg) => {
         instance.succeed("pull：" + infoBold(msg))
       })
-      echoLoading("git push", { text: "正在提交" }, (instance, msg) => {
+      echoLoading(`git push ${branch}`, { text: "正在提交" }, (instance, msg) => {
         instance.succeed("push：" + infoBold(msg.stderr))
       })
-      echoLoading("git push --tags", { text: "正在提交tags" }, (instance, msg) => {
+      echoLoading(`git push --tags ${branch}`, { text: "正在提交tags" }, (instance, msg) => {
         instance.succeed("tags：" + infoBold(msg.stderr))
       })
     });
