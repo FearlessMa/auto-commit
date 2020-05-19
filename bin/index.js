@@ -120,8 +120,9 @@ promptList.push({
 promptList.push({
   type: "list",
   name: "versionTest",
-  message: orange("请选择测试版本"),
+  message: orange("请选版本"),
   choices: [
+    { name: "不选版本后缀", value: false },
     { name: "Stable(稳定版本)", value: "stable" },
     { name: "Alpha(内测版本)", value: "alpha" },
     { name: "Beta(公测版本)", value: "beta" },
