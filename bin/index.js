@@ -70,7 +70,6 @@ let branch = "";
 // git  config
 let pull = "origin";
 let push = "origin";
-let versionName = ""; //版本名称
 
 
 if (!shell.which("git")) {
@@ -95,7 +94,7 @@ validateDepFile(fileNameList);
 
 // const hasStandardVersion = !!find(binPath + "/standard-version");
 const standardVersion = 'node ' + binPath + '/standard-version';
-const standardVersionName = `node ${binPath} /standard-version --prerelease ${versionName}`;
+const standardVersionName = (versionName) => `node ${binPath} /standard-version --prerelease ${versionName}`;
 const changelog = 'node ' + binPath + "/conventional-changelog -p angular -i CHANGELOG.md -s -r 0";
 const lastTag = "git describe --tags `git rev-list --tags --max-count=1`";
 
@@ -155,9 +154,12 @@ inquirer.prompt(promptList).then(res => {
   /* 版本号操作 */
   if (res.versionNumber) {
     if (res.versionTest) {
-      versionName = res.versionTest;
+      const versionName = res.versionTest;
+      console.log('res.versionTest: ', res.versionTest);
+      console.log('versionName: ', versionName);
       //  发布 release
-      const msg = exec(standardVersionName);
+      const msg = exec(standardVersionName(versionName));
+      console.log('standardVersionName: ', standardVersionName);
       shell.echo("alpha版本信息:\n" + infoBold(msg));
     } else {
       //  发布 release
