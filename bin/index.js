@@ -122,11 +122,11 @@ promptList.push({
   name: "versionTest",
   message: orange("请选择测试版本"),
   choices: [
-    { name: "Stable(稳定版本)", value: "Stable" },
-    { name: "Alpha(内测版本)", value: "Alpha" },
-    { name: "Beta(公测版本)", value: "Beta" },
-    { name: "Gamma(测试版本)", value: "Gamma" },
-    { name: "RC(Release Candidate候选版本)", value: "RC" },
+    { name: "Stable(稳定版本)", value: "stable" },
+    { name: "Alpha(内测版本)", value: "alpha" },
+    { name: "Beta(公测版本)", value: "beta" },
+    { name: "Gamma(测试版本)", value: "gamma" },
+    { name: "RC(Release Candidate候选版本)", value: "rc" },
   ]
 });
 promptList.push({
@@ -168,7 +168,7 @@ inquirer.prompt(promptList).then(res => {
       shell.echo("版本信息:\n" + infoBold(msg));
     }
     const tag = exec(lastTag);
-    shell.echo("最新版本号：\n" + infoBold(tag));
+    shell.echo("最新tag号：\n" + infoBold(tag));
   } else {
     shell.echo(info("跳过版本号升级"))
   }
