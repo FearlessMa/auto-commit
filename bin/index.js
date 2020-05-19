@@ -157,12 +157,13 @@ inquirer.prompt(promptList).then(res => {
       const versionName = res.versionTest;
       console.log('res.versionTest: ', res.versionTest);
       console.log('versionName: ', versionName);
-      //  发布 release
-      const msg = exec(standardVersionName(versionName));
-      console.log('standardVersionName: ', standardVersionName);
-      shell.echo("alpha版本信息:\n" + infoBold(msg));
+      //  发布 release 版本
+      const cmd = standardVersionName(versionName);
+      console.log('cmd: ', cmd);
+      const msg = exec(cmd);
+      shell.echo("版本信息:\n" + infoBold(msg));
     } else {
-      //  发布 release
+      //  发布 版本
       const msg = exec(standardVersion);
       shell.echo("版本信息:\n" + infoBold(msg));
     }
