@@ -1,14 +1,13 @@
 #! /usr/bin/env node
 
 const shell = require('shelljs');
-const { err, info, infoBold, errBold, orange, magentaBold, loading } = require('../util')
+const { err, info, infoBold, errBold, orange } = require('../util');
+const { echoLoading, findBin, validateDepFile, validateDeps, exec, find } = require('../util/shell');
 const inquirer = require('inquirer');
 const path = require('path');
 const fs = require("fs");
 
 const promptList = [];
-const binPathPro = "../.bin";
-const binPathMod = "./node_modules/.bin";
 const depList = [
   {
     name: "standard-version",
@@ -64,89 +63,20 @@ const fileNameList = [
   { fileName: '.vcmrc', fileContent: `{"commit-msg": "./validate-commit-msg.js"}` },
   { fileName: '.eslintrc.js', fileContent: `module.exports={}` }
 ]
+const autoCommit = '.auto-commit';
+
+
 
 if (!shell.which("git")) {
   shell.echo(err('Sorry, this script requires git'));
   shell.exit(1);
 }
 
-const exec = (command, options = { silent: true }) => shell.exec(command, options)
-
-/**
- * 寻找路径
- *
- * @param {*} path string
- */
-const find = path => exec("find " + path).stdout;
-
-/**
- * 安装依赖
- *
- * @param {*} depName string
- */
-const installDep = (depName) => {
-  const instance = loading({ spinner: "dot" });
-  shell.echo("正在安装：" + infoBold(depName))
-  const installTool = shell.which("cnpm") ? 'cnpm' : 'npm';
-  exec(`${installTool} i ${depName} -D `);
-  instance.succeed('安装完成');
+if (find(autoCommit)) {
+  const d = fs.readFileSync(autoCommit)
+  console.log('d: ', JSON.parse(d.toString()).push);
 }
 
-/**
- * 校验依赖是否安装
- *
- * @param {*} [depNameList=[]] stringArray
- * @param {string} [dirPath=""] string
- */
-const validateDeps = (depNameList = [], dirPath = "") => {
-  depNameList.forEach(dep => {
-    !find(dirPath + "/" + dep.name) && installDep(dep.depName)
-  })
-}
-/**
- * 创建依赖文件
- *
- * @param {*} fileDesc 文件名称
- */
-const createDepFile = fileDesc => {
-  shell.echo("缺少配置文件" + magentaBold(fileDesc.fileName))
-  fs.writeFileSync('./' + fileDesc.fileName, fileDesc.fileContent);
-
-}
-
-const validateDepFile = (fileNameList) => {
-  fileNameList.forEach(file => {
-    !find(`${file.fileName}`) && createDepFile(file);
-  })
-}
-
-/**
- * find bin 
- *
- * @returns path 
- */
-const findBin = () => {
-  const binDir = find(binPathPro);
-  const binMod = find(binPathMod);
-  if (!binDir && !binMod) {
-    shell.echo(errBold("缺少依赖无法执行"));
-    shell.exit(1);
-  }
-  return binDir ? binPathPro : binPathMod;
-}
-
-/**
- * 输出loading
- *
- * @param {*} command string 命令
- * @param {*} [loadingOptions={}]loading options
- * @param {*} fn 结果处理
- */
-const echoLoading = (command, loadingOptions = {}, fn) => {
-  const loadingInstance = loading(loadingOptions);
-  const execMsg = exec(command);
-  fn && fn(loadingInstance, execMsg)
-}
 
 const binPath = findBin();
 
@@ -244,26 +174,15 @@ inquirer.prompt(promptList).then(res => {
     shell.echo("开始执行git-cz：");
     infoBold(require(path.join(process.cwd(), binPath) + '/git-cz'))
     process.on('exit', function () {
-      echoLoading("git pull",{text: "正在更新" },(instance, msg)=>{
+      echoLoading("git pull", { text: "正在拉取最新" }, (instance, msg) => {
         instance.succeed("pull：" + infoBold(msg))
       })
-      echoLoading("git push",{text: "正在提交" },(instance, msg)=>{
-        instance.succeed("\npush：" + infoBold(msg.stderr))
+      echoLoading("git push", { text: "正在提交" }, (instance, msg) => {
+        instance.succeed("push：" + infoBold(msg.stderr))
       })
-      echoLoading("git push --tags",{text: "正在提交tags" },(instance, msg)=>{
-        instance.succeed("\ntags：" + infoBold(msg.stderr))
+      echoLoading("git push --tags", { text: "正在提交tags" }, (instance, msg) => {
+        instance.succeed("tags：" + infoBold(msg.stderr))
       })
-      // const pullLoading = loading({ text: "正在提交" });
-      // const pullMsg = exec("git pull");
-      // pullLoading.succeed("pull：" + infoBold(pullMsg))
-      // const pushMsg = exec("git push");
-      // shell.echo("\n push：" + infoBold(pushMsg.stderr));
-
-      // const tagMsg = exec("git push --tags");
-      // shell.echo("\n tags：" + infoBold(tagMsg.stderr));
     });
   }
 })
-
-
-// program.parse(process.argv)
