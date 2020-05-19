@@ -184,7 +184,7 @@ inquirer.prompt(promptList).then(res => {
     shell.echo("开始执行git-cz：");
     infoBold(require(path.join(process.cwd(), binPath) + '/git-cz'))
     process.on('exit', function () {
-      console.log('`git pull ${branch}`: ', `git pull ${branch}`);
+      console.log('`git pull ${branch}`: ', `git pull ${pull} ${branch}`);
       echoLoading(`git pull ${pull} ${branch}`, { text: "正在拉取最新" }, (instance, msg) => {
         instance.succeed("pull：" + infoBold(msg))
       })
