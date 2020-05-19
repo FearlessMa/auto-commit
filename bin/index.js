@@ -188,7 +188,7 @@ inquirer.prompt(promptList).then(res => {
       echoLoading(`git push ${push}${branch}`, { text: "正在提交" }, (instance, msg) => {
         instance.succeed("push：" + infoBold(msg.stderr))
       })
-      echoLoading(`git push --tags ${push}${branch}`, { text: "正在提交tags" }, (instance, msg) => {
+      echoLoading(`git push --tags`, { text: "正在提交tags" }, (instance, msg) => {
         instance.succeed("tags：" + infoBold(msg.stderr))
       })
     });
