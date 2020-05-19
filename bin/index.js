@@ -94,7 +94,7 @@ validateDepFile(fileNameList);
 
 // const hasStandardVersion = !!find(binPath + "/standard-version");
 const standardVersion = 'node ' + binPath + '/standard-version';
-const standardVersionName = (versionName) => `node ${binPath} /standard-version --prerelease ${versionName}`;
+const standardVersionName = (versionName) => `node ${binPath}/standard-version --prerelease ${versionName}`;
 const changelog = 'node ' + binPath + "/conventional-changelog -p angular -i CHANGELOG.md -s -r 0";
 const lastTag = "git describe --tags `git rev-list --tags --max-count=1`";
 
@@ -161,6 +161,7 @@ inquirer.prompt(promptList).then(res => {
       const cmd = standardVersionName(versionName);
       console.log('cmd: ', cmd);
       const msg = exec(cmd);
+      console.log('msg: ', msg);
       shell.echo("版本信息:\n" + infoBold(msg));
     } else {
       //  发布 版本
@@ -168,7 +169,7 @@ inquirer.prompt(promptList).then(res => {
       shell.echo("版本信息:\n" + infoBold(msg));
     }
     const tag = exec(lastTag);
-    shell.echo("最新tag号：\n" + infoBold(tag));
+    shell.echo("最新tag：\n" + infoBold(tag));
   } else {
     shell.echo(info("跳过版本号升级"))
   }

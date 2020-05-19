@@ -1,8 +1,9 @@
-# Changelog
+# [1.19.0-stable.0](https://github.com/FearlessMa/gitMessage/compare/v1.18.5...v1.19.0-stable.0) (2020-05-19)
 
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-## [1.19.0-stable.0](https://github.com/FearlessMa/gitMessage/compare/v1.18.5...v1.19.0-stable.0) (2020-05-19)
+### Bug Fixes
+
+* 修复gerrit 提交tag错误 ([9b55a91](https://github.com/FearlessMa/gitMessage/commit/9b55a918e29eba306e006da534cea278ebef64a9))
 
 
 ### Features
@@ -13,9 +14,6 @@ All notable changes to this project will be documented in this file. See [standa
 * tttt ([4e47646](https://github.com/FearlessMa/gitMessage/commit/4e47646557990fe764b45a5699fec129953d1b7f))
 
 
-### Bug Fixes
-
-* 修复gerrit 提交tag错误 ([9b55a91](https://github.com/FearlessMa/gitMessage/commit/9b55a918e29eba306e006da534cea278ebef64a9))
 
 ## [1.18.5](https://github.com/FearlessMa/gitMessage/compare/v1.18.4...v1.18.5) (2020-05-19)
 
@@ -652,3 +650,6 @@ All notable changes to this project will be documented in this file. See [standa
 ### Features
 
 * **test:** 增加test.js ([b018a41](https://github.com/FearlessMa/gitMessage/commit/b018a41dd231e478843105a57f2f23331f7d96a6))
+
+
+
