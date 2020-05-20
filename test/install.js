@@ -93,29 +93,45 @@ const find = path => exec("find " + path).stdout;
 //     console.log('item: ', item);
 //   }
 // }
+// const validateDeps = async (depNameList, dirPath = "") => {
+//   depNameList[Symbol.iterator] = function () {
+//     let i = 0;
+//     return {
+//       next: () => {
+//         return i++ < this.length
+//           ? {
+//             done: false,
+//             value: !find(dirPath + "/" + this[i - 1].name) && installDep(this[i - 1].depName)
+//           }
+//           : {
+//             done: true,
+//             value: undefined
+//           }
+//       }
+//     }
+//   }
+//   for await (let item of depNameList) {
+//     shell.echo(item.stderr)
+//   }
+// }
+
 const validateDeps = async (depNameList, dirPath = "") => {
-  depNameList[Symbol.iterator] = function () {
-    let i = 0;
-    return {
-      next: () => {
-        return i++ < this.length
-          ? {
-            done: false,
-            value: !find(dirPath + "/" + this[i - 1].name) && installDep(this[i - 1].depName)
-          }
-          : {
-            done: true,
-            value: undefined
-          }
-      }
-    }
+  const pList = [];
+  depNameList.forEach((dep) => {
+    console.log('dep.name: ', dep.name);
+    !find(dirPath + "/" + dep.name) && pList.push(installDep.bind(null, dep.depName));
+  });
+  for (let i = 0; i < pList.length; i++) {
+    console.log('validateDeps r: ', r);
+    const r = await pList[i]();
   }
-  for await (let item of depNameList) {
-    shell.echo(item.stderr)
-  }
+  return true;
 }
 
-validateDeps(depList)
+validateDeps(depList).then(res => {
+  console.log('res: ', res);
+
+})
 
 // const i = async () => {
 //   const r1 = await installDep('eslint')

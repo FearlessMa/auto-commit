@@ -8,7 +8,7 @@ const fs = require('fs');
 const binPathPro = "../.bin";
 const binPathMod = "./node_modules/.bin";
 
-const exec = (command, options = { silent: true }) => shell.exec(command, options)
+const exec = (command, options = { silent: true }, fn) => shell.exec(command, options, fn)
 
 /**
  * 寻找路径
@@ -61,9 +61,10 @@ const validateDeps = async (depNameList, dirPath = "") => {
     !find(dirPath + "/" + dep.name) && pList.push(installDep.bind(null, dep.depName));
   });
   for (let i = 0; i < pList.length; i++) {
-    await pList[i]();
-    // console.log('r: ', r);
+    const r = await pList[i]();
+    console.log('validateDeps r: ', r);
   }
+  return true;
 }
 /**
  * 创建依赖文件
