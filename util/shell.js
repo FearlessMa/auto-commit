@@ -22,12 +22,24 @@ const find = path => exec("find " + path).stdout;
  *
  * @param {*} depName string
  */
-const installDep = (depName) => {
-  const instance = loading({ spinner: "dots" });
-  shell.echo("正在安装：" + infoBold(depName))
+// const installDep = (depName) => {
+//   const instance = loading({ spinner: "dots" });
+//   shell.echo("正在安装：" + infoBold(depName))
+//   const installTool = shell.which("cnpm") ? 'cnpm' : 'npm';
+//   exec(`${installTool} i ${depName} -D `);
+//   instance.succeed('安装完成');
+// }
+const installDep = async (depName) => {
+  const instance = loading({ text: "正在安装：" + infoBold(depName), spinner: "dots" });
   const installTool = shell.which("cnpm") ? 'cnpm' : 'npm';
-  exec(`${installTool} i ${depName} -D `);
-  instance.succeed('安装完成');
+  return new Promise((resolve) => {
+    exec(`${installTool} i ${depName} -D `, { silent: true },
+      (code, stdout, stderr) => {
+        resolve({ code, stdout, stderr });
+        instance.succeed(infoBold(depName) + ' 安装完成');
+      }
+    )
+  })
 }
 
 /**
@@ -36,10 +48,22 @@ const installDep = (depName) => {
  * @param {*} [depNameList=[]] stringArray
  * @param {string} [dirPath=""] string
  */
-const validateDeps = (depNameList = [], dirPath = "") => {
-  depNameList.forEach(dep => {
-    !find(dirPath + "/" + dep.name) && installDep(dep.depName)
-  })
+// const validateDeps = (depNameList = [], dirPath = "") => {
+//   depNameList.forEach(async (dep) => {
+//     const res = await !find(dirPath + "/" + dep.name) && installDep(dep.depName)
+//     console.log('res: ', res);
+//   })
+// }
+
+const validateDeps = async (depNameList, dirPath = "") => {
+  const pList = [];
+  depNameList.forEach((dep) => {
+    !find(dirPath + "/" + dep.name) && pList.push(installDep.bind(null, dep.depName));
+  });
+  for (let i = 0; i < pList.length; i++) {
+    await pList[i]();
+    // console.log('r: ', r);
+  }
 }
 /**
  * 创建依赖文件

@@ -26,7 +26,7 @@ const load = () => {
   }, 500)
 }
 // load();
-shell.exec('sleep 2 && find load.js',(code)=>{
+shell.exec('cnpm i  eslint -D',(code)=>{
   console.log('code: ', code);
   // clearInterval(time)
   spinner.succeed();
