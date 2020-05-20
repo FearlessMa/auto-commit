@@ -61,8 +61,7 @@ const validateDeps = async (depNameList, dirPath = "") => {
     !find(dirPath + "/" + dep.name) && pList.push(installDep.bind(null, dep.depName));
   });
   for (let i = 0; i < pList.length; i++) {
-    const r = await pList[i]();
-    console.log('validateDeps r: ', r);
+    await pList[i]();
   }
   return true;
 }

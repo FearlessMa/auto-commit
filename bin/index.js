@@ -205,8 +205,7 @@ function chooseCMD() {
 
 async function init() {
   // 校验依赖
-  const r = await validateDeps(depList, binPath);
-  console.log('r: ', r);
+  await validateDeps(depList, binPath);
   // 校验依赖文件
   validateDepFile(fileNameList);
   chooseCMD()
