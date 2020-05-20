@@ -64,7 +64,7 @@ const echoLoading = (command, loadingOptions = { spinner: "dots" }, fn) => {
   //   });
   // })
 
-  return asyncExec(command, {}, (code, stdout, stderr) => { fn && fn(loadingInstance, { code, stdout, stderr }); })
+  return asyncExec(command, { silent: true }, (code, stdout, stderr) => { fn && fn(loadingInstance, { code, stdout, stderr }); })
 }
 
 const branch = 'dev';
