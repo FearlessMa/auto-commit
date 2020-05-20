@@ -2,7 +2,7 @@
 
 const shell = require('shelljs');
 const { err, info, infoBold, errBold, orange } = require('../util');
-const { echoLoading, findBin, validateDepFile, validateDeps, exec, find } = require('../util/shell');
+const { echoLoading, findBin, validateDepFile, validateDeps, exec, find, asyncExec } = require('../util/shell');
 const inquirer = require('inquirer');
 const path = require('path');
 const fs = require("fs");
@@ -105,13 +105,13 @@ if (branch) {
 }
 
 promptList.push({
-  type: "list",
+  type: "confirm",
   name: "versionNumber",
   message: orange("是否进行版本升级？"),
-  choices: [
-    { name: "是", value: 1 },
-    { name: "否", value: 0 },
-  ]
+  // choices: [
+  //   { name: "是", value: 1 },
+  //   { name: "否", value: 0 },
+  // ]
 });
 promptList.push({
   type: "list",
@@ -124,7 +124,11 @@ promptList.push({
     { name: "Beta(公测版本)", value: "beta" },
     { name: "Gamma(测试版本)", value: "gamma" },
     { name: "RC(Release Candidate候选版本)", value: "rc" },
-  ]
+  ],
+  when(answers) {
+    console.log('answers: ', answers);
+    return answers.versionNumber
+  }
 });
 promptList.push({
   type: "list",
@@ -149,17 +153,21 @@ promptList.push({
 // // 校验依赖
 // validateDeps(depList, binPath);
 // // 校验依赖文件
-// validateDepFile(fileNameList);
+/**
+ * git commit 
+ *
+ */
 async function gitCommit() {
+  // git pull
   await echoLoading(`git pull ${pull} ${branch}`, { text: "正在拉取最新" }, (instance, msg) => {
     instance.succeed("pull：" + infoBold(msg.stderr))
   })
-  console.log('pull：: ', pull);
+  // git push 
   if (!push.includes('/')) { push = push + " " }
   await echoLoading(`git push ${push}${branch}`, { text: "正在提交" }, (instance, msg) => {
     instance.succeed("push：" + infoBold(msg.stderr))
   })
-  console.log('pull：: ', pull);
+  // git push tags
   await echoLoading(`git push --tags`, { text: "正在提交tags" }, (instance, msg) => {
     instance.succeed("tags：" + infoBold(msg.stderr))
   })
@@ -200,7 +208,7 @@ function chooseCMD() {
       shell.exec("git add .");
       shell.echo("开始执行git-cz：");
       infoBold(require(path.join(process.cwd(), binPath) + '/git-cz'))
-      process.on('exit',gitCommit);
+      process.on('exit', gitCommit);
     }
   })
 }

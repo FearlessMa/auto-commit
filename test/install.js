@@ -29,10 +29,6 @@ const magentaBold = chalk.magentaBright.bold;
 
 
 module.exports = { err, errBold, info, infoBold, orange, orangeBold, magenta, magentaBold };
-
-const exec = (command, options = { silent: true }, fn) => shell.exec(command, options, fn)
-
-
 const depList = [
   {
     name: "husky-run",
@@ -47,21 +43,79 @@ const depList = [
     depName: "prettier"
   },
 ];
+const exec = (command, options = { silent: true }, fn) => shell.exec(command, options, fn)
+/**
+ * 异步exec
+ *
+ * @param {*} command string cmd指令
+ * @param {boolean} [options={ silent: true }] object exec 配置
+ * @param {*} fn async callback
+ * @param {*} args other arguments
+ * @returns Promise
+ */
+const asyncExec = (command, options = { silent: true }, fn, ...args) => {
+  return new Promise((resolve, reject) => {
+    try {
+      shell.exec(command, options, (code, stdout, stderr) => {
+        fn(code, stdout, stderr);
+        resolve({ code, stdout, stderr, ...args })
+      })
+    } catch (err) {
+      reject(err)
+    }
+  })
+}
+
+
+/**
+ * loading
+ *
+ * @param {*} command
+ * @param {string} [loadingOptions={ spinner: "dots" }] 
+ * @param {*} fn callback,fn(instance,{code,stdout,stderr})
+ * @returns asyncExec => Promise  
+ */
+const echoLoading = (command, loadingOptions = { spinner: "dots" }, fn) => {
+  const loadingInstance = loading(loadingOptions);
+  return asyncExec(
+    command,
+    { silent: true },
+    (code, stdout, stderr) => { fn && fn(loadingInstance, { code, stdout, stderr }); },
+    loadingInstance
+  )
+}
 /**
  * 安装依赖
  *
  * @param {*} depName string
  */
+// const installDep = async (depName) => {
+//   const instance = loading({ text: "正在安装：" + infoBold(depName), spinner: "dots" });
+//   const installTool = shell.which("cnpm") ? 'cnpm' : 'npm';
+//   return new Promise((resolve) => {
+//     exec(`${installTool} i ${depName} -D `, { silent: true },
+//       (code, stdout, stderr) => {
+//         resolve({ code, stdout, stderr });
+//         instance.succeed(infoBold(depName) + ' 安装完成');
+//       }
+//     )
+//   })
+// }
+// const installDep = async (depName) => {
+//   const instance = loading({ text: "正在安装：" + infoBold(depName), spinner: "dots" });
+//   const installTool = shell.which("cnpm") ? 'cnpm' : 'npm';
+//   const command = `${installTool} i ${depName} -D `;
+//   return asyncExec(command, { silent: true }, () => {
+//     instance.succeed(infoBold(depName) + ' 安装完成');
+//   })
+// }
 const installDep = async (depName) => {
-  const instance = loading({ text: "正在安装：" + infoBold(depName), spinner: "dots" });
+  // const instance = loading({ text: "正在安装：" + infoBold(depName), spinner: "dots" });
+  const loadingOpt = { text: "正在安装：" + infoBold(depName), spinner: "dots" };
   const installTool = shell.which("cnpm") ? 'cnpm' : 'npm';
-  return new Promise((resolve) => {
-    exec(`${installTool} i ${depName} -D `, { silent: true },
-      (code, stdout, stderr) => {
-        resolve({ code, stdout, stderr });
-        instance.succeed(infoBold(depName) + ' 安装完成');
-      }
-    )
+  const command = `${installTool} i ${depName} -D `;
+  return echoLoading(command, loadingOpt, (loadingIns) => {
+    loadingIns.succeed(infoBold(depName) + ' 安装完成');
   })
 }
 
@@ -118,12 +172,11 @@ const find = path => exec("find " + path).stdout;
 const validateDeps = async (depNameList, dirPath = "") => {
   const pList = [];
   depNameList.forEach((dep) => {
-    console.log('dep.name: ', dep.name);
     !find(dirPath + "/" + dep.name) && pList.push(installDep.bind(null, dep.depName));
   });
   for (let i = 0; i < pList.length; i++) {
-    console.log('validateDeps r: ', r);
-    const r = await pList[i]();
+    const res = await pList[i]();
+    console.log('res: ', res);
   }
   return true;
 }

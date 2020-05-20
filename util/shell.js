@@ -11,6 +11,28 @@ const binPathMod = "./node_modules/.bin";
 const exec = (command, options = { silent: true }, fn) => shell.exec(command, options, fn)
 
 /**
+ * 异步exec
+ *
+ * @param {*} command string cmd指令
+ * @param {boolean} [options={ silent: true }] object exec 配置
+ * @param {*} fn async callback
+ * @param {*} args other arguments
+ * @returns Promise
+ */
+const asyncExec = (command, options = { silent: true }, fn, ...args) => {
+  return new Promise((resolve, reject) => {
+    try {
+      shell.exec(command, options, (code, stdout, stderr) => {
+        fn(code, stdout, stderr);
+        resolve({ code, stdout, stderr, ...args })
+      })
+    } catch (err) {
+      reject(err)
+    }
+  })
+}
+
+/**
  * 寻找路径
  *
  * @param {*} path string
@@ -22,26 +44,26 @@ const find = path => exec("find " + path).stdout;
  *
  * @param {*} depName string
  */
-// const installDep = (depName) => {
-//   const instance = loading({ spinner: "dots" });
-//   shell.echo("正在安装：" + infoBold(depName))
+// const installDep = async (depName) => {
+//   const instance = loading({ text: "正在安装：" + infoBold(depName), spinner: "dots" });
 //   const installTool = shell.which("cnpm") ? 'cnpm' : 'npm';
-//   exec(`${installTool} i ${depName} -D `);
-//   instance.succeed('安装完成');
+//   return new Promise((resolve) => {
+//     exec(`${installTool} i ${depName} -D `, { silent: true },
+//       (code, stdout, stderr) => {
+//         resolve({ code, stdout, stderr });
+//         instance.succeed(infoBold(depName) + ' 安装完成');
+//       }
+//     )
+//   })
 // }
 const installDep = async (depName) => {
-  const instance = loading({ text: "正在安装：" + infoBold(depName), spinner: "dots" });
+  const loadingOpt = { text: "正在安装：" + infoBold(depName), spinner: "dots" };
   const installTool = shell.which("cnpm") ? 'cnpm' : 'npm';
-  return new Promise((resolve) => {
-    exec(`${installTool} i ${depName} -D `, { silent: true },
-      (code, stdout, stderr) => {
-        resolve({ code, stdout, stderr });
-        instance.succeed(infoBold(depName) + ' 安装完成');
-      }
-    )
+  const command = `${installTool} i ${depName} -D `;
+  return echoLoading(command, loadingOpt, (loadingIns) => {
+    loadingIns.succeed(infoBold(depName) + ' 安装完成');
   })
 }
-
 
 /**
  * 校验依赖是否安装
@@ -49,13 +71,6 @@ const installDep = async (depName) => {
  * @param {*} [depNameList=[]] stringArray
  * @param {string} [dirPath=""] string
  */
-// const validateDeps = (depNameList = [], dirPath = "") => {
-//   depNameList.forEach(async (dep) => {
-//     const res = await !find(dirPath + "/" + dep.name) && installDep(dep.depName)
-//     console.log('res: ', res);
-//   })
-// }
-
 const validateDeps = async (depNameList, dirPath = "") => {
   const pList = [];
   depNameList.forEach((dep) => {
@@ -91,35 +106,35 @@ const findBin = () => {
   const binDir = find(binPathPro);
   const binMod = find(binPathMod);
   if (!binDir && !binMod) {
-    shell.echo(errBold("缺少依赖无法执行"));
+    shell.echo(errBold("缺少依赖文件无法执行"));
     shell.exit(1);
   }
   return binDir ? binPathPro : binPathMod;
 }
 
 /**
- * 输出loading
+ * loading
  *
- * @param {*} command string 命令
- * @param {*} [loadingOptions={}]loading options
- * @param {*} fn 结果处理
+ * @param {*} command
+ * @param {string} [loadingOptions={ spinner: "dots" }] 
+ * @param {*} fn callback,fn(instance,{code,stdout,stderr})
+ * @returns asyncExec => Promise  
  */
 const echoLoading = (command, loadingOptions = { spinner: "dots" }, fn) => {
   const loadingInstance = loading(loadingOptions);
-  // const execMsg =
-  return new Promise((resolve) => {
-    exec(command, { silent: true }, (code, stdout, stderr) => {
-      fn && fn(loadingInstance, { code, stdout, stderr });
-      resolve()
-    });
-  })
+  return asyncExec(
+    command,
+    { silent: true },
+    (code, stdout, stderr) => { fn && fn(loadingInstance, { code, stdout, stderr }); },
+    loadingInstance
+  )
 }
-
 module.exports = {
   echoLoading,
   findBin,
   validateDepFile,
   validateDeps,
   exec,
-  find
+  find,
+  asyncExec
 }

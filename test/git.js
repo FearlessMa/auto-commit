@@ -64,19 +64,11 @@ const exec = (command, options = { silent: true }, fn) => shell.exec(command, op
  */
 const echoLoading = (command, loadingOptions = { spinner: "dots" }, fn) => {
   const loadingInstance = loading(loadingOptions);
-  // const execMsg =
-  // return new Promise((resolve) => {
-  //   exec(command, { silent: true }, (code, stdout, stderr) => {
-  //     fn && fn(loadingInstance, { code, stdout, stderr });
-  //     resolve()
-  //   });
-  // })
-
   return asyncExec(command, { silent: true }, (code, stdout, stderr) => { fn && fn(loadingInstance, { code, stdout, stderr }); })
 }
 
 const branch = 'dev';
-const pull = '';
+const pull = 'origin';
 let push = 'origin';
 
 shell.exec('git add .');
