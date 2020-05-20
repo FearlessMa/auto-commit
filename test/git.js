@@ -57,6 +57,7 @@ let push = 'origin';
 
 shell.exec('git add .');
 shell.exec('git commit -m "test"');
+shell.asyncExec()
 
 async function gitCommit() {
   await echoLoading(`git pull ${pull} ${branch}`, { text: "正在拉取最新" }, (instance, msg) => {
@@ -72,4 +73,4 @@ async function gitCommit() {
 
 }
 
-gitCommit()
+// gitCommit()

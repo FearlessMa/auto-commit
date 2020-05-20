@@ -42,6 +42,7 @@ const installDep = async (depName) => {
   })
 }
 
+
 /**
  * 校验依赖是否安装
  *
