@@ -56,7 +56,7 @@ shell.exec('git add .');
 shell.exec('git commit -m "test"');
 
 echoLoading(`git pull ${pull} ${branch}`, { text: "正在拉取最新" }, (instance, msg) => {
-  instance.succeed("pull：" + infoBold(msg))
+  instance.succeed("pull：" + infoBold(msg.stderr))
 })
 if (!push.includes('/')) { push = push + " " }
 echoLoading(`git push ${push}${branch}`, { text: "正在提交" }, (instance, msg) => {
