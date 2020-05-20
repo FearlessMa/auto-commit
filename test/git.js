@@ -31,7 +31,21 @@ const magentaBold = chalk.magentaBright.bold;
 
 module.exports = { err, errBold, info, infoBold, orange, orangeBold, magenta, magentaBold };
 
+const asyncExec = (command, options = { silent: true }, fn, ...args) => {
+  return new Promise((resolve, reject) => {
+    try {
+      shell.exec(command, options, (code, stdout, stderr) => {
+        fn(code, stdout, stderr);
+        resolve(code, stdout, stderr, args)
+      })
+    } catch (err) {
+      reject(err)
+    }
+  })
+}
+
 const exec = (command, options = { silent: true }, fn) => shell.exec(command, options, fn)
+
 
 /**
  * 输出loading
@@ -43,12 +57,14 @@ const exec = (command, options = { silent: true }, fn) => shell.exec(command, op
 const echoLoading = (command, loadingOptions = { spinner: "dots" }, fn) => {
   const loadingInstance = loading(loadingOptions);
   // const execMsg =
-  return new Promise((resolve) => {
-    exec(command, { silent: true }, (code, stdout, stderr) => {
-      fn && fn(loadingInstance, { code, stdout, stderr });
-      resolve()
-    });
-  })
+  // return new Promise((resolve) => {
+  //   exec(command, { silent: true }, (code, stdout, stderr) => {
+  //     fn && fn(loadingInstance, { code, stdout, stderr });
+  //     resolve()
+  //   });
+  // })
+
+  return asyncExec(command, {}, (code, stdout, stderr) => { fn && fn(loadingInstance, { code, stdout, stderr }); })
 }
 
 const branch = 'dev';
@@ -57,7 +73,6 @@ let push = 'origin';
 
 shell.exec('git add .');
 shell.exec('git commit -m "test"');
-shell.asyncExec()
 
 async function gitCommit() {
   await echoLoading(`git pull ${pull} ${branch}`, { text: "正在拉取最新" }, (instance, msg) => {
@@ -73,4 +88,4 @@ async function gitCommit() {
 
 }
 
-// gitCommit()
+gitCommit()
