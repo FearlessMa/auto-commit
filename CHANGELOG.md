@@ -1,3 +1,14 @@
+# Changelog
+
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+## [1.22.0](https://github.com/FearlessMa/gitMessage/compare/v1.21.0...v1.22.0) (2020-05-20)
+
+
+### Features
+
+* **t:** ttt ([0ae8e9a](https://github.com/FearlessMa/gitMessage/commit/0ae8e9aef4a8fe4b2637296ea607357fc3346cae))
+
 # [1.21.0](https://github.com/FearlessMa/gitMessage/compare/v1.20.1...v1.21.0) (2020-05-20)
 
 
@@ -700,6 +711,3 @@
 ### Features
 
 * **test:** 增加test.js ([b018a41](https://github.com/FearlessMa/gitMessage/commit/b018a41dd231e478843105a57f2f23331f7d96a6))
-
-
-
