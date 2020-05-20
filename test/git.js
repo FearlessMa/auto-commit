@@ -47,9 +47,11 @@ const echoLoading = (command, loadingOptions = {}, fn) => {
 }
 
 const branch = 'dev';
-const pull = '';
-let push = '';
+const pull = 'origin';
+let push = 'origin';
 
+shell.exec('git add .');
+shell.exec('git commit -m "test"');
 
 echoLoading(`git pull ${pull} ${branch}`, { text: "正在拉取最新" }, (instance, msg) => {
   instance.succeed("pull：" + infoBold(msg))
