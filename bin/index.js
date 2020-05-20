@@ -216,8 +216,8 @@ async function execCmd(inputCmdRes) {
     })
 
     // gitCommit()
-    await echoLoading(require(path.join(process.cwd(), binPath) + '/git-cz'), { text: "git-cz " }, ({ loadingInstance, code, stdout, stderr }) => {
-      loadingInstance.succeed(infoBold("git-cz 完成"))
+    await asyncExec(require(path.join(process.cwd(), binPath) + '/git-cz'), { silent: true }, (code, stdout, stderr) => {
+      console.log('code: ', code);
     })
     // await asyncExec(, { silent: true }, (code, stdout, stderr) => {
     //   console.log('stderr: ', stderr);
