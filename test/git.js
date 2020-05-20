@@ -43,9 +43,13 @@ const exec = (command, options = { silent: true }, fn) => shell.exec(command, op
 const echoLoading = (command, loadingOptions = { spinner: "dots" }, fn) => {
   const loadingInstance = loading(loadingOptions);
   // const execMsg =
-  exec(command, { silent: true }, (code, stdout, stderr) => {
-    fn && fn(loadingInstance, { code, stdout, stderr });
-  });
+  return new Promise((resolve) => {
+
+    exec(command, { silent: true }, (code, stdout, stderr) => {
+      fn && fn(loadingInstance, { code, stdout, stderr });
+      resolve({ code, stdout, stderr })
+    });
+  })
 }
 
 const branch = 'dev';
@@ -55,13 +59,18 @@ let push = 'origin';
 shell.exec('git add .');
 shell.exec('git commit -m "test"');
 
-echoLoading(`git pull ${pull} ${branch}`, { text: "正在拉取最新" }, (instance, msg) => {
-  instance.succeed("pull：" + infoBold(msg.stderr))
-})
-if (!push.includes('/')) { push = push + " " }
-echoLoading(`git push ${push}${branch}`, { text: "正在提交" }, (instance, msg) => {
-  instance.succeed("push：" + infoBold(msg.stderr))
-})
-echoLoading(`git push --tags`, { text: "正在提交tags" }, (instance, msg) => {
-  instance.succeed("tags：" + infoBold(msg.stderr))
-})
+async function gitCommit() {
+  await echoLoading(`git pull ${pull} ${branch}`, { text: "正在拉取最新" }, (instance, msg) => {
+    instance.succeed("pull：" + infoBold(msg.stderr))
+  })
+  if (!push.includes('/')) { push = push + " " }
+  await echoLoading(`git push ${push}${branch}`, { text: "正在提交" }, (instance, msg) => {
+    instance.succeed("push：" + infoBold(msg.stderr))
+  })
+  await echoLoading(`git push --tags`, { text: "正在提交tags" }, (instance, msg) => {
+    instance.succeed("tags：" + infoBold(msg.stderr))
+  })
+
+}
+
+gitCommit()
