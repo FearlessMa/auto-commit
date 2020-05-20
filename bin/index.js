@@ -159,17 +159,17 @@ promptList.push({
  */
 async function gitCommit() {
   // git pull
-  await echoLoading(`git pull ${pull} ${branch}`, { text: "正在拉取最新" }, (instance, msg) => {
-    instance.succeed("pull：" + infoBold(msg.stderr))
+  await echoLoading(`git pull ${pull} ${branch}`, { text: "正在拉取最新" }, ({ loadingInstance, code, stdout, stderr }) => {
+    loadingInstance.succeed("pull：" + infoBold(stderr))
   })
   // git push 
   if (!push.includes('/')) { push = push + " " }
-  await echoLoading(`git push ${push}${branch}`, { text: "正在提交" }, (instance, msg) => {
-    instance.succeed("push：" + infoBold(msg.stderr))
+  await echoLoading(`git push ${push}${branch}`, { text: "正在提交" }, ({ loadingInstance, code, stdout, stderr }) => {
+    loadingInstance.succeed("push：" + infoBold(stderr))
   })
   // git push tags
-  await echoLoading(`git push --tags`, { text: "正在提交tags" }, (instance, msg) => {
-    instance.succeed("tags：" + infoBold(msg.stderr))
+  await echoLoading(`git push --tags`, { text: "正在提交tags" }, ({ loadingInstance, code, stdout, stderr }) => {
+    loadingInstance.succeed("tags：" + infoBold(stderr))
   })
 }
 
