@@ -154,10 +154,12 @@ async function gitCommit() {
   await echoLoading(`git pull ${pull} ${branch}`, { text: "正在拉取最新" }, (instance, msg) => {
     instance.succeed("pull：" + infoBold(msg.stderr))
   })
+  console.log('pull：: ', pull);
   if (!push.includes('/')) { push = push + " " }
   await echoLoading(`git push ${push}${branch}`, { text: "正在提交" }, (instance, msg) => {
     instance.succeed("push：" + infoBold(msg.stderr))
   })
+  console.log('pull：: ', pull);
   await echoLoading(`git push --tags`, { text: "正在提交tags" }, (instance, msg) => {
     instance.succeed("tags：" + infoBold(msg.stderr))
   })
