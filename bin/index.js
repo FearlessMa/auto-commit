@@ -91,7 +91,7 @@ if (find(autoCommit)) {
 // const hasStandardVersion = !!find(binPath + "/standard-version");
 const standardVersion = 'node ' + binPath + '/standard-version';
 const standardVersionName = (versionName) => `node ${binPath}/standard-version --prerelease ${versionName}`;
-const changelog = 'node ' + binPath + "/conventional-changelog -p angular -i CHANGELOG.md -s -r 0";
+const cmdChangelog = 'node ' + binPath + "/conventional-changelog -p angular -i CHANGELOG.md -s -r 0";
 const lastTag = "git describe --tags `git rev-list --tags --max-count=1`";
 
 // 获取当前分支
@@ -125,19 +125,9 @@ promptList.push({
     { name: "Gamma(测试版本)", value: "gamma" },
     { name: "RC(Release Candidate候选版本)", value: "rc" },
   ],
-  when(answers) {
-    console.log('answers: ', answers);
+  when(answers) { // 当versionNumber 为true时 ，显示选择
     return answers.versionNumber
   }
-});
-promptList.push({
-  type: "list",
-  name: "gitPush",
-  message: orange("是否进行版本提交?"),
-  choices: [
-    { name: "是", value: 1 },
-    { name: "否", value: 0 },
-  ]
 });
 promptList.push({
   type: "list",
@@ -148,6 +138,16 @@ promptList.push({
     { name: "否", value: 0 },
   ]
 });
+promptList.push({
+  type: "list",
+  name: "gitPush",
+  message: orange("是否进行版本提交?"),
+  choices: [
+    { name: "是", value: 1 },
+    { name: "否", value: 0 },
+  ]
+});
+
 
 
 // // 校验依赖
@@ -173,43 +173,103 @@ async function gitCommit() {
   })
 }
 
+async function execCmd(inputCmdRes) {
+  console.log('inputCmdRes: ', inputCmdRes);
+  const { versionNumber, versionTest, changelog, gitPush } = inputCmdRes;
+  /* 版本号操作 */
+  if (versionNumber) {
+    // 版本号增加后缀
+    if (versionTest) {
+      const command = standardVersionName(versionTest);
+      await echoLoading(command, { text: "正在更新版本号" }, ({ loadingInstance, code, stdout, stderr }) => {
+        loadingInstance.succeed("版本信息：\n" + infoBold(stderr))
+      })
+    } else {
+      const command = standardVersion;
+      await echoLoading(command, { text: "正在更新版本号" }, ({ loadingInstance, code, stdout, stderr }) => {
+        loadingInstance.succeed("版本信息：\n" + infoBold(stdout))
+      })
+    }
+    await echoLoading(lastTag, { text: "正在更新tag" }, ({ loadingInstance, code, stdout, stderr }) => {
+      loadingInstance.succeed("最新tag：\n" + infoBold(stdout))
+    })
+  } else {
+    shell.echo(info("跳过版本号升级"))
+  }
+
+  /* changelog */
+
+  if (changelog) {
+    await echoLoading(cmdChangelog, { text: "正在更新changelog" }, ({ loadingInstance, code, stdout, stderr }) => {
+      loadingInstance.succeed(infoBold("changelog更新完成"))
+    })
+  } else {
+    shell.echo(info("跳过changelog"))
+  }
+
+  // /*  git commit */
+  if (gitPush) {
+    const cmdAdd = "git add .";
+    await echoLoading(cmdAdd, { text: "git add " }, ({ loadingInstance, code, stdout, stderr }) => {
+      loadingInstance.succeed(infoBold("git add 完成"))
+    })
+    // await echoLoading(require(path.join(process.cwd(), binPath) + '/git-cz'), { text: "git add " }, ({ loadingInstance, code, stdout, stderr }) => {
+    //   loadingInstance.succeed(infoBold("git add 完成"))
+    // })
+    await asyncExec(require(path.join(process.cwd(), binPath) + '/git-cz'), { silent: true }, (code, stdout, stderr) => {
+      console.log('stderr: ', stderr);
+      console.log('stdout: ', stdout);
+      console.log('code: ', code);
+    })
+    // shell.exec("git add .");
+    // shell.echo("开始执行git-cz：");
+    // infoBold(require(path.join(process.cwd(), binPath) + '/git-cz'))
+    // process.on('exit', gitCommit);
+  }
+}
+
+/**
+ * cmd输入的结果操作
+ *
+ */
 function chooseCMD() {
   inquirer.prompt(promptList).then(res => {
+    execCmd(res)
     /* 版本号操作 */
-    if (res.versionNumber) {
-      if (res.versionTest) {
-        const versionName = res.versionTest;
-        //  发布 release 版本
-        const cmd = standardVersionName(versionName);
-        const msg = exec(cmd);
-        shell.echo("版本信息:\n" + infoBold(msg));
-      } else {
-        //  发布 版本
-        const msg = exec(standardVersion);
-        shell.echo("版本信息:\n" + infoBold(msg));
-      }
-      const tag = exec(lastTag);
-      shell.echo("最新tag：\n" + infoBold(tag));
-    } else {
-      shell.echo(info("跳过版本号升级"))
-    }
+    // if (res.versionNumber) {
+    //   if (res.versionTest) {
+    //     const versionName = res.versionTest;
+    //     //  发布 release 版本
+    //     const cmd = standardVersionName(versionName);
+    //     const msg = exec(cmd);
+    //     shell.echo("版本信息:\n" + infoBold(msg));
+    //   } else {
+    //     //  发布 版本
+    //     const msg = exec(standardVersion);
+    //     shell.echo("版本信息:\n" + infoBold(msg));
+    //   }
+    //   const tag = exec(lastTag);
+    //   shell.echo("最新tag：\n" + infoBold(tag));
+    // } else {
+    //   shell.echo(info("跳过版本号升级"))
+    // }
 
     /* changelog */
 
-    if (res.changelog) {
-      exec(changelog);
-    } else {
-      shell.echo(info("跳过changelog"))
-    }
+    // if (res.changelog) {
+    //   exec(changelog);
+    // } else {
+    //   shell.echo(info("跳过changelog"))
+    // }
 
 
-    /*  git commit */
-    if (res.gitPush) {
-      shell.exec("git add .");
-      shell.echo("开始执行git-cz：");
-      infoBold(require(path.join(process.cwd(), binPath) + '/git-cz'))
-      process.on('exit', gitCommit);
-    }
+    // /*  git commit */
+    // if (res.gitPush) {
+    //   shell.exec("git add .");
+    //   shell.echo("开始执行git-cz：");
+    //   infoBold(require(path.join(process.cwd(), binPath) + '/git-cz'))
+    //   process.on('exit', gitCommit);
+    // }
   })
 }
 

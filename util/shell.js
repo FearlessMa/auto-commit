@@ -117,7 +117,7 @@ const findBin = () => {
  *
  * @param {*} command
  * @param {string} [loadingOptions={ spinner: "dots" }] 
- * @param {*} fn callback,fn(instance,{code,stdout,stderr})
+ * @param {*} fn callback,fn(loadingInstance,{code,stdout,stderr})
  * @returns asyncExec => Promise  
  */
 const echoLoading = (command, loadingOptions = { spinner: "dots" }, fn) => {
@@ -125,7 +125,9 @@ const echoLoading = (command, loadingOptions = { spinner: "dots" }, fn) => {
   return asyncExec(
     command,
     { silent: true },
-    (code, stdout, stderr) => { fn && fn(loadingInstance, { code, stdout, stderr }); },
+    (code, stdout, stderr) => {
+      fn && fn({ loadingInstance, code, stdout, stderr });
+    },
     loadingInstance
   )
 }
