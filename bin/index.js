@@ -212,15 +212,18 @@ async function execCmd(inputCmdRes) {
     const cmdAdd = "git add .";
     await echoLoading(cmdAdd, { text: "git add " }, ({ loadingInstance, code, stdout, stderr }) => {
       loadingInstance.succeed(infoBold("git add 完成"))
+      infoBold(require(path.join(process.cwd(), binPath) + '/git-cz'))
     })
+
+    // gitCommit()
     // await echoLoading(require(path.join(process.cwd(), binPath) + '/git-cz'), { text: "git add " }, ({ loadingInstance, code, stdout, stderr }) => {
     //   loadingInstance.succeed(infoBold("git add 完成"))
     // })
-    await asyncExec(require(path.join(process.cwd(), binPath) + '/git-cz'), { silent: true }, (code, stdout, stderr) => {
-      console.log('stderr: ', stderr);
-      console.log('stdout: ', stdout);
-      console.log('code: ', code);
-    })
+    // await asyncExec(, { silent: true }, (code, stdout, stderr) => {
+    //   console.log('stderr: ', stderr);
+    //   console.log('stdout: ', stdout);
+    //   console.log('code: ', code);
+    // })
     // shell.exec("git add .");
     // shell.echo("开始执行git-cz：");
     // infoBold(require(path.join(process.cwd(), binPath) + '/git-cz'))
