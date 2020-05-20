@@ -44,10 +44,9 @@ const echoLoading = (command, loadingOptions = { spinner: "dots" }, fn) => {
   const loadingInstance = loading(loadingOptions);
   // const execMsg =
   return new Promise((resolve) => {
-
     exec(command, { silent: true }, (code, stdout, stderr) => {
       fn && fn(loadingInstance, { code, stdout, stderr });
-      resolve({ code, stdout, stderr })
+      resolve()
     });
   })
 }

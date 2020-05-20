@@ -103,10 +103,15 @@ const findBin = () => {
  * @param {*} [loadingOptions={}]loading options
  * @param {*} fn 结果处理
  */
-const echoLoading = (command, loadingOptions = {}, fn) => {
+const echoLoading = (command, loadingOptions = { spinner: "dots" }, fn) => {
   const loadingInstance = loading(loadingOptions);
-  const execMsg = exec(command);
-  fn && fn(loadingInstance, execMsg)
+  // const execMsg =
+  return new Promise((resolve) => {
+    exec(command, { silent: true }, (code, stdout, stderr) => {
+      fn && fn(loadingInstance, { code, stdout, stderr });
+      resolve()
+    });
+  })
 }
 
 module.exports = {

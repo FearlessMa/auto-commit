@@ -150,6 +150,18 @@ promptList.push({
 // validateDeps(depList, binPath);
 // // 校验依赖文件
 // validateDepFile(fileNameList);
+async function gitCommit() {
+  await echoLoading(`git pull ${pull} ${branch}`, { text: "正在拉取最新" }, (instance, msg) => {
+    instance.succeed("pull：" + infoBold(msg.stderr))
+  })
+  if (!push.includes('/')) { push = push + " " }
+  await echoLoading(`git push ${push}${branch}`, { text: "正在提交" }, (instance, msg) => {
+    instance.succeed("push：" + infoBold(msg.stderr))
+  })
+  await echoLoading(`git push --tags`, { text: "正在提交tags" }, (instance, msg) => {
+    instance.succeed("tags：" + infoBold(msg.stderr))
+  })
+}
 
 function chooseCMD() {
   inquirer.prompt(promptList).then(res => {
@@ -187,16 +199,17 @@ function chooseCMD() {
       shell.echo("开始执行git-cz：");
       infoBold(require(path.join(process.cwd(), binPath) + '/git-cz'))
       process.on('exit', function () {
-        echoLoading(`git pull ${pull} ${branch}`, { text: "正在拉取最新" }, (instance, msg) => {
-          instance.succeed("pull：" + infoBold(msg))
-        })
-        if (!push.includes('/')) { push = push + " " }
-        echoLoading(`git push ${push}${branch}`, { text: "正在提交" }, (instance, msg) => {
-          instance.succeed("push：" + infoBold(msg.stderr))
-        })
-        echoLoading(`git push --tags`, { text: "正在提交tags" }, (instance, msg) => {
-          instance.succeed("tags：" + infoBold(msg.stderr))
-        })
+        gitCommit()
+        // echoLoading(`git pull ${pull} ${branch}`, { text: "正在拉取最新" }, (instance, msg) => {
+        //   instance.succeed("pull：" + infoBold(msg))
+        // })
+        // if (!push.includes('/')) { push = push + " " }
+        // echoLoading(`git push ${push}${branch}`, { text: "正在提交" }, (instance, msg) => {
+        //   instance.succeed("push：" + infoBold(msg.stderr))
+        // })
+        // echoLoading(`git push --tags`, { text: "正在提交tags" }, (instance, msg) => {
+        //   instance.succeed("tags：" + infoBold(msg.stderr))
+        // })
       });
     }
   })
