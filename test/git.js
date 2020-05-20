@@ -42,8 +42,10 @@ const exec = (command, options = { silent: true }, fn) => shell.exec(command, op
  */
 const echoLoading = (command, loadingOptions = {}, fn) => {
   const loadingInstance = loading(loadingOptions);
-  const execMsg = exec(command);
-  fn && fn(loadingInstance, execMsg)
+  // const execMsg =
+  exec(command, { silent: true }, (code, stdout, stderr) => {
+    fn && fn(loadingInstance, stderr)
+  });
 }
 
 const branch = 'dev';
