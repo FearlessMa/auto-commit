@@ -219,6 +219,7 @@ async function execCmd(inputCmdRes) {
     await asyncExec(require(path.join(process.cwd(), binPath) + '/git-cz'), { silent: true }, (code, stdout, stderr) => {
       console.log('code: ', code);
     })
+    gitCommit()
     // await asyncExec(, { silent: true }, (code, stdout, stderr) => {
     //   console.log('stderr: ', stderr);
     //   console.log('stdout: ', stdout);
