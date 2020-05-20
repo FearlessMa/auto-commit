@@ -44,6 +44,7 @@ const echoLoading = (command, loadingOptions = {}, fn) => {
   const loadingInstance = loading(loadingOptions);
   // const execMsg =
   exec(command, { silent: true }, (code, stdout, stderr) => {
+    console.log('stdout: ', stdout);
     fn && fn(loadingInstance, stderr)
   });
 }
