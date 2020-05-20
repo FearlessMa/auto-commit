@@ -40,7 +40,7 @@ const exec = (command, options = { silent: true }, fn) => shell.exec(command, op
  * @param {*} [loadingOptions={}]loading options
  * @param {*} fn 结果处理
  */
-const echoLoading = (command, loadingOptions = {}, fn) => {
+const echoLoading = (command, loadingOptions = { spinner: "dots" }, fn) => {
   const loadingInstance = loading(loadingOptions);
   // const execMsg =
   exec(command, { silent: true }, (code, stdout, stderr) => {
