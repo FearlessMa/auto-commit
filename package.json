@@ -1,6 +1,6 @@
 {
   "name": "@fearless-ma/auto-commit",
-  "version": "1.22.0",
+  "version": "1.23.0-alpha.0",
   "description": "https://github.com/FearlessMa/gitMessage#readme",
   "main": "index.js",
   "bin": {
@@ -32,7 +32,6 @@
     "babel-eslint": "^10.1.0",
     "commitizen": "^4.1.2",
     "conventional-changelog-cli": "^2.0.34",
-    "cz-conventional-changelog": "^3.2.0",
     "eslint": "^7.0.0",
     "husky": "^4.2.5",
     "lint-staged": "^10.2.4",
