@@ -30,7 +30,15 @@ const magentaBold = chalk.magentaBright.bold;
 
 
 module.exports = { err, errBold, info, infoBold, orange, orangeBold, magenta, magentaBold };
-
+/**
+ * 异步exec
+ *
+ * @param {*} command string cmd指令
+ * @param {boolean} [options={ silent: true }] object exec 配置
+ * @param {*} fn async callback
+ * @param {*} args other arguments
+ * @returns Promise
+ */
 const asyncExec = (command, options = { silent: true }, fn, ...args) => {
   return new Promise((resolve, reject) => {
     try {
@@ -68,7 +76,7 @@ const echoLoading = (command, loadingOptions = { spinner: "dots" }, fn) => {
 }
 
 const branch = 'dev';
-const pull = 'origin';
+const pull = '';
 let push = 'origin';
 
 shell.exec('git add .');
