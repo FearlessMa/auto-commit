@@ -2,26 +2,44 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-### [1.23.2-alpha.0](https://github.com/FearlessMa/gitMessage/compare/v1.23.1...v1.23.2-alpha.0) (2020-05-20)
+### [1.23.2-alpha.1](https://github.com/FearlessMa/gitMessage/compare/v1.23.2-alpha.0...v1.23.2-alpha.1) (2020-05-20)
 
-### [1.23.1](https://github.com/FearlessMa/gitMessage/compare/v1.23.1-stable.0...v1.23.1) (2020-05-20)
+## [1.23.2-alpha.0](https://github.com/FearlessMa/gitMessage/compare/v1.23.1...v1.23.2-alpha.0) (2020-05-20)
 
-### [1.23.1-stable.0](https://github.com/FearlessMa/gitMessage/compare/v1.23.1-alpha.2...v1.23.1-stable.0) (2020-05-20)
 
-### [1.23.1-alpha.2](https://github.com/FearlessMa/gitMessage/compare/v1.23.1-alpha.1...v1.23.1-alpha.2) (2020-05-20)
 
-### [1.23.1-alpha.1](https://github.com/FearlessMa/gitMessage/compare/v1.23.1-alpha.0...v1.23.1-alpha.1) (2020-05-20)
+## [1.23.1](https://github.com/FearlessMa/gitMessage/compare/v1.23.1-stable.0...v1.23.1) (2020-05-20)
 
-### [1.23.1-alpha.0](https://github.com/FearlessMa/gitMessage/compare/v1.23.0...v1.23.1-alpha.0) (2020-05-20)
 
-## [1.23.0](https://github.com/FearlessMa/gitMessage/compare/v1.23.0-alpha.1...v1.23.0) (2020-05-20)
 
-## [1.23.0-alpha.1](https://github.com/FearlessMa/gitMessage/compare/v1.23.0-alpha.0...v1.23.0-alpha.1) (2020-05-20)
+## [1.23.1-stable.0](https://github.com/FearlessMa/gitMessage/compare/v1.23.1-alpha.2...v1.23.1-stable.0) (2020-05-20)
+
+
+
+## [1.23.1-alpha.2](https://github.com/FearlessMa/gitMessage/compare/v1.23.1-alpha.1...v1.23.1-alpha.2) (2020-05-20)
+
+
+
+## [1.23.1-alpha.1](https://github.com/FearlessMa/gitMessage/compare/v1.23.1-alpha.0...v1.23.1-alpha.1) (2020-05-20)
+
+
+
+## [1.23.1-alpha.0](https://github.com/FearlessMa/gitMessage/compare/v1.23.0...v1.23.1-alpha.0) (2020-05-20)
+
+
+
+# [1.23.0](https://github.com/FearlessMa/gitMessage/compare/v1.23.0-alpha.1...v1.23.0) (2020-05-20)
+
+
+
+# [1.23.0-alpha.1](https://github.com/FearlessMa/gitMessage/compare/v1.23.0-alpha.0...v1.23.0-alpha.1) (2020-05-20)
 
 
 ### Features
 
 * 增加loading ([26446cd](https://github.com/FearlessMa/gitMessage/commit/26446cd6a6a7dfd458315be445b99af4c0c6d575))
+
+
 
 # [1.23.0-alpha.0](https://github.com/FearlessMa/gitMessage/compare/v1.22.0...v1.23.0-alpha.0) (2020-05-20)
 
