@@ -1,6 +1,7 @@
 
   {
     "src/**/*.{js,jsx}": [
+      "eslint",
       "prettier --tab-width 4 --write",
       "eslint --fix",
       "git add ."
