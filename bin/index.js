@@ -132,22 +132,22 @@ promptList.push({
   }
 });
 promptList.push({
-  type: "list",
+  type: "confirm",
   name: "changelog",
   message: orange("是否更新changelog? "),
-  choices: [
-    { name: "是", value: 1 },
-    { name: "否", value: 0 },
-  ]
+  // choices: [
+  //   { name: "是", value: 1 },
+  //   { name: "否", value: 0 },
+  // ]
 });
 promptList.push({
-  type: "list",
+  type: "confirm",
   name: "gitPush",
   message: orange("是否进行版本提交?"),
-  choices: [
-    { name: "是", value: 1 },
-    { name: "否", value: 0 },
-  ]
+  // choices: [
+  //   { name: "是", value: 1 },
+  //   { name: "否", value: 0 },
+  // ]
 });
 
 
@@ -177,7 +177,6 @@ async function gitCommit() {
 }
 
 async function execCmd(inputCmdRes) {
-  console.log('inputCmdRes: ', inputCmdRes);
   const { versionNumber, versionTest, changelog, gitPush } = inputCmdRes;
   /* 版本号操作 */
   if (versionNumber) {
