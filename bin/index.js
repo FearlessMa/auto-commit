@@ -1,8 +1,10 @@
 #! /usr/bin/env node
 
+'use strict';
+
 const shell = require('shelljs');
 const { err, info, infoBold, errBold, orange } = require('../util');
-const { echoLoading, findBin, validateDepFile, validateDeps, exec, find, asyncExec } = require('../util/shell');
+const { echoLoading, findBin, validateDepFile, validateDeps, exec, find } = require('../util/shell');
 const inquirer = require('inquirer');
 const path = require('path');
 const fs = require("fs");
@@ -158,17 +160,17 @@ promptList.push({
  *
  */
 async function gitCommit() {
-  // git pull
-  await echoLoading(`git pull ${pull} ${branch}`, { text: "正在拉取最新" }, ({ loadingInstance, code, stdout, stderr }) => {
+  // git pull 
+  await echoLoading(`git pull ${pull} ${branch}`, { text: "正在拉取最新" }, ({ loadingInstance, code, stdout, stderr }) => {// eslint-disable-line no-unused-vars
     loadingInstance.succeed("pull：" + infoBold(stderr))
   })
   // git push 
   if (!push.includes('/')) { push = push + " " }
-  await echoLoading(`git push ${push}${branch}`, { text: "正在提交" }, ({ loadingInstance, code, stdout, stderr }) => {
+  await echoLoading(`git push ${push}${branch}`, { text: "正在提交" }, ({ loadingInstance, code, stdout, stderr }) => {// eslint-disable-line no-unused-vars
     loadingInstance.succeed("push：" + infoBold(stderr))
   })
   // git push tags
-  await echoLoading(`git push --tags`, { text: "正在提交tags" }, ({ loadingInstance, code, stdout, stderr }) => {
+  await echoLoading(`git push --tags`, { text: "正在提交tags" }, ({ loadingInstance, code, stdout, stderr }) => {// eslint-disable-line no-unused-vars
     loadingInstance.succeed("tags：" + infoBold(stderr))
   })
   process.exit(0);
@@ -182,16 +184,16 @@ async function execCmd(inputCmdRes) {
     // 版本号增加后缀
     if (versionTest) {
       const command = standardVersionName(versionTest);
-      await echoLoading(command, { text: "正在更新版本号" }, ({ loadingInstance, code, stdout, stderr }) => {
+      await echoLoading(command, { text: "正在更新版本号" }, ({ loadingInstance, code, stdout, stderr }) => {// eslint-disable-line no-unused-vars
         loadingInstance.succeed("版本信息：\n" + infoBold(stderr))
       })
     } else {
       const command = standardVersion;
-      await echoLoading(command, { text: "正在更新版本号" }, ({ loadingInstance, code, stdout, stderr }) => {
+      await echoLoading(command, { text: "正在更新版本号" }, ({ loadingInstance, code, stdout, stderr }) => {// eslint-disable-line no-unused-vars
         loadingInstance.succeed("版本信息：\n" + infoBold(stdout))
       })
     }
-    await echoLoading(lastTag, { text: "正在更新tag" }, ({ loadingInstance, code, stdout, stderr }) => {
+    await echoLoading(lastTag, { text: "正在更新tag" }, ({ loadingInstance, code, stdout, stderr }) => {// eslint-disable-line no-unused-vars
       loadingInstance.succeed("最新tag：\n" + infoBold(stdout))
     })
   } else {
@@ -201,7 +203,7 @@ async function execCmd(inputCmdRes) {
   /* changelog */
 
   if (changelog) {
-    await echoLoading(cmdChangelog, { text: "正在更新changelog" }, ({ loadingInstance, code, stdout, stderr }) => {
+    await echoLoading(cmdChangelog, { text: "正在更新changelog" }, ({ loadingInstance, code, stdout, stderr }) => {// eslint-disable-line no-unused-vars
       loadingInstance.succeed(infoBold("changelog更新完成"))
     })
   } else {
@@ -211,41 +213,12 @@ async function execCmd(inputCmdRes) {
   // /*  git commit */
   if (gitPush) {
     const cmdAdd = "git add .";
-    await echoLoading(cmdAdd, { text: "git add " }, ({ loadingInstance, code, stdout, stderr }) => {
+    await echoLoading(cmdAdd, { text: "git add " }, ({ loadingInstance, code, stdout, stderr }) => {// eslint-disable-line no-unused-vars
       loadingInstance.succeed(infoBold("git add 完成"))
-      // infoBold(require(path.join(process.cwd(), binPath) + '/git-cz'))
     })
 
-    // gitCommit()
-
-    const res = require(path.join(process.cwd(), binPath) + '/git-cz')
-    // const r = await new Promise((resolve, reject) => {
-    //   // console.log('res: ', res);
-    //   // resolve(res)
-    //   exec('npm run cz', (code, stdout, stderr) => {
-    //     console.log('code: ', code);
-    //     // resolve(code)
-    //   })
-    // })
-    // console.log('r: ', r);
+    require(path.join(process.cwd(), binPath) + '/git-cz')
     process.on('beforeExit', gitCommit);
-    // try {
-    //   await asyncExec(require(path.join(process.cwd(), binPath) + '/git-cz'), { silent: true }, (code, stdout, stderr) => {
-    //     console.log('code: ', code);
-    //   })
-    // } catch (err) {
-    //   console.log('err: ', err);
-    // }
-    // gitCommit()
-    // await asyncExec(, { silent: true }, (code, stdout, stderr) => {
-    //   console.log('stderr: ', stderr);
-    //   console.log('stdout: ', stdout);
-    //   console.log('code: ', code);
-    // })
-    // shell.exec("git add .");
-    // shell.echo("开始执行git-cz：");
-    // infoBold(require(path.join(process.cwd(), binPath) + '/git-cz'))
-    // process.on('exit', gitCommit);
   }
 }
 
@@ -256,44 +229,8 @@ async function execCmd(inputCmdRes) {
 function chooseCMD() {
   inquirer.prompt(promptList).then(res => {
     execCmd(res)
-    /* 版本号操作 */
-    // if (res.versionNumber) {
-    //   if (res.versionTest) {
-    //     const versionName = res.versionTest;
-    //     //  发布 release 版本
-    //     const cmd = standardVersionName(versionName);
-    //     const msg = exec(cmd);
-    //     shell.echo("版本信息:\n" + infoBold(msg));
-    //   } else {
-    //     //  发布 版本
-    //     const msg = exec(standardVersion);
-    //     shell.echo("版本信息:\n" + infoBold(msg));
-    //   }
-    //   const tag = exec(lastTag);
-    //   shell.echo("最新tag：\n" + infoBold(tag));
-    // } else {
-    //   shell.echo(info("跳过版本号升级"))
-    // }
-
-    /* changelog */
-
-    // if (res.changelog) {
-    //   exec(changelog);
-    // } else {
-    //   shell.echo(info("跳过changelog"))
-    // }
-
-
-    // /*  git commit */
-    // if (res.gitPush) {
-    //   shell.exec("git add .");
-    //   shell.echo("开始执行git-cz：");
-    //   infoBold(require(path.join(process.cwd(), binPath) + '/git-cz'))
-    //   process.on('exit', gitCommit);
-    // }
   })
 }
-
 
 async function init() {
   // 校验依赖
