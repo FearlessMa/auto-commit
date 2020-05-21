@@ -2,12 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-## [1.31.0](https://github.com/FearlessMa/gitMessage/compare/v1.30.0...v1.31.0) (2020-05-21)
+### [1.31.1](https://github.com/FearlessMa/gitMessage/compare/v1.31.0...v1.31.1) (2020-05-21)
+
+# [1.31.0](https://github.com/FearlessMa/gitMessage/compare/v1.30.0...v1.31.0) (2020-05-21)
 
 
 ### Features
 
 * ttttt ([9a47cd3](https://github.com/FearlessMa/gitMessage/commit/9a47cd3eb37b7730a6ac35540faf0c426ac0c648))
+
+
 
 # [1.30.0](https://github.com/FearlessMa/gitMessage/compare/v1.29.1...v1.30.0) (2020-05-21)
 
