@@ -220,6 +220,7 @@ async function execCmd(inputCmdRes) {
     const r = await new Promise((resolve, reject) => {
       const res = require(path.join(process.cwd(), binPath) + '/git-cz')
       console.log('res: ', res);
+      resolve(res)
     })
     console.log('r: ', r);
     // try {
