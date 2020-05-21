@@ -11,8 +11,7 @@
 
 ```json
   {
-    "commit":"auto-commit",
-    "lint":"eslint src && lint-staged" // eslint 配置检查目录
+    "commit":"auto-commit"
   }
 ```
 
@@ -24,7 +23,7 @@
 
 * 默认使用git push origin currentBranch
   
-* 使用其他方式需配置.auto-commit 文件
+* 使用其他方式需配置.autocommitrc 文件
 
 ```json
 {

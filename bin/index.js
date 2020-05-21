@@ -49,13 +49,14 @@ const fileNameList = [
   {
     fileName: '.huskyrc', fileContent: `{
     "hooks": {
-      "pre-commit": "npm run lint"
+      "pre-commit": "lint-staged"
     }
   }` },
   {
     fileName: '.lintstagedrc', fileContent: `
   {
     "src/**/*.{js,jsx}": [
+      "eslint",
       "prettier --tab-width 4 --write",
       "eslint --fix",
       "git add ."
@@ -65,7 +66,7 @@ const fileNameList = [
   { fileName: '.vcmrc', fileContent: `{"commit-msg": "./validate-commit-msg.js"}` },
   { fileName: '.eslintrc.js', fileContent: `module.exports={}` }
 ]
-const autoCommit = '.auto-commit';
+const autoCommit = '.autocommitrc';
 const binPath = findBin();
 
 let branch = "";
