@@ -171,6 +171,7 @@ async function gitCommit() {
   await echoLoading(`git push --tags`, { text: "正在提交tags" }, ({ loadingInstance, code, stdout, stderr }) => {
     loadingInstance.succeed("tags：" + infoBold(stderr))
   })
+  process.exit(0);
 }
 
 async function execCmd(inputCmdRes) {
