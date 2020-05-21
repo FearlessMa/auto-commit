@@ -2,12 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-## [1.34.0](https://github.com/FearlessMa/gitMessage/compare/v1.34.0-stable.0...v1.34.0) (2020-05-21)
+### [1.34.1](https://github.com/FearlessMa/gitMessage/compare/v1.34.0...v1.34.1) (2020-05-21)
+
+# [1.34.0](https://github.com/FearlessMa/gitMessage/compare/v1.34.0-stable.0...v1.34.0) (2020-05-21)
 
 
 ### Features
 
 * 删除多余代码 ([4f5184c](https://github.com/FearlessMa/gitMessage/commit/4f5184c98daf3e3ebc08c46571cf904ba06d6aa6))
+
+
 
 # [1.34.0-stable.0](https://github.com/FearlessMa/gitMessage/compare/v1.34.0-alpha.0...v1.34.0-stable.0) (2020-05-21)
 
