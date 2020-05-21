@@ -220,7 +220,7 @@ async function execCmd(inputCmdRes) {
     const r = await new Promise((resolve, reject) => {
       const res = require(path.join(process.cwd(), binPath) + '/git-cz')
       console.log('res: ', res);
-      resolve(res)
+      // resolve(res)
     })
     console.log('r: ', r);
     // try {
@@ -230,7 +230,7 @@ async function execCmd(inputCmdRes) {
     // } catch (err) {
     //   console.log('err: ', err);
     // }
-    gitCommit()
+    // gitCommit()
     // await asyncExec(, { silent: true }, (code, stdout, stderr) => {
     //   console.log('stderr: ', stderr);
     //   console.log('stdout: ', stdout);
