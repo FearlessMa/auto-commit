@@ -217,17 +217,17 @@ async function execCmd(inputCmdRes) {
 
     // gitCommit()
 
-    const r = await new Promise((resolve, reject) => {
-      // const res = require(path.join(process.cwd(), binPath) + '/git-cz')
-      // console.log('res: ', res);
-      // resolve(res)
-      exec('npm run cz', (code, stdout, stderr) => {
-        console.log('code: ', code);
-        // resolve(code)
-      })
-    })
-    console.log('r: ', r);
-    process.on('exit', gitCommit);
+    const res = require(path.join(process.cwd(), binPath) + '/git-cz')
+    // const r = await new Promise((resolve, reject) => {
+    //   // console.log('res: ', res);
+    //   // resolve(res)
+    //   exec('npm run cz', (code, stdout, stderr) => {
+    //     console.log('code: ', code);
+    //     // resolve(code)
+    //   })
+    // })
+    // console.log('r: ', r);
+    process.on('beforeExit', gitCommit);
     // try {
     //   await asyncExec(require(path.join(process.cwd(), binPath) + '/git-cz'), { silent: true }, (code, stdout, stderr) => {
     //     console.log('code: ', code);
