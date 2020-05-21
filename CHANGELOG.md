@@ -1,3 +1,14 @@
+# Changelog
+
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+## [1.35.0](https://github.com/FearlessMa/gitMessage/compare/v1.35.0-beta.0...v1.35.0) (2020-05-21)
+
+
+### Features
+
+* 修改precommit 和 .autocommitrc配置文件规则 ([5778c4f](https://github.com/FearlessMa/gitMessage/commit/5778c4f45d77a25c39c2f102603870af4a70baa8))
+
 # [1.35.0-beta.0](https://github.com/FearlessMa/gitMessage/compare/v1.35.0-stable.0...v1.35.0-beta.0) (2020-05-21)
 
 
@@ -961,6 +972,3 @@
 ### Features
 
 * **test:** 增加test.js ([b018a41](https://github.com/FearlessMa/gitMessage/commit/b018a41dd231e478843105a57f2f23331f7d96a6))
-
-
-
