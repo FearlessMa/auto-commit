@@ -35,6 +35,7 @@ const nStr = `require('${path.join(process.cwd(), binPath)}/git-cz')`;
 // const res = shell.ShellString(require(path.join(process.cwd(), binPath) + '/git-cz'))
 // console.log('res: ', res.cat());
 
+
 const r = shell.exec('' + shell.ShellString(require(path.join(process.cwd(), binPath) + '/git-cz')), { silent: false }, (code, stdout, stderr) => {
   // console.log('stderr: ', stderr);
   // console.log('stdout: ', stdout);
