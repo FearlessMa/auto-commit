@@ -218,9 +218,13 @@ async function execCmd(inputCmdRes) {
     // gitCommit()
 
     const r = await new Promise((resolve, reject) => {
-      const res = require(path.join(process.cwd(), binPath) + '/git-cz')
-      console.log('res: ', res);
+      // const res = require(path.join(process.cwd(), binPath) + '/git-cz')
+      // console.log('res: ', res);
       // resolve(res)
+      exec('npm run cz', (code, stdout, stderr) => {
+        console.log('code: ', code);
+        resolve(code)
+      })
     })
     console.log('r: ', r);
     // try {
