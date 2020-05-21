@@ -216,9 +216,19 @@ async function execCmd(inputCmdRes) {
     })
 
     // gitCommit()
-    await asyncExec(require(path.join(process.cwd(), binPath) + '/git-cz'), { silent: true }, (code, stdout, stderr) => {
-      console.log('code: ', code);
+
+    const r = await new Promise((resolve, reject) => {
+      const res = require(path.join(process.cwd(), binPath) + '/git-cz')
+      console.log('res: ', res);
     })
+    console.log('r: ', r);
+    // try {
+    //   await asyncExec(require(path.join(process.cwd(), binPath) + '/git-cz'), { silent: true }, (code, stdout, stderr) => {
+    //     console.log('code: ', code);
+    //   })
+    // } catch (err) {
+    //   console.log('err: ', err);
+    // }
     gitCommit()
     // await asyncExec(, { silent: true }, (code, stdout, stderr) => {
     //   console.log('stderr: ', stderr);
