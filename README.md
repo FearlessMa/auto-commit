@@ -7,6 +7,12 @@
   * version 自动生成
   * git message 格式化
 
+## 安装
+
+``` bash
+  npm install @fearless-ma/auto-commit --save-dev
+```
+
 ## 配置
 
 ```json
