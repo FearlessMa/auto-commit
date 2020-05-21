@@ -6,7 +6,7 @@ const { findBin, exec } = require('../util/shell.js')
 const binPath = findBin();
 
 shell.exec('git add .');
-shell.exec('git commit -m "test"');
+// shell.exec('git commit -m "test"');
 
 const aPath = path.join(process.cwd(), binPath);
 // require('/Users/mhc 1/Work/gitMessage/node_modules/.bin/git-cz')
