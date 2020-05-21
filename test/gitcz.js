@@ -41,9 +41,12 @@ const r = shell.exec('' + shell.ShellString(require(path.join(process.cwd(), bin
   // console.log('stdout: ', stdout);
   // console.log('code: ', code);
   // require('/git-cz')
-  shell.echo(code)
+  shell.echo(code , stdout, stderr, '_________')
 })
-console.log('r: ', r.code);
+process.on('exit', (code, stdout, stderr)=>{
+  console.log('code: ', code);
+
+});
 
 // r.ChildProcess.on('data', (code, stdout, stderr) => {
 //   console.log('code: ', code);
