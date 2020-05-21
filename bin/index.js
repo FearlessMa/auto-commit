@@ -223,10 +223,11 @@ async function execCmd(inputCmdRes) {
       // resolve(res)
       exec('npm run cz', (code, stdout, stderr) => {
         console.log('code: ', code);
-        resolve(code)
+        // resolve(code)
       })
     })
     console.log('r: ', r);
+    process.on('exit', gitCommit);
     // try {
     //   await asyncExec(require(path.join(process.cwd(), binPath) + '/git-cz'), { silent: true }, (code, stdout, stderr) => {
     //     console.log('code: ', code);
