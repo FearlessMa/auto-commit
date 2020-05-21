@@ -60,8 +60,8 @@ const installDep = async (depName) => {
   const loadingOpt = { text: "正在安装：" + infoBold(depName), spinner: "dots" };
   const installTool = shell.which("cnpm") ? 'cnpm' : 'npm';
   const command = `${installTool} i ${depName} -D `;
-  return echoLoading(command, loadingOpt, (loadingIns) => {
-    loadingIns.succeed(infoBold(depName) + ' 安装完成');
+  return echoLoading(command, loadingOpt, ({loadingInstance}) => {
+    loadingInstance.succeed(infoBold(depName) + ' 安装完成');
   })
 }
 
