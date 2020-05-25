@@ -1,31 +1,44 @@
-<section id="nice" data-tool="mdnice编辑器" data-website="https://www.mdnice.com" style="font-size: 16px; color: black; padding: 0 10px; line-height: 1.6; word-spacing: 0px; letter-spacing: 0px; word-wrap: break-word; text-align: left; margin-top: -10px; font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif; word-break: break-all;"><h1 data-tool="mdnice编辑器" style="margin-top: 30px; margin-bottom: 15px; padding: 0px; color: black; font-size: 1.7em; font-weight: normal; border-bottom: 2px solid hsl(216, 100%, 68%);"><span class="prefix" style="display: none;"></span><span class="content" style="background: hsl(216, 100%, 68%); color: white; padding: 3px 10px; border-top-right-radius: 3px; border-top-left-radius: 3px; margin-right: 3px;">git auto-commit</span><span class="suffix"></span></h1>
-<ul data-tool="mdnice编辑器" style="margin-top: 8px; margin-bottom: 8px; color: black; list-style-type: disc; padding-left: 2em;">
-<li style="color: #666;"><section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; color: rgb(1,1,1); font-weight: 500;">自动提交 git commit
-<ul style="margin-top: 8px; margin-bottom: 8px; color: black; padding-left: 2em; list-style-type: square;">
-<li style="color: #666;"><section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; color: rgb(1,1,1); font-weight: 500;">gitHook eslint 校验</section></li><li style="color: #666;"><section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; color: rgb(1,1,1); font-weight: 500;">prettier 格式化代码</section></li><li style="color: #666;"><section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; color: rgb(1,1,1); font-weight: 500;">changelog 自动生成</section></li><li style="color: #666;"><section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; color: rgb(1,1,1); font-weight: 500;">version 自动生成</section></li><li style="color: #666;"><section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; color: rgb(1,1,1); font-weight: 500;">git message 格式化</section></li></ul>
-</section></li></ul>
-<h2 data-tool="mdnice编辑器" style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-weight: normal; color: #333; font-size: 1.4em; border-bottom: 1px solid hsl(216, 100%, 68%);"><span class="prefix" style="display: none;"></span><span class="content" style="border-bottom: 1px solid hsl(216, 100%, 68%);">安装</span><span class="suffix"></span></h2>
-<pre class="custom" data-tool="mdnice编辑器" style="margin-top: 10px; margin-bottom: 10px; border-radius: 5px; box-shadow: rgba(0, 0, 0, 0.55) 0px 2px 10px;"><span style="display: block; background: url(https://imgkr.cn-bj.ufileos.com/97e4eed2-a992-4976-acf0-ccb6fb34d308.png); height: 30px; width: 100%; background-size: 40px; background-repeat: no-repeat; background-color: #282c34; margin-bottom: -7px; border-radius: 5px; background-position: 10px 10px;"></span><code class="hljs" style="overflow-x: auto; padding: 16px; color: #abb2bf; display: block; font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; font-size: 12px; -webkit-overflow-scrolling: touch; padding-top: 15px; background: #282c34; border-radius: 5px;">  npm install @fearless-ma/auto-commit --save-dev
-<span/></code></pre>
-<h2 data-tool="mdnice编辑器" style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-weight: normal; color: #333; font-size: 1.4em; border-bottom: 1px solid hsl(216, 100%, 68%);"><span class="prefix" style="display: none;"></span><span class="content" style="border-bottom: 1px solid hsl(216, 100%, 68%);">配置</span><span class="suffix"></span></h2>
-<pre class="custom" data-tool="mdnice编辑器" style="margin-top: 10px; margin-bottom: 10px; border-radius: 5px; box-shadow: rgba(0, 0, 0, 0.55) 0px 2px 10px;"><span style="display: block; background: url(https://imgkr.cn-bj.ufileos.com/97e4eed2-a992-4976-acf0-ccb6fb34d308.png); height: 30px; width: 100%; background-size: 40px; background-repeat: no-repeat; background-color: #282c34; margin-bottom: -7px; border-radius: 5px; background-position: 10px 10px;"></span><code class="hljs" style="overflow-x: auto; padding: 16px; color: #abb2bf; display: block; font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; font-size: 12px; -webkit-overflow-scrolling: touch; padding-top: 15px; background: #282c34; border-radius: 5px;">  {
-<span/>    <span class="hljs-attr" style="color: #d19a66; line-height: 26px;">"commit"</span>:<span class="hljs-string" style="color: #98c379; line-height: 26px;">"auto-commit"</span>
-<span/>  }
-<span/></code></pre>
-<h2 data-tool="mdnice编辑器" style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-weight: normal; color: #333; font-size: 1.4em; border-bottom: 1px solid hsl(216, 100%, 68%);"><span class="prefix" style="display: none;"></span><span class="content" style="border-bottom: 1px solid hsl(216, 100%, 68%);">使用命令</span><span class="suffix"></span></h2>
-<ul data-tool="mdnice编辑器" style="margin-top: 8px; margin-bottom: 8px; color: black; list-style-type: disc; padding-left: 2em;">
-<li style="color: #666;"><section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; color: rgb(1,1,1); font-weight: 500;">npm run commit</section></li></ul>
-<h2 data-tool="mdnice编辑器" style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-weight: normal; color: #333; font-size: 1.4em; border-bottom: 1px solid hsl(216, 100%, 68%);"><span class="prefix" style="display: none;"></span><span class="content" style="border-bottom: 1px solid hsl(216, 100%, 68%);">git 操作配置</span><span class="suffix"></span></h2>
-<ul data-tool="mdnice编辑器" style="margin-top: 8px; margin-bottom: 8px; color: black; list-style-type: disc; padding-left: 2em;">
-<li style="color: #666;"><section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; color: rgb(1,1,1); font-weight: 500;"><p style="font-size: 16px; padding-top: 8px; padding-bottom: 8px; margin: 0; line-height: 26px; color: #666;">默认使用 git push origin currentBranch</p>
-</section></li><li style="color: #666;"><section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; color: rgb(1,1,1); font-weight: 500;"><p style="font-size: 16px; padding-top: 8px; padding-bottom: 8px; margin: 0; line-height: 26px; color: #666;">使用其他方式需配置.autocommitrc 文件</p>
-</section></li></ul>
-<pre class="custom" data-tool="mdnice编辑器" style="margin-top: 10px; margin-bottom: 10px; border-radius: 5px; box-shadow: rgba(0, 0, 0, 0.55) 0px 2px 10px;"><span style="display: block; background: url(https://imgkr.cn-bj.ufileos.com/97e4eed2-a992-4976-acf0-ccb6fb34d308.png); height: 30px; width: 100%; background-size: 40px; background-repeat: no-repeat; background-color: #282c34; margin-bottom: -7px; border-radius: 5px; background-position: 10px 10px;"></span><code class="hljs" style="overflow-x: auto; padding: 16px; color: #abb2bf; display: block; font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; font-size: 12px; -webkit-overflow-scrolling: touch; padding-top: 15px; background: #282c34; border-radius: 5px;">{
-<span/>  <span class="hljs-attr" style="color: #d19a66; line-height: 26px;">"pull"</span>:<span class="hljs-string" style="color: #98c379; line-height: 26px;">""</span>,
-<span/>  <span class="hljs-attr" style="color: #d19a66; line-height: 26px;">"push"</span>:<span class="hljs-string" style="color: #98c379; line-height: 26px;">"origin HEAD:refs/for/"</span>  // git push origin HEAD:refs/for/currentBranch
-<span/>}
-<span/></code></pre>
-<h2 data-tool="mdnice编辑器" style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-weight: normal; color: #333; font-size: 1.4em; border-bottom: 1px solid hsl(216, 100%, 68%);"><span class="prefix" style="display: none;"></span><span class="content" style="border-bottom: 1px solid hsl(216, 100%, 68%);">其他说明</span><span class="suffix"></span></h2>
-<ul data-tool="mdnice编辑器" style="margin-top: 8px; margin-bottom: 8px; color: black; list-style-type: disc; padding-left: 2em;">
-<li style="color: #666;"><section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; color: rgb(1,1,1); font-weight: 500;">eslint 配置文件默认配置为空</section></li><li style="color: #666;"><section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; color: rgb(1,1,1); font-weight: 500;"></section></li></ul>
-<p id="nice-suffix-juejin-container" class="nice-suffix-juejin-container" data-tool="mdnice编辑器" style="font-size: 16px; padding-top: 8px; padding-bottom: 8px; margin: 0; line-height: 26px; color: #666; margin-top: 20px !important;">本文使用 <a href="https://mdnice.com" style="text-decoration: none; word-wrap: break-word; border-bottom: 1px solid #1e6bb8; color: hsl(187, 100%, 45%); font-weight: normal; border-bottom-color: hsl(187, 100%, 45%);">mdnice</a> 排版</p></section>
+# git auto-commit
+
+* 自动提交git commit
+  * gitHook eslint 校验
+  * prettier 格式化代码
+  * changelog 自动生成
+  * version 自动生成
+  * git message 格式化
+
+## 安装
+
+``` bash
+  npm install @fearless-ma/auto-commit --save-dev
+```
+
+## 配置
+
+```json
+  {
+    "commit":"auto-commit"
+  }
+```
+
+## 使用命令
+
+* npm run commit
+
+## git操作配置
+
+* 默认使用git push origin currentBranch
+  
+* 使用其他方式需配置.autocommitrc 文件
+
+```json
+{
+  "pull":"",
+  "push":"origin HEAD:refs/for/"  // git push origin HEAD:refs/for/currentBranch
+}
+```
+
+## 其他说明
+
+* eslint配置文件默认配置为空
+* 
