@@ -111,6 +111,7 @@ promptList.push({
   type: "confirm",
   name: "versionNumber",
   message: orange("是否进行版本升级？"),
+  default: false
   // choices: [
   //   { name: "是", value: 1 },
   //   { name: "否", value: 0 },
