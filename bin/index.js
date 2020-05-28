@@ -194,6 +194,8 @@ async function execCmd(inputCmdRes) {
       const command = standardVersion;
       console.log('command: ', command);
       await echoLoading(command, { text: "正在更新版本号" }, ({ loadingInstance, code, stdout, stderr }) => {// eslint-disable-line no-unused-vars
+        console.log('stderr: ', stderr);
+        console.log('code: ', code);
         loadingInstance.succeed("版本信息：\n" + infoBold(stdout))
       })
     }
