@@ -93,7 +93,6 @@ if (find(autoCommit)) {
 
 // const hasStandardVersion = !!find(binPath + "/standard-version");
 const standardVersion = 'node ' + binPath + '/standard-version';
-console.log('standardVersion: ', standardVersion);
 const standardVersionName = (versionName) => `node ${binPath}/standard-version --prerelease ${versionName}`;
 const cmdChangelog = 'node ' + binPath + "/conventional-changelog -p angular -i CHANGELOG.md -s -r 0";
 const lastTag = "git describe --tags `git rev-list --tags --max-count=1`";
@@ -181,7 +180,6 @@ async function gitCommit() {
 
 async function execCmd(inputCmdRes) {
   const { versionNumber, versionTest, changelog, gitPush } = inputCmdRes;
-  console.log('versionTest: ', versionTest);
   /* 版本号操作 */
   if (versionNumber) {
     // 版本号增加后缀
@@ -192,10 +190,7 @@ async function execCmd(inputCmdRes) {
       })
     } else {
       const command = standardVersion;
-      console.log('command: ', command);
       await echoLoading(command, { text: "正在更新版本号" }, ({ loadingInstance, code, stdout, stderr }) => {// eslint-disable-line no-unused-vars
-        console.log('stderr: ', stderr);
-        console.log('code: ', code);
         loadingInstance.succeed("版本信息：\n" + infoBold(stdout))
       })
     }
