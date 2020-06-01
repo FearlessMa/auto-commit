@@ -45,32 +45,20 @@ const find = (path) => exec('find ' + path).stdout;
  * @param {*} PackageName  string 包名
  * @returns boolean
  */
-const hasInstall = (PackageName) => {
-  try {
-    require.resolve(PackageName);
-    return true;
-  } catch (err) {
-    return false;
-  }
-};
+// const hasInstall = (PackageName) => {
+//   try {
+//     require.resolve(PackageName);
+//     return true;
+//   } catch (err) {
+//     return false;
+//   }
+// };
 
 /**
  * 安装依赖
  *
  * @param {*} depName string
  */
-// const installDep = async (depName) => {
-//   const instance = loading({ text: "正在安装：" + infoBold(depName), spinner: "dots" });
-//   const installTool = shell.which("cnpm") ? 'cnpm' : 'npm';
-//   return new Promise((resolve) => {
-//     exec(`${installTool} i ${depName} -D `, { silent: true },
-//       (code, stdout, stderr) => {
-//         resolve({ code, stdout, stderr });
-//         instance.succeed(infoBold(depName) + ' 安装完成');
-//       }
-//     )
-//   })
-// }
 const installDep = async (depName) => {
   const loadingOpt = {
     text: '正在安装：' + infoBold(depName),
@@ -90,18 +78,24 @@ const installDep = async (depName) => {
  * @param {string} [dirPath=""] string
  */
 const validateDeps = async (depNameList) => {
+  console.log('depNameList: ', depNameList);
   const pList = [];
-  depNameList.forEach((dep) => {
-    // !find(dirPath + '/' + dep.name) &&
-    //   pList.push(installDep.bind(null, dep.depName));
-    !hasInstall(dep.name) &&
+  depNameList.forEach((dep, dirPath = '') => {
+    console.log(
+      'find(dirPath + /  + dep.name) : ',
+      find(dirPath + '/' + dep.name)
+    );
+    !find(dirPath + '/' + dep.name) &&
       pList.push(installDep.bind(null, dep.depName));
+    // !hasInstall(dep.name) &&
+    //   pList.push(installDep.bind(null, dep.depName));
   });
   for (let i = 0; i < pList.length; i++) {
     await pList[i]();
   }
   return true;
 };
+
 /**
  * 创建依赖文件
  *
@@ -114,12 +108,11 @@ const validateDeps = async (depNameList) => {
 
 const createDepFile = (filename) => {
   shell.echo('缺少配置文件：' + magentaBold(filename));
-  const resolvePath = path.resolve(__dirname, '../');
-  console.log('resolvePath: ', resolvePath);
+  // const resolvePath = path.resolve(__dirname, '../');
   const readStream = fs.createReadStream(
     path.resolve(__dirname, '../util/' + filename)
   );
-  const writeStream = fs.createWriteStream(resolvePath + '/' + filename);
+  const writeStream = fs.createWriteStream(process.cwd() + '/' + filename);
   readStream.pipe(writeStream);
 };
 
