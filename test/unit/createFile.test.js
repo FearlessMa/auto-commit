@@ -2,7 +2,7 @@
 // const fs = require('fs');
 // const path = require('path');
 
-// const add = (a, b) => a + b;
+const add = (a, b) => a + b;
 
 // // test('create file', () => {
 // //   fileNameList.forEach((item) => {
@@ -17,6 +17,6 @@
 // //   });
 // // });
 
-// test('1+2 = 3', () => {
-//   expect(add(1, 2)).toBe(3);
-// });
+test('1+2 = 3', () => {
+  expect(add(1, 2)).toBe(3);
+});
