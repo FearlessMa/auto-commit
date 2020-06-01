@@ -57,7 +57,8 @@ const fileNameList = [
   { fileName: ".lintstagedrc" },
   { fileName: ".vcmrc" },
   { fileName: ".autocommitrc" },
-  { fileName: ".eslintrc.js" }
+  { fileName: ".eslintrc.js" },
+  { fileName: ".prettierrc.js" }
 ];
 const autoCommit = ".autocommitrc";
 const binPath = findBin();
