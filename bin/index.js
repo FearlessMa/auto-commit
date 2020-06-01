@@ -57,7 +57,7 @@ const fileNameList = [
   {
     "src/**/*.{js,jsx}": [
       "eslint",
-      "prettier --tab-width 4 --write",
+      "prettier --write",
       "eslint --fix",
       "git add ."
     ]

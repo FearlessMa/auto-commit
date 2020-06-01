@@ -16,7 +16,8 @@
     "lint": "eslint ./util && lint-staged",
     "l": "logs",
     "commitizen": "commitizen",
-    "cz": "git cz"
+    "cz": "git cz",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -35,7 +36,8 @@
     "cz-conventional-changelog": "^3.2.0",
     "eslint": "^7.1.0",
     "husky": "^4.2.5",
-    "lint-staged": "^10.2.4",
+    "jest": "^26.0.1",
+    "lint-staged": "^10.2.7",
     "prettier": "^2.0.5",
     "standard-version": "^8.0.0",
     "validate-commit-msg": "^2.14.0"
