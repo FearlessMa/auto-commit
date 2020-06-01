@@ -45,14 +45,16 @@ const find = (path) => exec('find ' + path).stdout;
  * @param {*} PackageName  string 包名
  * @returns boolean
  */
-// const hasInstall = (PackageName) => {
-//   try {
-//     require.resolve(PackageName);
-//     return true;
-//   } catch (err) {
-//     return false;
-//   }
-// };
+const hasInstall = (PackageName) => {
+  console.log('PackageName: ', PackageName);
+  try {
+    console.log('require.resolve(PackageName);: ', require.resolve(PackageName));
+    require.resolve(PackageName);
+    return true;
+  } catch (err) {
+    return false;
+  }
+};
 
 /**
  * 安装依赖
@@ -77,18 +79,14 @@ const installDep = async (depName) => {
  * @param {*} [depNameList=[]] stringArray
  * @param {string} [dirPath=""] string
  */
-const validateDeps = async (depNameList) => {
+const validateDeps = async (depNameList, dirPath = '') => {
   console.log('depNameList: ', depNameList);
   const pList = [];
-  depNameList.forEach((dep, dirPath = '') => {
-    console.log(
-      'find(dirPath + /  + dep.name) : ',
-      find(dirPath + '/' + dep.name)
-    );
-    !find(dirPath + '/' + dep.name) &&
-      pList.push(installDep.bind(null, dep.depName));
-    // !hasInstall(dep.name) &&
+  depNameList.forEach((dep) => {
+    // !find(dirPath + '/' + dep.name) &&
     //   pList.push(installDep.bind(null, dep.depName));
+    !hasInstall(path.join(process.cwd(), dirPath + '/' + dep.name)) &&
+      pList.push(installDep.bind(null, dep.depName));
   });
   for (let i = 0; i < pList.length; i++) {
     await pList[i]();

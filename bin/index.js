@@ -53,13 +53,10 @@ const depList = [
 ];
 const fileNameList = [
   { fileName: ".czrc" },
-  {
-    fileName: ".huskyrc"
-  },
-  {
-    fileName: ".lintstagedrc"
-  },
+  { fileName: ".huskyrc" },
+  { fileName: ".lintstagedrc" },
   { fileName: ".vcmrc" },
+  { fileName: ".autocommitrc" },
   { fileName: ".eslintrc.js" }
 ];
 const autoCommit = ".autocommitrc";
