@@ -35,12 +35,17 @@ console.log('cwd: ', cwd);
 // ];
 
 const fileNameList = [
-  '.czrc','.huskyrc','.lintstagedrc','.vcmrc','.eslintrc.js','.prettierrc.js'
-]
+  '.czrc',
+  '.huskyrc',
+  '.lintstagedrc',
+  '.vcmrc',
+  '.eslintrc.js',
+  '.prettierrc.js'
+];
 
 const createDepFile = (filename) => {
   shell.echo('缺少配置文件：' + filename);
-  const resolvePath = path.resolve(__dirname,'../data')
+  const resolvePath = path.resolve(__dirname, '../');
   console.log('resolvePath: ', resolvePath);
   const readStream = fs.createReadStream(
     path.resolve(__dirname, '../util/' + filename)
@@ -50,9 +55,7 @@ const createDepFile = (filename) => {
   } catch (err) {
     fs.mkdirSync(resolvePath);
   }
-  const writeStream = fs.createWriteStream(
-    cwd + '/test/data/' + filename
-  );
+  const writeStream = fs.createWriteStream(resolvePath + '/' + filename);
   readStream.pipe(writeStream);
 };
 

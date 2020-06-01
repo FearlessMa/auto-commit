@@ -1,14 +1,14 @@
-
-const shell = require('shelljs')
-const { loading } = require('./ora')
+const shell = require('shelljs');
+const { loading } = require('./ora');
 const { errBold, infoBold, magentaBold } = require('./chalk');
 const fs = require('fs');
+const path = require('path');
 
+const binPathPro = '../.bin';
+const binPathMod = './node_modules/.bin';
 
-const binPathPro = "../.bin";
-const binPathMod = "./node_modules/.bin";
-
-const exec = (command, options = { silent: true }, fn) => shell.exec(command, options, fn)
+const exec = (command, options = { silent: true }, fn) =>
+  shell.exec(command, options, fn);
 
 /**
  * 异步exec
@@ -24,20 +24,35 @@ const asyncExec = (command, options = { silent: true }, fn, ...args) => {
     try {
       shell.exec(command, options, (code, stdout, stderr) => {
         fn(code, stdout, stderr);
-        resolve({ code, stdout, stderr, ...args })
-      })
+        resolve({ code, stdout, stderr, ...args });
+      });
     } catch (err) {
-      reject(err)
+      reject(err);
     }
-  })
-}
+  });
+};
 
 /**
  * 寻找路径
  *
  * @param {*} path string
  */
-const find = path => exec("find " + path).stdout;
+const find = (path) => exec('find ' + path).stdout;
+
+/**
+ * 判断是否安装
+ *
+ * @param {*} PackageName  string 包名
+ * @returns boolean
+ */
+const hasInstall = (PackageName) => {
+  try {
+    require.resolve(PackageName);
+    return true;
+  } catch (err) {
+    return false;
+  }
+};
 
 /**
  * 安装依赖
@@ -57,13 +72,16 @@ const find = path => exec("find " + path).stdout;
 //   })
 // }
 const installDep = async (depName) => {
-  const loadingOpt = { text: "正在安装：" + infoBold(depName), spinner: "dots" };
-  const installTool = shell.which("cnpm") ? 'cnpm' : 'npm';
+  const loadingOpt = {
+    text: '正在安装：' + infoBold(depName),
+    spinner: 'dots'
+  };
+  const installTool = shell.which('cnpm') ? 'cnpm' : 'npm';
   const command = `${installTool} i ${depName} -D `;
-  return echoLoading(command, loadingOpt, ({loadingInstance}) => {
+  return echoLoading(command, loadingOpt, ({ loadingInstance }) => {
     loadingInstance.succeed(infoBold(depName) + ' 安装完成');
-  })
-}
+  });
+};
 
 /**
  * 校验依赖是否安装
@@ -71,56 +89,70 @@ const installDep = async (depName) => {
  * @param {*} [depNameList=[]] stringArray
  * @param {string} [dirPath=""] string
  */
-const validateDeps = async (depNameList, dirPath = "") => {
+const validateDeps = async (depNameList) => {
   const pList = [];
   depNameList.forEach((dep) => {
-    !find(dirPath + "/" + dep.name) && pList.push(installDep.bind(null, dep.depName));
+    // !find(dirPath + '/' + dep.name) &&
+    //   pList.push(installDep.bind(null, dep.depName));
+    !hasInstall(dep.name) &&
+      pList.push(installDep.bind(null, dep.depName));
   });
   for (let i = 0; i < pList.length; i++) {
     await pList[i]();
   }
   return true;
-}
+};
 /**
  * 创建依赖文件
  *
  * @param {*} fileDesc 文件名称
  */
-const createDepFile = fileDesc => {
-  shell.echo("缺少配置文件：" + magentaBold(fileDesc.fileName))
-  fs.writeFileSync('./' + fileDesc.fileName, fileDesc.fileContent);
-}
+// const createDepFile = fileDesc => {
+//   shell.echo("缺少配置文件：" + magentaBold(fileDesc.fileName))
+//   fs.writeFileSync('./' + fileDesc.fileName, fileDesc.fileContent);
+// }
+
+const createDepFile = (filename) => {
+  shell.echo('缺少配置文件：' + magentaBold(filename));
+  const resolvePath = path.resolve(__dirname, '../');
+  console.log('resolvePath: ', resolvePath);
+  const readStream = fs.createReadStream(
+    path.resolve(__dirname, '../util/' + filename)
+  );
+  const writeStream = fs.createWriteStream(resolvePath + '/' + filename);
+  readStream.pipe(writeStream);
+};
 
 const validateDepFile = (fileNameList) => {
-  fileNameList.forEach(file => {
-    !find(`${file.fileName}`) && createDepFile(file);
-  })
-}
+  fileNameList.forEach((file) => {
+    !find(`${file.fileName}`) && createDepFile(file.fileName);
+  });
+};
 
 /**
- * find bin 
+ * find bin
  *
- * @returns path 
+ * @returns path
  */
 const findBin = () => {
   const binDir = find(binPathPro);
   const binMod = find(binPathMod);
   if (!binDir && !binMod) {
-    shell.echo(errBold("缺少依赖文件无法执行"));
+    shell.echo(errBold('缺少依赖文件无法执行'));
     shell.exit(1);
   }
   return binDir ? binPathPro : binPathMod;
-}
+};
 
 /**
  * loading
  *
  * @param {*} command
- * @param {string} [loadingOptions={ spinner: "dots" }] 
+ * @param {string} [loadingOptions={ spinner: "dots" }]
  * @param {*} fn callback,fn(loadingInstance,{code,stdout,stderr})
- * @returns asyncExec => Promise  
+ * @returns asyncExec => Promise
  */
-const echoLoading = (command, loadingOptions = { spinner: "dots" }, fn) => {
+const echoLoading = (command, loadingOptions = { spinner: 'dots' }, fn) => {
   const loadingInstance = loading(loadingOptions);
   return asyncExec(
     command,
@@ -129,8 +161,8 @@ const echoLoading = (command, loadingOptions = { spinner: "dots" }, fn) => {
       fn && fn({ loadingInstance, code, stdout, stderr });
     },
     loadingInstance
-  )
-}
+  );
+};
 module.exports = {
   echoLoading,
   findBin,
@@ -139,4 +171,4 @@ module.exports = {
   exec,
   find,
   asyncExec
-}
+};
