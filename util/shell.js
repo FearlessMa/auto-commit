@@ -46,9 +46,7 @@ const find = (path) => exec('find ' + path).stdout;
  * @returns boolean
  */
 const hasInstall = (PackageName) => {
-  console.log('PackageName: ', PackageName);
   try {
-    console.log('require.resolve(PackageName);: ', require.resolve(PackageName));
     require.resolve(PackageName);
     return true;
   } catch (err) {
@@ -80,11 +78,8 @@ const installDep = async (depName) => {
  * @param {string} [dirPath=""] string
  */
 const validateDeps = async (depNameList, dirPath = '') => {
-  console.log('depNameList: ', depNameList);
   const pList = [];
   depNameList.forEach((dep) => {
-    // !find(dirPath + '/' + dep.name) &&
-    //   pList.push(installDep.bind(null, dep.depName));
     !hasInstall(path.join(process.cwd(), dirPath + '/' + dep.name)) &&
       pList.push(installDep.bind(null, dep.depName));
   });
@@ -106,9 +101,8 @@ const validateDeps = async (depNameList, dirPath = '') => {
 
 const createDepFile = (filename) => {
   shell.echo('缺少配置文件：' + magentaBold(filename));
-  // const resolvePath = path.resolve(__dirname, '../');
   const readStream = fs.createReadStream(
-    path.resolve(__dirname, '../util/' + filename)
+    path.resolve(__dirname, '../lib/template/' + filename)
   );
   const writeStream = fs.createWriteStream(process.cwd() + '/' + filename);
   readStream.pipe(writeStream);

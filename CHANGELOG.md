@@ -1,14 +1,12 @@
-# Changelog
-
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
-
-## [1.38.0-stable.0](https://github.com/FearlessMa/gitMessage/compare/v1.37.4...v1.38.0-stable.0) (2020-06-01)
+# [1.38.0-stable.0](https://github.com/FearlessMa/gitMessage/compare/v1.37.4...v1.38.0-stable.0) (2020-06-01)
 
 
 ### Features
 
 * 使用require.resolve 检查模块是否安装 ([7bd675c](https://github.com/FearlessMa/gitMessage/commit/7bd675c4ac2598c4bdc2651d9cab3b7b31304d2d))
 * 修改查询依赖与创建文件方法 ([077970f](https://github.com/FearlessMa/gitMessage/commit/077970f70d905b51d44437cbb4d48df96d3914c4))
+
+
 
 ## [1.37.4](https://github.com/FearlessMa/gitMessage/compare/v1.37.3...v1.37.4) (2020-05-28)
 
@@ -1032,3 +1030,6 @@ All notable changes to this project will be documented in this file. See [standa
 ### Features
 
 * **test:** 增加test.js ([b018a41](https://github.com/FearlessMa/gitMessage/commit/b018a41dd231e478843105a57f2f23331f7d96a6))
+
+
+

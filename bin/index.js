@@ -80,7 +80,6 @@ if (find(autoCommit)) {
   push = gitCommands.push ? gitCommands.push : "origin";
 }
 
-// const hasStandardVersion = !!find(binPath + "/standard-version");
 const standardVersion = "node " + binPath + "/standard-version";
 const standardVersionName = versionName =>
   `node ${binPath}/standard-version --prerelease ${versionName}`;
@@ -105,10 +104,6 @@ promptList.push({
   name: "versionNumber",
   message: orange("是否进行版本升级？"),
   default: false
-  // choices: [
-  //   { name: "是", value: 1 },
-  //   { name: "否", value: 0 },
-  // ]
 });
 promptList.push({
   type: "list",
@@ -131,24 +126,13 @@ promptList.push({
   type: "confirm",
   name: "changelog",
   message: orange("是否更新changelog? ")
-  // choices: [
-  //   { name: "是", value: 1 },
-  //   { name: "否", value: 0 },
-  // ]
 });
 promptList.push({
   type: "confirm",
   name: "gitPush",
   message: orange("是否进行版本提交?")
-  // choices: [
-  //   { name: "是", value: 1 },
-  //   { name: "否", value: 0 },
-  // ]
 });
 
-// // 校验依赖
-// validateDeps(depList, binPath);
-// // 校验依赖文件
 /**
  * git commit
  *
@@ -158,8 +142,8 @@ async function gitCommit() {
   await echoLoading(
     `git pull ${pull} ${branch}`,
     { text: "正在拉取最新" },
+    // eslint-disable-next-line no-unused-vars
     ({ loadingInstance, code, stdout, stderr }) => {
-      // eslint-disable-line no-unused-vars
       loadingInstance.succeed("pull：" + infoBold(stderr));
     }
   );
@@ -170,8 +154,8 @@ async function gitCommit() {
   await echoLoading(
     `git push ${push}${branch}`,
     { text: "正在提交" },
+    // eslint-disable-next-line no-unused-vars
     ({ loadingInstance, code, stdout, stderr }) => {
-      // eslint-disable-line no-unused-vars
       loadingInstance.succeed("push：" + infoBold(stderr));
     }
   );
@@ -179,8 +163,8 @@ async function gitCommit() {
   await echoLoading(
     `git push --tags`,
     { text: "正在提交tags" },
+    // eslint-disable-next-line no-unused-vars
     ({ loadingInstance, code, stdout, stderr }) => {
-      // eslint-disable-line no-unused-vars
       loadingInstance.succeed("tags：" + infoBold(stderr));
     }
   );
@@ -197,8 +181,8 @@ async function execCmd(inputCmdRes) {
       await echoLoading(
         command,
         { text: "正在更新版本号" },
+        // eslint-disable-next-line no-unused-vars
         ({ loadingInstance, code, stdout, stderr }) => {
-          // eslint-disable-line no-unused-vars
           loadingInstance.succeed("版本信息：\n" + infoBold(stderr));
         }
       );
@@ -207,8 +191,8 @@ async function execCmd(inputCmdRes) {
       await echoLoading(
         command,
         { text: "正在更新版本号" },
+        // eslint-disable-next-line no-unused-vars
         ({ loadingInstance, code, stdout, stderr }) => {
-          // eslint-disable-line no-unused-vars
           loadingInstance.succeed("版本信息：\n" + infoBold(stdout));
         }
       );
@@ -216,8 +200,8 @@ async function execCmd(inputCmdRes) {
     await echoLoading(
       lastTag,
       { text: "正在更新tag" },
+      // eslint-disable-next-line no-unused-vars
       ({ loadingInstance, code, stdout, stderr }) => {
-        // eslint-disable-line no-unused-vars
         loadingInstance.succeed("最新tag：\n" + infoBold(stdout));
       }
     );
@@ -231,8 +215,8 @@ async function execCmd(inputCmdRes) {
     await echoLoading(
       cmdChangelog,
       { text: "正在更新changelog" },
+      // eslint-disable-next-line no-unused-vars
       ({ loadingInstance, code, stdout, stderr }) => {
-        // eslint-disable-line no-unused-vars
         loadingInstance.succeed(infoBold("changelog更新完成"));
       }
     );
@@ -240,19 +224,21 @@ async function execCmd(inputCmdRes) {
     shell.echo(info("跳过changelog"));
   }
 
-  // /*  git commit */
+  /*  git commit */
   if (gitPush) {
     const cmdAdd = "git add .";
     await echoLoading(
       cmdAdd,
       { text: "git add " },
+      // eslint-disable-next-line no-unused-vars
       ({ loadingInstance, code, stdout, stderr }) => {
-        // eslint-disable-line no-unused-vars
         loadingInstance.succeed(infoBold("git add 完成"));
       }
     );
-
-    require(path.join(process.cwd(), binPath) + "/git-cz");
+    const gitCzPath = require.resolve(
+      path.join(process.cwd(), binPath) + "/git-cz"
+    );
+    require(gitCzPath);
     process.on("beforeExit", gitCommit);
   }
 }
