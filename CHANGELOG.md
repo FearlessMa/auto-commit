@@ -1,3 +1,14 @@
+# Changelog
+
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+## [1.38.0-stable.2](https://github.com/FearlessMa/gitMessage/compare/v1.38.0-stable.1...v1.38.0-stable.2) (2020-06-09)
+
+
+### Features
+
+* 增加prttierrc.js ([a276e50](https://github.com/FearlessMa/gitMessage/commit/a276e503d208d86598ba11b257016c07425628c0))
+
 # [1.38.0-stable.1](https://github.com/FearlessMa/gitMessage/compare/v1.38.0-stable.0...v1.38.0-stable.1) (2020-06-01)
 
 
@@ -1039,6 +1050,3 @@
 ### Features
 
 * **test:** 增加test.js ([b018a41](https://github.com/FearlessMa/gitMessage/commit/b018a41dd231e478843105a57f2f23331f7d96a6))
-
-
-
