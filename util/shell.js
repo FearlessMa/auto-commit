@@ -3,9 +3,9 @@ const { loading } = require('./ora');
 const { errBold, infoBold, magentaBold } = require('./chalk');
 const fs = require('fs');
 const path = require('path');
-
-const binPathPro = '../.bin';
-const binPathMod = './node_modules/.bin';
+// path.normalize 统一不同操作系统分隔符问题
+const binPathPro = path.normalize('../.bin');
+const binPathMod = path.normalize('./node_modules/.bin');
 
 const exec = (command, options = { silent: true }, fn) =>
   shell.exec(command, options, fn);
