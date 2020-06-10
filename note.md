@@ -90,3 +90,5 @@ npm run release
 [shelljs](https://juejin.im/post/5cdb76166fb9a032196ef1ff)
 
 [版本号语义化](https://www.jianshu.com/p/d306ed03de62)
+
+[child_process的spawn,exec,execFile,spawnSync,execSync,execFileSync的区别](https://github.com/xitu/gold-miner/blob/master/TODO/node-js-child-processes-everything-you-need-to-know.md)
