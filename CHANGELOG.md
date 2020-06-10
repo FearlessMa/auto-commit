@@ -1,13 +1,11 @@
-# Changelog
-
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
-
-## [1.38.0-beta.0](https://github.com/FearlessMa/gitMessage/compare/v1.38.0-stable.2...v1.38.0-beta.0) (2020-06-10)
+# [1.38.0-beta.0](https://github.com/FearlessMa/gitMessage/compare/v1.38.0-stable.2...v1.38.0-beta.0) (2020-06-10)
 
 
 ### Bug Fixes
 
 * mac,windows路径符分隔符不统一问题 ([73af599](https://github.com/FearlessMa/gitMessage/commit/73af5992c75ec10cead5b91c04f980dfa2f26204))
+
+
 
 # [1.38.0-stable.2](https://github.com/FearlessMa/gitMessage/compare/v1.38.0-stable.1...v1.38.0-stable.2) (2020-06-09)
 
@@ -1059,3 +1057,6 @@ All notable changes to this project will be documented in this file. See [standa
 ### Features
 
 * **test:** 增加test.js ([b018a41](https://github.com/FearlessMa/gitMessage/commit/b018a41dd231e478843105a57f2f23331f7d96a6))
+
+
+

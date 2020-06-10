@@ -37,7 +37,8 @@ const asyncExec = (command, options = { silent: true }, fn, ...args) => {
  *
  * @param {*} path string
  */
-const find = (path) => exec('find ' + path).stdout;
+// const find = (path) => exec('find ' + path).stdout; // windows find 命令报错
+const find = (path) => shell.find(path).stdout;
 
 /**
  * 判断是否安装
