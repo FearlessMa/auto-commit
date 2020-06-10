@@ -240,8 +240,8 @@ async function execCmd(inputCmdRes) {
     const gitCzPath = require.resolve(
       path.join(process.cwd(), binPath) + '/git-cz'
     );
-    // require(gitCzPath);
-    child_process.spawnSync(gitCzPath, { shell: true, stdio: 'inherit' });
+    // 同步阻塞  https://github.com/xitu/gold-miner/blob/master/TODO/node-js-child-processes-everything-you-need-to-know.md
+    child_process.spawnSync(gitCzPath, { shell: true, stdio: 'inherit' }); //兼容windows 的 cmd
     // process.on('beforeExit', gitCommit);
     gitCommit()
   }
