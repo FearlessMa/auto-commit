@@ -2,13 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-## [1.38.0-beta.0](https://github.com/FearlessMa/gitMessage/compare/v1.38.0-alpha.0...v1.38.0-beta.0) (2020-06-10)
+## [1.38.0](https://github.com/FearlessMa/gitMessage/compare/v1.38.0-alpha.0...v1.38.0) (2020-06-10)
 
 
 ### Features
 
 * ttt ([3f1ef5a](https://github.com/FearlessMa/gitMessage/commit/3f1ef5a12ac04851200e1fffda2b5bd5191e793b))
 * ttt ([5c896fd](https://github.com/FearlessMa/gitMessage/commit/5c896fd2e740db677dc3d395c434eb6f7f8b4553))
+
+# [1.38.0-beta.0](https://github.com/FearlessMa/gitMessage/compare/v1.38.0-alpha.0...v1.38.0-beta.0) (2020-06-10)
+
+
+### Features
+
+* ttt ([3f1ef5a](https://github.com/FearlessMa/gitMessage/commit/3f1ef5a12ac04851200e1fffda2b5bd5191e793b))
+* ttt ([5c896fd](https://github.com/FearlessMa/gitMessage/commit/5c896fd2e740db677dc3d395c434eb6f7f8b4553))
+
+
 
 # [1.38.0-alpha.0](https://github.com/FearlessMa/gitMessage/compare/v1.38.0-beta.0...v1.38.0-alpha.0) (2020-06-10)
 
