@@ -241,9 +241,9 @@ async function execCmd(inputCmdRes) {
       path.join(process.cwd(), binPath) + '/git-cz'
     );
     // require(gitCzPath);
-    child_process.spawn(gitCzPath, { shell: true, stdio: 'inherit' });
-    process.on('beforeExit', gitCommit);
-    // gitCommit()
+    child_process.spawnSync(gitCzPath, { shell: true, stdio: 'inherit' });
+    // process.on('beforeExit', gitCommit);
+    gitCommit()
   }
 }
 
