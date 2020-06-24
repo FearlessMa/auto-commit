@@ -1,6 +1,6 @@
 {
   "name": "@fearless-ma/auto-commit",
-  "version": "1.38.2",
+  "version": "1.38.3",
   "description": "https://github.com/FearlessMa/gitMessage#readme",
   "main": "index.js",
   "bin": {
@@ -47,8 +47,5 @@
     "inquirer": "^7.1.0",
     "ora": "^4.0.4",
     "shelljs": "^0.8.4"
-  },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
   }
 }
