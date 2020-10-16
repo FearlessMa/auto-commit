@@ -1,3 +1,35 @@
+## [1.38.7](https://github.com/FearlessMa/gitMessage/compare/v1.38.6...v1.38.7) (2020-10-16)
+
+
+
+## [1.38.6](https://github.com/FearlessMa/gitMessage/compare/v1.38.5-alpha.1...v1.38.6) (2020-10-16)
+
+
+
+## [1.38.5-alpha.1](https://github.com/FearlessMa/gitMessage/compare/v1.38.5-alpha.0...v1.38.5-alpha.1) (2020-10-16)
+
+
+
+## [1.38.5-alpha.0](https://github.com/FearlessMa/gitMessage/compare/v1.38.6-1...v1.38.5-alpha.0) (2020-10-16)
+
+
+
+## [1.38.6-1](https://github.com/FearlessMa/gitMessage/compare/v1.38.6-0...v1.38.6-1) (2020-10-16)
+
+
+
+## [1.38.6-0](https://github.com/FearlessMa/gitMessage/compare/v1.38.5...v1.38.6-0) (2020-10-16)
+
+
+
+## [1.38.5](https://github.com/FearlessMa/gitMessage/compare/v1.38.4...v1.38.5) (2020-10-16)
+
+
+
+## [1.38.4](https://github.com/FearlessMa/gitMessage/compare/v1.38.3...v1.38.4) (2020-07-30)
+
+
+
 ## [1.38.3](https://github.com/FearlessMa/gitMessage/compare/v1.38.2...v1.38.3) (2020-06-24)
 
 
