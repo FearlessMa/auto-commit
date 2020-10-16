@@ -1,6 +1,6 @@
 {
   "name": "@fearless-ma/auto-commit",
-  "version": "1.38.6",
+  "version": "1.38.7",
   "description": "https://github.com/FearlessMa/gitMessage#readme",
   "main": "index.js",
   "bin": {
