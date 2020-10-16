@@ -83,6 +83,7 @@ if (find(autoCommit)) {
 }
 
 const standardVersion = 'node ' + binPath + '/standard-version';
+console.log('standardVersion: ', standardVersion);
 const standardVersionName = (versionName) =>
   `node ${binPath}/standard-version --prerelease ${versionName}`;
 const cmdChangelog =
