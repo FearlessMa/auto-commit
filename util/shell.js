@@ -4,11 +4,9 @@ const { errBold, infoBold, magentaBold } = require('./chalk');
 const fs = require('fs');
 const path = require('path');
 // path.normalize 统一不同操作系统分隔符问题
-const binPathPro = path.normalize('../.bin');
 const binPathMod = path.normalize('./node_modules/.bin');
 
-const exec = (command, options = { silent: true }, fn) =>
-  shell.exec(command, options, fn);
+const exec = (command, options = { silent: true }, fn) => shell.exec(command, options, fn);
 
 /**
  * 异步exec
@@ -102,9 +100,7 @@ const validateDeps = async (depNameList, dirPath = '') => {
 
 const createDepFile = (filename) => {
   shell.echo('缺少配置文件：' + magentaBold(filename));
-  const readStream = fs.createReadStream(
-    path.resolve(__dirname, '../lib/template/' + filename)
-  );
+  const readStream = fs.createReadStream(path.resolve(__dirname, '../lib/template/' + filename));
   const writeStream = fs.createWriteStream(process.cwd() + '/' + filename);
   readStream.pipe(writeStream);
 };
@@ -121,13 +117,13 @@ const validateDepFile = (fileNameList) => {
  * @returns path
  */
 const findBin = () => {
-  const binDir = find(binPathPro);
+  // const binDir = find(binPathPro);
   const binMod = find(binPathMod);
-  if (!binDir && !binMod) {
+  if (!binMod) {
     shell.echo(errBold('缺少依赖文件无法执行'));
     shell.exit(1);
   }
-  return binDir ? binPathPro : binPathMod;
+  return binPathMod;
 };
 
 /**
