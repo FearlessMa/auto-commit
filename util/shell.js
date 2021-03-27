@@ -4,7 +4,7 @@ const { errBold, infoBold, magentaBold } = require('./chalk');
 const fs = require('fs');
 const path = require('path');
 // path.normalize 统一不同操作系统分隔符问题
-const binPathPro = path.normalize('../.bin');
+// const binPathPro = path.normalize('../.bin');
 const binPathMod = path.normalize('./node_modules/.bin');
 
 const exec = (command, options = { silent: true }, fn) =>
@@ -121,13 +121,13 @@ const validateDepFile = (fileNameList) => {
  * @returns path
  */
 const findBin = () => {
-  const binDir = find(binPathPro);
+  // const binDir = find(binPathPro);
   const binMod = find(binPathMod);
-  if (!binDir && !binMod) {
+  if (!binMod) {
     shell.echo(errBold('缺少依赖文件无法执行'));
     shell.exit(1);
   }
-  return binDir ? binPathPro : binPathMod;
+  return binPathMod;
 };
 
 /**
