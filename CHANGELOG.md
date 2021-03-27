@@ -1,3 +1,14 @@
+# Changelog
+
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+## [1.39.0](https://github.com/FearlessMa/gitMessage/compare/v1.38.8...v1.39.0) (2021-03-27)
+
+
+### Features
+
+* 删除代码 ([3ae07c9](https://github.com/FearlessMa/gitMessage/commit/3ae07c983850c55aea63956b917fa5f5c5ab6def))
+
 ## [1.38.8](https://github.com/FearlessMa/gitMessage/compare/v1.38.7...v1.38.8) (2020-10-16)
 
 
@@ -1129,6 +1140,3 @@
 ### Features
 
 * **test:** 增加test.js ([b018a41](https://github.com/FearlessMa/gitMessage/commit/b018a41dd231e478843105a57f2f23331f7d96a6))
-
-
-
