@@ -37,7 +37,7 @@ const depList = [
   },
   {
     name: 'husky-run',
-    depName: 'husky'
+    depName: 'husky@4'
   },
   {
     name: 'lint-staged',
